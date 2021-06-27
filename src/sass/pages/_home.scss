@@ -1,0 +1,28 @@
+.heading {
+	height: 100vh;
+	// padding: 2.4rem;
+	display: flex;
+	align-items: center;
+
+	&__content {
+		margin-left: 4rem;
+		width: 70%;
+	}
+
+	&__title {
+		font-size: 6rem;
+		margin-bottom: 2.4rem;
+	}
+
+	&__overview {
+		font-size: 1.8rem;
+	}
+}
+
+.fade-effect {
+	position: relative;
+	margin-top: -10rem;
+	height: 10rem;
+	background-image: linear-gradient(180deg, transparent, rgb(17, 17, 17));
+	z-index: 100;
+}

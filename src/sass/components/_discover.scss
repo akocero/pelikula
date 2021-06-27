@@ -1,0 +1,54 @@
+.discover {
+	margin: 3rem 2rem;
+
+	&__title {
+		font-size: 2rem;
+		font-weight: 400;
+		// border-bottom: 1px solid rgb(37, 37, 37);
+		letter-spacing: 2px;
+		margin-left: 2rem;
+	}
+	&__list {
+		// width: 100%;
+		display: flex;
+		// overflow: hidden;
+		overflow-x: scroll;
+		padding: 2rem;
+
+		&::-webkit-scrollbar {
+			height: 0.8rem;
+		}
+
+		/* Track */
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		/* Handle */
+		&::-webkit-scrollbar-thumb {
+			border-radius: 6px;
+			background: rgba(#555, 0.1);
+		}
+
+		/* Handle on hover */
+		&::-webkit-scrollbar-thumb:hover {
+			background: rgba(red, 0.8);
+		}
+	}
+
+	&__poster {
+		img {
+			margin-right: 1rem;
+			width: 18rem;
+			border-radius: 0.6rem;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			position: relative;
+		}
+
+		img:hover {
+			transform: scale(1.1) rotate(-3deg);
+			z-index: 100;
+		}
+	}
+}

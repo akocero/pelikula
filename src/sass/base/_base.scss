@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	box-sizing: inherit;
+	background-color: rgb(17, 17, 17);
+	color: rgb(231, 231, 231);
+}
+
+ul {
+	list-style-type: none;
+}
+
+.movie-list {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 1.6rem;
+	padding: 0 4rem;
+}
