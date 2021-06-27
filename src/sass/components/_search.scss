@@ -1,0 +1,18 @@
+.search {
+	// background-color: black;
+	height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	input {
+		font-size: 2.8rem;
+		border: 0;
+		padding: 0.5rem 1rem;
+		background-color: rgb(24, 24, 24);
+	}
+
+	input:focus {
+		outline: none;
+	}
+}
