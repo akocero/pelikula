@@ -13,7 +13,7 @@ html {
 body {
 	font-size: 1.6rem;
 	box-sizing: inherit;
-	background-color: rgb(17, 17, 17);
+	background-color: $dark-color;
 	color: rgb(231, 231, 231);
 }
 
@@ -22,8 +22,11 @@ ul {
 }
 
 .movie-list {
+	position: relative;
+	margin-top: -15rem;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(7, 1fr);
 	grid-gap: 1.6rem;
 	padding: 0 4rem;
+	z-index: 101;
 }

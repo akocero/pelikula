@@ -10,7 +10,9 @@
 			<ul class="navbar__list">
 				<li class="navbar__item">
 					<router-link
-						:to="{ name: 'Browse Movies' }"
+						:to="{
+							name: 'Browse Movies',
+						}"
 						class="navbar__link"
 						>Search</router-link
 					>
@@ -20,6 +22,9 @@
 				</li>
 				<li class="navbar__item">
 					<a href="" class="navbar__link">Sign In</a>
+				</li>
+				<li class="navbar__item">
+					<a href="" class="navbar__link">Sign Up</a>
 				</li>
 			</ul>
 		</nav>

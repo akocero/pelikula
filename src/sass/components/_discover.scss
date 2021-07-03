@@ -27,19 +27,19 @@
 		/* Handle */
 		&::-webkit-scrollbar-thumb {
 			border-radius: 6px;
-			background: rgba(#555, 0.1);
+			background: $grey-color;
 		}
 
 		/* Handle on hover */
 		&::-webkit-scrollbar-thumb:hover {
-			background: rgba(red, 0.8);
+			background: $red-color;
 		}
 	}
 
 	&__poster {
 		img {
 			margin-right: 1rem;
-			width: 18rem;
+			width: 20rem;
 			border-radius: 0.6rem;
 			cursor: pointer;
 			transition: all 0.2s ease;

@@ -1,5 +1,5 @@
 <template>
-	<div class="discover">
+	<div class="discover" v-if="movies && !isPending">
 		<h4 class="discover__title">{{ title }}</h4>
 		<div class="discover__list" v-if="movies">
 			<div
@@ -16,6 +16,7 @@
 <script>
 import getMovies from "@/composables/getMovies";
 import request from "@/axios/request";
+import { onBeforeMount, ref } from "vue";
 
 export default {
 	name: "Discover",
@@ -24,11 +25,14 @@ export default {
 		title: String,
 	},
 	setup(props) {
-		const { movies, error, load } = getMovies(props.url);
+		const url = ref(props.url);
+		const { movies, error, load, isPending } = getMovies(url.value);
 
-		load();
+		onBeforeMount(async () => {
+			await load();
+		});
 
-		return { movies, error, request };
+		return { movies, error, request, isPending };
 	},
 };
 </script>
