@@ -15,6 +15,26 @@ body {
 	box-sizing: inherit;
 	background-color: $dark-color;
 	color: rgb(231, 231, 231);
+
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		border-radius: 1rem;
+		background: $t-dark-color;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: $red-color;
+	}
 }
 
 ul {
@@ -26,7 +46,7 @@ ul {
 	margin-top: -15rem;
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 1.6rem;
+	grid-gap: 3rem;
 	padding: 0 4rem;
 	z-index: 101;
 }
