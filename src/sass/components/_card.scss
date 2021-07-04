@@ -1,12 +1,30 @@
 .card {
 	border-radius: $border-rad;
 	overflow: hidden;
-	&__image {
+	transition: all 0.3s ease;
+	img.card__image {
 		width: 100%;
+	}
+
+	&__no-image {
+		background-color: rgb(37, 37, 37);
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			color: rgb(77, 77, 77);
+		}
 	}
 
 	&__title {
 		font-size: 1.6rem;
 		font-weight: 400;
+	}
+
+	&:hover {
+		cursor: pointer;
+		transform: scale(1.1) rotate(-3deg) !important;
 	}
 }

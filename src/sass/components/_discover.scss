@@ -1,19 +1,22 @@
 .discover {
-	margin: 3rem 2rem;
+	margin: 3rem 4rem;
+	position: relative;
+	z-index: 1000;
 
 	&__title {
 		font-size: 2rem;
 		font-weight: 400;
 		// border-bottom: 1px solid rgb(37, 37, 37);
 		letter-spacing: 2px;
-		margin-left: 2rem;
+
+		// margin-left: 2rem;
 	}
 	&__list {
 		// width: 100%;
 		display: flex;
 		// overflow: hidden;
 		overflow-x: scroll;
-		padding: 2rem;
+		padding: 2rem 0 2rem 0;
 
 		&::-webkit-scrollbar {
 			height: 0.8rem;
@@ -27,7 +30,7 @@
 		/* Handle */
 		&::-webkit-scrollbar-thumb {
 			border-radius: 6px;
-			background: $grey-color;
+			background: $dark-color-1;
 		}
 
 		/* Handle on hover */
@@ -38,8 +41,8 @@
 
 	&__poster {
 		img {
-			margin-right: 1rem;
-			width: 20rem;
+			margin-right: 2rem;
+			width: 16rem;
 			border-radius: 0.6rem;
 			cursor: pointer;
 			transition: all 0.2s ease;
@@ -48,7 +51,12 @@
 
 		img:hover {
 			transform: scale(1.1) rotate(-3deg);
+
 			z-index: 100;
 		}
 	}
+}
+
+.home > div:nth-child(3) {
+	margin-top: -15rem !important;
 }

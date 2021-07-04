@@ -11,6 +11,8 @@
     "@vueuse/core": "^5.0.3",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "feather-icons": "^4.28.0",
+    "gsap": "^3.7.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
