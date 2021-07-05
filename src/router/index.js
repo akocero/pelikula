@@ -10,6 +10,16 @@ const routes = [
     path: '/browse_movies',
     name: 'Browse Movies',
     component: () => import('@/views/browse_movies/BrowseMovies.vue')
+  },
+  {
+    path: '/auth',
+    name: 'Auth',
+    component: () => import('@/views/auth/Auth.vue')
+  },
+  {
+    path: '/movie/:id',
+    name: 'Movie Details',
+    component: () => import('@/views/movie/MovieDetails.vue')
   }
 ]
 
