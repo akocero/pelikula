@@ -1,5 +1,16 @@
 <template>
-	<div class="auth">
+	<div
+		class="auth"
+		:style="{
+			backgroundSize: 'cover',
+			backgroundImage: `linear-gradient(
+            to right, 
+            rgba(1, 1, 1, 0.85),
+            transparent), 
+            url(${request.imagePathOrig}${bg})`,
+			backgroundPosition: 'right center',
+		}"
+	>
 		<div class="auth__log-in" v-if="!showSignup">
 			<Signin @login="enterForum" />
 			<p class="mt-3">
@@ -15,18 +26,6 @@
 				<span @click="showSignup = false">Sign in</span> instead
 			</p>
 		</div>
-
-		<div
-			:style="{
-				backgroundSize: 'cover',
-				backgroundImage: `linear-gradient(
-            to right, 
-            rgba(1, 1, 1, 0.85),
-            transparent), 
-            url(${request.imagePathOrig}/${bg}.jpg)`,
-				backgroundPosition: 'right center',
-			}"
-		></div>
 	</div>
 	<!-- <div className="fade-effect"></div> -->
 </template>
@@ -52,15 +51,17 @@ export default {
 		const showSignup = ref(false);
 		const router = useRouter();
 		const imageArray = ref([
-			"ii8QGacT3MXESqBckQlyrATY0lT",
-			"6zbKgwgaaCyyBXE4Sun4oWQfQmi",
-			"auZIuHEUec5tBTns3tCRXfayxZq",
-			"6x00zPSgxcndnNvaFHdMtMT5Ytg",
+			"/kaIfm5ryEOwYg8mLbq8HkPuM1Fo.jpg", // Thor
+			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
+			"/eNb0zhVdxdo9U0950s0LnrjndWR.jpg", // Apocalypto
+			"/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg", // Parasite
+			"/x09wMSCS5mepN8lVRhmatyowVUd.jpg", // 300
+			"/pbrkL804c8yAv3zBZR4QPEafpAR.jpg", // interstellar
+			"/194dso1hBwQEgIU3fgS7mXHtFAj.jpg", // city of god
 		]);
 
 		const enterForum = () => {
 			console.log("Entered Forum");
-
 			router.push({ name: "forum" });
 		};
 

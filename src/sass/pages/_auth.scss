@@ -1,12 +1,17 @@
 .auth {
 	height: 100vh;
 	width: 100% !important;
-	display: grid;
-	grid-template-columns: 2fr 5fr;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	&__log-in {
-		padding: 0 4rem;
-		margin-top: 13rem;
+		border-radius: $border-rad;
+		padding: 4rem 3rem;
+		width: 25%;
+		margin-right: 4rem;
+		background-color: $t-dark-color;
+		// margin-top: 13rem;
 
 		p {
 			text-align: center;

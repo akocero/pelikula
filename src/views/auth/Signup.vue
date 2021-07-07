@@ -3,7 +3,7 @@
 		<h5>Sign Up</h5>
 		<div class="error mb-2" v-if="error">{{ error }}</div>
 		<div>
-			<label for="">Name</label>
+			<!-- <label for="">Name</label> -->
 			<input
 				type="text"
 				placeholder="Display Name"
@@ -12,11 +12,11 @@
 			/>
 		</div>
 		<div>
-			<label for="">Email</label>
+			<!-- <label for="">Email</label> -->
 			<input type="email" placeholder="Email" v-model="email" required />
 		</div>
 		<div>
-			<label for="">Password</label>
+			<!-- <label for="">Password</label> -->
 			<input
 				type="password"
 				placeholder="Password"
