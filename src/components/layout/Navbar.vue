@@ -20,7 +20,15 @@
 						<a href="" class="navbar__link">My Playlist</a>
 					</li>
 					<li class="navbar__item">
-						<a href="" class="navbar__link">Sign In</a>
+						<a href="" class="navbar__link">
+							<router-link
+								:to="{
+									name: 'Auth',
+								}"
+								class="navbar__link"
+								>Sign In</router-link
+							>
+						</a>
 					</li>
 					<li class="navbar__item">
 						<a href="" class="navbar__link">Sign Up</a>
@@ -38,11 +46,13 @@
 </template>
 
 <script>
-import { ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
+
 export default {
 	name: "Navbar",
 	setup() {
 		const showNav = ref(false);
+
 
 		return { showNav };
 	},

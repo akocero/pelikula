@@ -1,0 +1,28 @@
+.btn-float {
+	// padding: 0.6rem;
+	height: 4rem;
+	width: 4rem;
+	font-size: 2.2rem;
+	border: 1px solid $red-color;
+	background-color: $red-color;
+	color: white;
+	border-radius: 5rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+
+	&:hover {
+		background-color: darken($red-color, 1.9);
+	}
+}
+
+.btn {
+	padding: 0.7rem 1.5rem;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	background: transparent;
+	border: 2px solid rgb(255, 255, 255);
+	color: rgb(197, 197, 197);
+	letter-spacing: 1.6px;
+	cursor: pointer;
+}

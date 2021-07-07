@@ -41,18 +41,18 @@
 	}
 
 	&__item {
-		background: linear-gradient(
-			to right,
-			rgba(26, 26, 26, 0.034),
-			rgba(41, 41, 41, 0.315)
-		);
-		border-radius: 5rem;
+		// width: 100%
+		// padding-left: 4rem;
+		margin-left: 4rem;
+
 		margin-bottom: 2rem;
-		text-align: right;
+		padding-left: 2rem;
 	}
 
 	&__brand {
 		font-size: 1.8rem;
+		font-weight: 700;
+		letter-spacing: 1.6px;
 
 		a {
 			text-decoration: none;
@@ -71,7 +71,7 @@
 	&__link {
 		text-decoration: none;
 		color: white;
-		font-size: 4.5rem;
+		font-size: 3.5rem;
 	}
 
 	&__burger {

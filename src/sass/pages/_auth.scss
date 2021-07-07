@@ -1,0 +1,87 @@
+.auth {
+	height: 100vh;
+	width: 100% !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&__log-in {
+		border-radius: $border-rad;
+		padding: 4rem 3rem;
+		width: 25%;
+		margin-right: 4rem;
+		background-color: $t-dark-color;
+		// margin-top: 13rem;
+
+		p {
+			text-align: center;
+			span {
+				color: $red-color;
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	h5 {
+		font-size: 2.8rem;
+		font-weight: 400;
+		color: whitesmoke;
+		border-bottom: 1px solid rgb(49, 49, 49);
+		padding-bottom: 1rem;
+		margin-bottom: 2rem;
+	}
+	form {
+		width: 100%;
+		h2 {
+			font-size: 3.5rem;
+			font-weight: 400;
+			padding-bottom: 1rem;
+			margin-bottom: 1.5rem;
+			border-bottom: 1px solid grey;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
+		p {
+			margin-bottom: 2rem;
+		}
+		input {
+			padding: 0.8rem 1.2rem;
+			border: none;
+			display: block;
+			width: 100%;
+			margin-bottom: 2rem;
+			border-radius: $border-rad;
+			background: $t-dark-color-1;
+			border: 1px solid rgb(22, 22, 22);
+			color: white;
+			font-size: 1.6rem;
+		}
+
+		label {
+			color: rgb(63, 63, 63);
+			display: block;
+			margin-bottom: 1rem;
+			// font-weight: 600;
+			letter-spacing: 1.6px;
+			font-size: 1.3rem;
+		}
+
+		button {
+			padding: 1rem 2rem;
+			display: block;
+			width: 100%;
+			font-weight: 500;
+			border: none;
+			background-color: $red-color;
+			color: white;
+			font-size: 1.6rem;
+			border-radius: $border-rad;
+			cursor: pointer;
+		}
+	}
+}
