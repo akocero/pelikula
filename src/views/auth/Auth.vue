@@ -1,7 +1,21 @@
 <template>
 	<div class="auth">
-		<!-- <Signin /> -->
-		<Signup />
+		<div class="auth__log-in" v-if="!showSignup">
+			<Signin />
+			<p class="mt-3">
+				No account yet?
+				<span @click="showSignup = true">Sign up</span> instead
+			</p>
+		</div>
+
+		<div class="auth__log-in" v-else>
+			<Signup />
+			<p class="mt-3">
+				Already registered?
+				<span @click="showSignup = false">Sign in</span> instead
+			</p>
+		</div>
+
 		<div
 			:style="{
 				backgroundSize: 'cover',
@@ -34,6 +48,8 @@ export default {
 		};
 	},
 	setup() {
+		const showSignup = ref(false);
+
 		const imageArray = ref([
 			"ii8QGacT3MXESqBckQlyrATY0lT",
 			"6zbKgwgaaCyyBXE4Sun4oWQfQmi",
@@ -41,12 +57,14 @@ export default {
 			"6x00zPSgxcndnNvaFHdMtMT5Ytg",
 		]);
 
+		const handleSubmit = () => {};
+
 		const bg =
 			imageArray.value[
 				Math.floor(Math.random() * imageArray.value.length)
 			];
 
-		return { bg };
+		return { bg, showSignup };
 	},
 };
 </script>

@@ -46,11 +46,13 @@
 </template>
 
 <script>
-import { ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
+
 export default {
 	name: "Navbar",
 	setup() {
 		const showNav = ref(false);
+
 
 		return { showNav };
 	},

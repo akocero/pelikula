@@ -3,13 +3,19 @@
 	width: 100% !important;
 	display: grid;
 	grid-template-columns: 2fr 5fr;
-	// justify-content: center;
-	// align-items: flex-end;
+
 	&__log-in {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 4rem;
+		padding: 0 4rem;
+		margin-top: 13rem;
+
+		p {
+			text-align: center;
+			span {
+				color: $red-color;
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
 	}
 
 	h5 {
