@@ -1,7 +1,7 @@
 <template>
 	<div class="auth">
 		<div class="auth__log-in" v-if="!showSignup">
-			<Signin />
+			<Signin @login="enterForum" />
 			<p class="mt-3">
 				No account yet?
 				<span @click="showSignup = true">Sign up</span> instead
@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="auth__log-in" v-else>
-			<Signup />
+			<Signup @signup="enterForum" />
 			<p class="mt-3">
 				Already registered?
 				<span @click="showSignup = false">Sign in</span> instead
@@ -36,6 +36,7 @@ import request from "@/axios/request";
 import { ref } from "vue";
 import Signin from "./Signin.vue";
 import Signup from "./Signup.vue";
+import { useRouter } from "vue-router";
 export default {
 	name: "Auth",
 	components: {
@@ -49,7 +50,7 @@ export default {
 	},
 	setup() {
 		const showSignup = ref(false);
-
+		const router = useRouter();
 		const imageArray = ref([
 			"ii8QGacT3MXESqBckQlyrATY0lT",
 			"6zbKgwgaaCyyBXE4Sun4oWQfQmi",
@@ -57,14 +58,18 @@ export default {
 			"6x00zPSgxcndnNvaFHdMtMT5Ytg",
 		]);
 
-		const handleSubmit = () => {};
+		const enterForum = () => {
+			console.log("Entered Forum");
+
+			router.push({ name: "forum" });
+		};
 
 		const bg =
 			imageArray.value[
 				Math.floor(Math.random() * imageArray.value.length)
 			];
 
-		return { bg, showSignup };
+		return { bg, showSignup, enterForum };
 	},
 };
 </script>

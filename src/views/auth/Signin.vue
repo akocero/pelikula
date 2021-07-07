@@ -28,7 +28,7 @@ import { ref } from "vue";
 import useLogin from "@/composables/useLogin";
 export default {
 	name: "Signin",
-	setup() {
+	setup(props, { emit }) {
 		const { error, loading, login } = useLogin();
 		const email = ref("");
 		const password = ref("");
@@ -43,6 +43,8 @@ export default {
 
 			if (!error.value) {
 				console.log("user is logged in");
+
+				emit("login");
 			}
 
 			console.log(data);
