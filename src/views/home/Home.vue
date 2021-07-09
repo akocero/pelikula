@@ -6,7 +6,7 @@
 			:style="{
 				backgroundSize: 'cover',
 				backgroundImage: `linear-gradient(
-            to right, 
+            to right,  
             rgba(1, 1, 1, 0.95),
             transparent), 
             url(${request.imagePathOrig}/tM894AtE7UQTJEoQG6qF6mdfSUT.jpg)`,
