@@ -152,7 +152,7 @@ export default {
 
 		const handleSearch = async () => {
 			pageNumber.value = 1;
-			router.push({ name: "Browse Movies", query: { q: search.value } });
+			router.push({ name: "browse_movies", query: { q: search.value } });
 			await fetch(search.value, pageNumber.value);
 			animationCounter.value = 0;
 		};

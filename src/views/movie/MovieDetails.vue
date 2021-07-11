@@ -8,7 +8,7 @@
             rgba(0, 0, 0, 0.96),
             transparent), 
             url(${request.imagePathMd}${movie.backdrop_path})`,
-			backgroundPosition: 'right center',
+			backgroundPosition: 'center center',
 		}"
 		v-if="movie"
 	>

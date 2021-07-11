@@ -50,6 +50,7 @@ export default {
 	setup() {
 		const showSignup = ref(false);
 		const router = useRouter();
+		// Backdrop Path
 		const imageArray = ref([
 			"/kaIfm5ryEOwYg8mLbq8HkPuM1Fo.jpg", // Thor
 			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
@@ -58,6 +59,8 @@ export default {
 			"/x09wMSCS5mepN8lVRhmatyowVUd.jpg", // 300
 			"/pbrkL804c8yAv3zBZR4QPEafpAR.jpg", // interstellar
 			"/194dso1hBwQEgIU3fgS7mXHtFAj.jpg", // city of god
+			"/xnqust9Li4oxfhXD5kcPi3UC8i4.jpg", // Avengers: Age of Ultron
+			"/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg",
 		]);
 
 		const enterForum = () => {

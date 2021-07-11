@@ -1,5 +1,6 @@
 @import "abstract/variables";
 @import "abstract/utils";
+@import "abstract/animations";
 @import "base/base";
 @import "base/typography";
 
@@ -9,6 +10,7 @@
 @import "components/card";
 @import "components/modal";
 @import "components/buttons";
+@import "components/sidebar";
 @import "pages/auth";
 @import "pages/home";
 @import "pages/movie-details";

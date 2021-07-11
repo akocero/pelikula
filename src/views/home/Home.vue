@@ -27,8 +27,10 @@
 			</form>
 		</div>
 		<div className="fade-effect"></div>
+		<Discover :url="request.topPopular" title="What's Popular?" />
 		<Discover :url="request.trending" title="What's Trending?" />
 		<Discover :url="request.topRated" title="Top Rated" />
+		<Discover :url="request.topAction" title="Top Action" />
 	</div>
 </template>
 
@@ -36,9 +38,8 @@
 import request from "@/axios/request";
 import Discover from "@/views/home/Discover";
 import Heading from "@/views/home/Heading";
-import getMovies from "@/composables/getMovies";
 import Spinner from "@/components/Spinner";
-import { onBeforeMount, ref } from "vue";
+import { ref } from "vue";
 import feather from "feather-icons";
 import { useRouter } from "vue-router";
 
@@ -62,28 +63,11 @@ export default {
 		};
 	},
 	setup() {
-		// const { movies, error, load, isPending } = getMovies(request.trending);
-		// const movie = ref(null);
-		// const loadMovie = async () => {
-		// 	await load();
-		// 	if (!error.value) {
-		// 		movie.value =
-		// 			movies.value?.results[
-		// 				Math.floor(
-		// 					Math.random() * movies.value.results.length - 1
-		// 				)
-		// 			];
-		// 	}
-		// };
-		// onBeforeMount(() => {
-		// 	loadMovie();
-		// });
-
 		const router = useRouter();
 		const search = ref("");
 
 		const handleSearch = () => {
-			router.push({ name: "Browse Movies", query: { q: search.value } });
+			router.push({ name: "browse_movies", query: { q: search.value } });
 		};
 		return { handleSearch, search };
 	},
