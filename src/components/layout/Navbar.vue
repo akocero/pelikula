@@ -35,8 +35,13 @@
 				</ul>
 			</nav>
 		</transition>
-		<form action="" class="navbar__search" v-if="showNavSearch">
-			<input type="text" placeholder="Search ..." />
+		<form
+			@submit.prevent="handleSearch"
+			action=""
+			class="navbar__search"
+			v-if="showNavSearch"
+		>
+			<input type="text" placeholder="Search ..." v-model="search" />
 			<button><i v-html="iSearch"></i></button>
 		</form>
 		<div
@@ -52,9 +57,9 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { onBeforeMount, ref, watch } from "vue";
 import feather from "feather-icons";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
 	name: "Navbar",
@@ -67,22 +72,33 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
+		const router = useRouter();
+		const search = ref("");
 		const showNavSearch = ref(true);
-		watch(route, () => {
-			const routesNotToShowSearch = ["browse_movies", "home"];
 
-			if (routesNotToShowSearch.includes(route.name)) {
-				showNavSearch.value = false;
-			} else {
-				showNavSearch.value = true;
-			}
-
-			console.log(route.name);
+		onBeforeMount(() => {
+			showOrHideNavSearch();
 		});
+
+		const handleSearch = () => {
+			router.push({ name: "browse_movies", query: { q: search.value } });
+			search.value = "";
+		};
+
+		watch(route, () => {
+			showOrHideNavSearch();
+		});
+
+		const showOrHideNavSearch = () => {
+			const routesNotToShowSearch = ["browse_movies", "home"];
+			routesNotToShowSearch.includes(route.name)
+				? (showNavSearch.value = false)
+				: (showNavSearch.value = true);
+		};
 
 		const showNav = ref(false);
 
-		return { showNav, showNavSearch };
+		return { showNav, showNavSearch, handleSearch, search };
 	},
 };
 </script>
