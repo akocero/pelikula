@@ -8,10 +8,6 @@
 	height: 100%;
 	background: rgba(#000000, 0.8);
 	z-index: 10000;
-	display: flex;
-	justify-content: center;
-	// align-items: center;
-	padding-top: 7rem;
 }
 
 .modal {
@@ -22,61 +18,51 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: 85%;
-	height: 70vh;
+	width: 78rem;
+	height: 43.9rem;
 	overflow: hidden;
-	color: black;
 	z-index: 10001;
 	border-radius: $border-rad;
-	&__body {
-		position: relative;
-		padding: 2rem;
-		display: flex;
-		align-items: center;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
 		height: 100%;
 		width: 100%;
-		* {
-			margin-right: 1.5rem;
-			position: relative;
-			z-index: 1;
-		}
-
-		&::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			background: rgba(#000000, 0.8);
-		}
+		background: linear-gradient(
+			to right,
+			rgb(10, 10, 10) 25%,
+			rgba(0, 0, 0, 0.01)
+		);
 	}
 
-	&__poster {
-		width: 25%;
+	&__body {
+		height: 100%;
 		// display: flex;
 		// align-items: center;
-		// background-color: red;
-		// // height: 100%;
-		// // background-color: red;
-		img {
-			width: 100%;
+		* {
+			position: relative;
+			z-index: 1;
 		}
 	}
 
 	&__content {
-		width: 75%;
-		padding: 1rem;
+		margin: 4rem 0 0 3.5rem;
+		width: 45%;
 		color: rgb(245, 245, 245);
-		align-self: flex-start;
+
+		&__info {
+			color: #a3a385;
+		}
 
 		&__title {
 			// margin-top: 2.5rem;
 			font-size: 3rem;
-			font-weight: 400;
-			padding-bottom: 1rem;
+			font-weight: 700;
 			margin-bottom: 2rem;
-			border-bottom: 1px solid rgb(148, 148, 148);
+			// border-bottom: 1px solid rgb(148, 148, 148);
 		}
 		&__overview {
 			letter-spacing: 1.2px;
@@ -103,17 +89,36 @@
 
 	&__button-close {
 		position: absolute;
-		top: 1rem;
+		top: 1.5rem;
 		right: 1.5rem;
 		font-size: 3rem;
 		border: none;
-		background: none;
 		color: white;
+		width: 4rem;
+		height: 4rem;
+		border-radius: 4rem;
+		background-color: $t-dark-color-1;
 		z-index: 1;
+
+		* {
+			padding-top: 2px;
+		}
 
 		&:hover {
 			cursor: pointer;
 		}
+	}
+
+	&__button-view-more {
+		position: absolute;
+		bottom: 4rem;
+		left: 3.5rem;
+		font-size: 1.4rem;
+		// background-color: red;
+		border: none;
+		background: none;
+		color: white;
+		z-index: 1;
 	}
 }
 

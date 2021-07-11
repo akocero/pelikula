@@ -36,9 +36,8 @@
 import request from "@/axios/request";
 import Discover from "@/views/home/Discover";
 import Heading from "@/views/home/Heading";
-import getMovies from "@/composables/getMovies";
 import Spinner from "@/components/Spinner";
-import { onBeforeMount, ref } from "vue";
+import { ref } from "vue";
 import feather from "feather-icons";
 import { useRouter } from "vue-router";
 
@@ -62,23 +61,6 @@ export default {
 		};
 	},
 	setup() {
-		// const { movies, error, load, isPending } = getMovies(request.trending);
-		// const movie = ref(null);
-		// const loadMovie = async () => {
-		// 	await load();
-		// 	if (!error.value) {
-		// 		movie.value =
-		// 			movies.value?.results[
-		// 				Math.floor(
-		// 					Math.random() * movies.value.results.length - 1
-		// 				)
-		// 			];
-		// 	}
-		// };
-		// onBeforeMount(() => {
-		// 	loadMovie();
-		// });
-
 		const router = useRouter();
 		const search = ref("");
 

@@ -6,6 +6,7 @@ const request = {
     youtube: 'https://www.youtube.com/embed/',
     imagePath: 'https://image.tmdb.org/t/p/w220_and_h330_face',
     imagePathSm: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2',
+    imagePathBD: 'https://image.tmdb.org/t/p/w780',
     imagePathMd: 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces',
     imagePathOrig: 'https://image.tmdb.org/t/p/original',
     trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${apikey}`,

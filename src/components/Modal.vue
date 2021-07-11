@@ -1,35 +1,50 @@
 <template>
-	<div class="modal">
+	<div
+		class="modal"
+		:style="{
+			backgroundSize: 'cover',
+			backgroundImage: `linear-gradient(
+            to right, 
+            rgba(10,10,10, 0.6),
+            transparent), 
+            url(${request.imagePathBD}${movie.backdrop_path})`,
+			backgroundPosition: 'center center',
+		}"
+	>
 		<button class="modal__button-close" @click="handleCloseModal">
 			<i v-html="iX"></i>
 		</button>
-		<div
-			class="modal__body"
-			v-if="movie"
-			:style="{
-				backgroundSize: 'cover',
-				backgroundImage: `
-            url(${request.imagePathMd}${movie.backdrop_path})`,
-				backgroundPosition: 'top center',
-			}"
-		>
-			<div class="modal__poster" v-if="movie.poster_path">
+		<button class="modal__button-view-more" @click="handleCloseModal">
+			<i v-html="iArrowRight"></i>
+		</button>
+		<div class="modal__body" v-if="movie">
+			<!-- <div class="modal__poster" v-if="movie.poster_path">
 				<img :src="request.imagePathSm + movie.poster_path" alt="" />
-			</div>
+			</div> -->
 
 			<div class="modal__content">
 				<h2 class="modal__content__title">
 					{{ movie.title }}
-					({{ movie.release_date.substr(0, 4) }})
 				</h2>
-				<ul class="modal__content__genre mb-2">
+				<p class="mb-2 modal__content__info">
+					{{ movie.release_date.substr(0, 4) }}
+				</p>
+
+				<p class="mb-2 modal__content__tagline">
+					{{ movie.tag_line }}
+				</p>
+				<!-- <ul class="modal__content__genre mb-2">
 					<li>Action</li>
 					<li>Animation</li>
 					<li>Adventure</li>
-				</ul>
-				<p class="modal__content__overview">
-					<strong>Overview:</strong><br />
-					{{ movie.overview }}
+				</ul> -->
+				<p class="modal__content__overview mb-3">
+					{{ movie.overview.substr(0, 120) }} ...
+				</p>
+				<h5 class="mb-1 ">Votes</h5>
+				<p class="mb-1 modal__content__info">
+					Average {{ movie.vote_average }}% | Count
+					{{ movie.vote_count }} | Popularity {{ movie.popularity }}
 				</p>
 			</div>
 		</div>
@@ -53,6 +68,11 @@ export default {
 		iX: function() {
 			return feather.icons["x"].toSvg({
 				width: 18,
+			});
+		},
+		iArrowRight: function() {
+			return feather.icons["arrow-right"].toSvg({
+				width: 22,
 			});
 		},
 	},
