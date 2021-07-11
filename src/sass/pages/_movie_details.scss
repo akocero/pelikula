@@ -46,9 +46,6 @@
 		}
 	}
 
-	&__imdb-rating {
-	}
-
 	&__actions {
 		* {
 			margin-right: 2rem;
@@ -73,5 +70,29 @@
 	&__other-info {
 		display: flex;
 		justify-content: space-between;
+	}
+}
+
+.movie-cast {
+	// margin: 4rem 4rem;
+
+	&__title {
+		font-size: 2.3rem;
+		margin-left: 4rem;
+		margin-top: 4rem;
+	}
+
+	&__list {
+		display: flex;
+		overflow-x: auto;
+		padding: 2rem 4rem;
+		// overflow-y: scroll;
+
+		@include modified-scrollbar;
+	}
+
+	&__item {
+		margin-right: 2rem;
+		min-width: 16rem;
 	}
 }

@@ -65,16 +65,22 @@
 		</div>
 	</div>
 	<div class="fade-effect"></div>
+	<div class="row">
+		<MovieCast />
+	</div>
 </template>
 
 <script>
 import request from "@/axios/request";
 import getMovie from "@/composables/getMovie";
+import MovieCast from "./MovieCast.vue";
 import { useRoute } from "vue-router";
 import { onBeforeMount } from "vue";
 export default {
 	name: "MovieDetails",
-	components: {},
+	components: {
+		MovieCast,
+	},
 	data() {
 		return {
 			request: request,

@@ -20,25 +20,7 @@
 		overflow-x: scroll;
 		padding: 2rem 0 2rem 2rem;
 
-		&::-webkit-scrollbar {
-			height: 0.8rem;
-		}
-
-		/* Track */
-		&::-webkit-scrollbar-track {
-			background: transparent;
-		}
-
-		/* Handle */
-		&::-webkit-scrollbar-thumb {
-			border-radius: 6px;
-			background: $dark-color-1;
-		}
-
-		/* Handle on hover */
-		&::-webkit-scrollbar-thumb:hover {
-			background: $red-color;
-		}
+		@include modified-scrollbar;
 	}
 
 	&__poster {

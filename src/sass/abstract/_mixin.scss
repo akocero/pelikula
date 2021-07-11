@@ -1,0 +1,21 @@
+@mixin modified-scrollbar {
+	&::-webkit-scrollbar {
+		height: 0.8rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		border-radius: 6px;
+		background: #0c0c0c;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: $red-color;
+	}
+}

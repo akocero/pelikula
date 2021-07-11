@@ -40,13 +40,3 @@ body {
 ul {
 	list-style-type: none;
 }
-
-.movie-list {
-	position: relative;
-	margin-top: -15rem;
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 3rem;
-	padding: 0 4rem;
-	z-index: 101;
-}

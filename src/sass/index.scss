@@ -1,6 +1,7 @@
 @import "abstract/variables";
 @import "abstract/utils";
 @import "abstract/animations";
+@import "abstract/mixin";
 @import "base/base";
 @import "base/typography";
 
@@ -13,4 +14,5 @@
 @import "components/sidebar";
 @import "pages/auth";
 @import "pages/home";
-@import "pages/movie-details";
+@import "pages/movie_details";
+@import "pages/browse_movies";

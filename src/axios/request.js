@@ -4,6 +4,9 @@ const request = {
     apikey: '7d7a6c7d574c704591e07f29b54b6b0b',
     search: `search/movie?api_key=${apikey}&query=`,
     youtube: 'https://www.youtube.com/embed/',
+    imagePaths: {
+        w138: 'https://image.tmdb.org/t/p/w138_and_h175_face',
+    },
     imagePath: 'https://image.tmdb.org/t/p/w220_and_h330_face',
     imagePathSm: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2',
     imagePathBD: 'https://image.tmdb.org/t/p/w780',
