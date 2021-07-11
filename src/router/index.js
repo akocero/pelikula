@@ -22,23 +22,23 @@ const noAuthRequire = (to, from, next) => {
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: () => import('@/views/home/Home.vue')
   },
   {
     path: '/browse_movies',
-    name: 'Browse Movies',
+    name: 'browse_movies',
     component: () => import('@/views/browse_movies/BrowseMovies.vue')
   },
   {
     path: '/auth',
-    name: 'Auth',
+    name: 'auth',
     component: () => import('@/views/auth/Auth.vue'),
     beforeEnter: noAuthRequire
   },
   {
     path: '/movie/:id',
-    name: 'Movie Details',
+    name: 'movie',
     component: () => import('@/views/movie/MovieDetails.vue')
   },
   {

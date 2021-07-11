@@ -14,9 +14,12 @@
 		<button class="modal__button-close" @click="handleCloseModal">
 			<i v-html="iX"></i>
 		</button>
-		<button class="modal__button-view-more" @click="handleCloseModal">
+		<router-link
+			:to="{ name: 'movie', params: { id: movie.id } }"
+			class="modal__button-view-more"
+		>
 			<i v-html="iArrowRight"></i>
-		</button>
+		</router-link>
 		<div class="modal__body" v-if="movie">
 			<!-- <div class="modal__poster" v-if="movie.poster_path">
 				<img :src="request.imagePathSm + movie.poster_path" alt="" />

@@ -1,7 +1,7 @@
 <template>
 	<div class="navbar">
 		<div class="navbar__brand">
-			<router-link :to="{ name: 'Home' }" class="">PELIKULA</router-link>
+			<router-link :to="{ name: 'home' }" class="">PELIKULA</router-link>
 		</div>
 
 		<transition name="nav">
@@ -10,9 +10,10 @@
 					<li class="navbar__item">
 						<router-link
 							:to="{
-								name: 'Browse Movies',
+								name: 'browse_movies',
 							}"
 							class="navbar__link"
+							@click="showNav = false"
 							>Search</router-link
 						>
 					</li>
@@ -23,21 +24,26 @@
 						<a href="" class="navbar__link">
 							<router-link
 								:to="{
-									name: 'Auth',
+									name: 'auth',
 								}"
+								@click="showNav = false"
 								class="navbar__link"
-								>Sign In</router-link
+								>Sign In / Sign Up</router-link
 							>
 						</a>
-					</li>
-					<li class="navbar__item">
-						<a href="" class="navbar__link">Sign Up</a>
 					</li>
 				</ul>
 			</nav>
 		</transition>
-
-		<div class="navbar__burger" @click="showNav = !showNav">
+		<form action="" class="navbar__search" v-if="showNavSearch">
+			<input type="text" placeholder="Search ..." />
+			<button><i v-html="iSearch"></i></button>
+		</form>
+		<div
+			class="navbar__burger"
+			:class="!showNavSearch && 'ml-auto'"
+			@click="showNav = !showNav"
+		>
 			<div></div>
 			<div></div>
 			<div></div>
@@ -46,27 +52,39 @@
 </template>
 
 <script>
-import { onMounted, ref, watchEffect } from "vue";
+import { ref, watch } from "vue";
+import feather from "feather-icons";
+import { useRoute } from "vue-router";
 
 export default {
 	name: "Navbar",
+	computed: {
+		iSearch: function() {
+			return feather.icons["search"].toSvg({
+				width: 18,
+			});
+		},
+	},
 	setup() {
+		const route = useRoute();
+		const showNavSearch = ref(true);
+		watch(route, () => {
+			const routesNotToShowSearch = ["browse_movies", "home"];
+
+			if (routesNotToShowSearch.includes(route.name)) {
+				showNavSearch.value = false;
+			} else {
+				showNavSearch.value = true;
+			}
+
+			console.log(route.name);
+		});
+
 		const showNav = ref(false);
 
-
-		return { showNav };
+		return { showNav, showNavSearch };
 	},
 };
 </script>
 
-<style>
-.nav-enter-active,
-.nav-leave-active {
-	transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.5s linear;
-}
-
-.nav-enter-from,
-.nav-leave-to {
-	transform: translateY(-100%);
-}
-</style>
+<style></style>

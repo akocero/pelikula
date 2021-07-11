@@ -1,22 +1,24 @@
 .discover {
-	margin: 3rem 4rem;
 	position: relative;
 	z-index: 1000;
+	margin: 4rem 0;
+	// background-color: orangered;
 
 	&__title {
-		font-size: 2rem;
-		font-weight: 400;
+		font-size: 1.6rem;
+		font-weight: 500;
 		// border-bottom: 1px solid rgb(37, 37, 37);
 		letter-spacing: 2px;
 
-		// margin-left: 2rem;
+		margin: 0 0 0 4rem;
 	}
 	&__list {
 		// width: 100%;
+		margin: 0 0 0 2rem;
 		display: flex;
 		// overflow: hidden;
 		overflow-x: scroll;
-		padding: 2rem 0 2rem 0;
+		padding: 2rem 0 2rem 2rem;
 
 		&::-webkit-scrollbar {
 			height: 0.8rem;

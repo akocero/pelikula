@@ -27,8 +27,10 @@
 			</form>
 		</div>
 		<div className="fade-effect"></div>
+		<Discover :url="request.topPopular" title="What's Popular?" />
 		<Discover :url="request.trending" title="What's Trending?" />
 		<Discover :url="request.topRated" title="Top Rated" />
+		<Discover :url="request.topAction" title="Top Action" />
 	</div>
 </template>
 
@@ -65,7 +67,7 @@ export default {
 		const search = ref("");
 
 		const handleSearch = () => {
-			router.push({ name: "Browse Movies", query: { q: search.value } });
+			router.push({ name: "browse_movies", query: { q: search.value } });
 		};
 		return { handleSearch, search };
 	},

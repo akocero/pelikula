@@ -7,9 +7,7 @@
 				:key="movie.id"
 				class="discover__poster"
 			>
-				<router-link
-					:to="{ name: 'Movie Details', params: { id: movie.id } }"
-				>
+				<router-link :to="{ name: 'movie', params: { id: movie.id } }">
 					<img :src="request.imagePath + movie.poster_path" alt="" />
 				</router-link>
 			</div>

@@ -1,9 +1,9 @@
 .navbar {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	display: flex;
-	justify-content: space-between;
+	// justify-content: space-between;
 	height: 10rem;
 	padding: 0 4rem;
 	align-items: center;
@@ -14,6 +14,32 @@
 	// &--has-bg {
 	// 	background-color: $dark-color;
 	// }
+	&__search {
+		margin-left: auto;
+		position: relative;
+		margin-right: 1.5rem;
+		input {
+			padding: 1rem 1.5rem;
+			background-color: $t-dark-color;
+			// border: 1px solid rgb(24, 24, 24);
+			border: none;
+			border-radius: 4rem;
+			color: $light-color;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		button {
+			position: absolute;
+			top: 0.5rem;
+			right: 1rem;
+			background: none;
+			border: none;
+			color: $light-color;
+		}
+	}
 
 	&__nav {
 		position: fixed;
@@ -78,7 +104,7 @@
 		height: 50px;
 		width: 50px;
 		border-radius: 5rem;
-		background-color: $t-dark-color-1;
+		// background-color: $t-dark-color-1;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
