@@ -41,7 +41,12 @@
 			class="navbar__search"
 			v-if="showNavSearch"
 		>
-			<input type="text" placeholder="Search ..." v-model="search" />
+			<input
+				type="text"
+				placeholder="Search ..."
+				v-model="search"
+				required
+			/>
 			<button><i v-html="iSearch"></i></button>
 		</form>
 		<div

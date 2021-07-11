@@ -65,8 +65,8 @@
 		</div>
 	</div>
 	<div class="fade-effect"></div>
-	<div class="row">
-		<MovieCast />
+	<div class="row" v-if="movie">
+		<MovieCast :movie_id="movie.id" />
 	</div>
 </template>
 
