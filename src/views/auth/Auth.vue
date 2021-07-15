@@ -27,7 +27,7 @@
 			</p>
 		</div>
 	</div>
-	<!-- <div className="fade-effect"></div> -->
+	<div className="fade-effect"></div>
 </template>
 
 <script>
@@ -52,15 +52,12 @@ export default {
 		const router = useRouter();
 		// Backdrop Path
 		const imageArray = ref([
-			"/kaIfm5ryEOwYg8mLbq8HkPuM1Fo.jpg", // Thor
 			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
 			"/eNb0zhVdxdo9U0950s0LnrjndWR.jpg", // Apocalypto
 			"/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg", // Parasite
-			"/x09wMSCS5mepN8lVRhmatyowVUd.jpg", // 300
 			"/pbrkL804c8yAv3zBZR4QPEafpAR.jpg", // interstellar
 			"/194dso1hBwQEgIU3fgS7mXHtFAj.jpg", // city of god
-			"/xnqust9Li4oxfhXD5kcPi3UC8i4.jpg", // Avengers: Age of Ultron
-			"/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg",
+			"/4vwz1RMV9WTSofBM5gNZQV8eafc.jpg", // I saw the devil
 		]);
 
 		const enterForum = () => {

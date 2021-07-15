@@ -1,8 +1,13 @@
 .movie-details {
 	height: 100vh;
-	display: grid;
-	grid-template-columns: 1.8fr 5fr;
-	padding: 6rem 4rem;
+
+	&__wrapper {
+		height: 100%;
+		padding: 4rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 
 	&__content {
 		margin-top: 3rem;
@@ -10,6 +15,7 @@
 	}
 
 	&__poster {
+		margin-right: 2.5rem;
 		margin-top: 4rem;
 		img {
 			border-radius: $border-rad;
@@ -23,6 +29,7 @@
 		font-weight: 700;
 		margin-bottom: 0.3rem;
 		letter-spacing: 2px;
+		text-shadow: 2px -2px 11px #110805;
 	}
 
 	&__info {

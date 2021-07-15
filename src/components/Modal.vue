@@ -69,13 +69,13 @@ export default {
 	},
 	computed: {
 		iX: function() {
-			return feather.icons["x"].toSvg({
+			return feather.icons["minimize"].toSvg({
 				width: 18,
 			});
 		},
 		iArrowRight: function() {
-			return feather.icons["arrow-right"].toSvg({
-				width: 22,
+			return feather.icons["external-link"].toSvg({
+				width: 18,
 			});
 		},
 	},

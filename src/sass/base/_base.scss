@@ -11,10 +11,9 @@ html {
 }
 
 body {
-	font-size: 1.6rem;
 	box-sizing: inherit;
 	background-color: $dark-color;
-	color: rgb(231, 231, 231);
+	color: $light-color;
 
 	&::-webkit-scrollbar {
 		width: 0.5rem;
