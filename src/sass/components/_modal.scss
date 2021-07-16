@@ -1,26 +1,22 @@
 .modal__backdrop {
 	content: "";
-	position: absolute;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(#000000, 0.8);
+	background: $t-dark-color-1;
 	z-index: 10000;
 }
 
 .modal {
-	position: absolute;
 	position: fixed;
-	background: #323333;
-	// margin: 5rem auto;
+	background: $dark-color;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 78rem;
 	height: 43.9rem;
-	overflow: hidden;
 	z-index: 10001;
 	border-radius: $border-rad;
 
@@ -33,15 +29,13 @@
 		width: 100%;
 		background: linear-gradient(
 			to right,
-			rgb(10, 10, 10) 25%,
+			$dark-color 25%,
 			rgba(0, 0, 0, 0.01)
 		);
 	}
 
 	&__body {
 		height: 100%;
-		// display: flex;
-		// align-items: center;
 		* {
 			position: relative;
 			z-index: 1;
@@ -49,30 +43,29 @@
 	}
 
 	&__content {
-		margin: 4rem 0 0 3.5rem;
+		margin: $x-spacing 0 0 $x-spacing;
 		width: 45%;
 		color: rgb(245, 245, 245);
 
 		&__info {
-			color: #a3a385;
+			color: $grey-color;
 		}
 
 		&__title {
-			// margin-top: 2.5rem;
-			font-size: 3rem;
+			font-size: 2.8rem;
 			font-weight: 700;
 			margin-bottom: 2rem;
-			// border-bottom: 1px solid rgb(148, 148, 148);
 		}
+
 		&__overview {
-			letter-spacing: 1.2px;
-			font-size: 1.6rem;
+			letter-spacing: 1.4px;
+			font-size: $paragraph;
 			line-height: 1.6;
 		}
 
 		&__genre {
 			letter-spacing: 1.2px;
-			font-size: 1.4rem;
+			font-size: $paragraph;
 			font-weight: 400;
 			line-height: 1.6;
 			width: 100%;
@@ -99,6 +92,7 @@
 		border-radius: 4rem;
 		background-color: $t-dark-color-1;
 		z-index: 1;
+		transition: all 0.3s ease;
 
 		* {
 			padding-top: 2px;
@@ -106,17 +100,24 @@
 
 		&:hover {
 			cursor: pointer;
+			background-color: $red-color;
 		}
 	}
 
 	&__button-view-more {
 		position: absolute;
-		bottom: 4rem;
-		left: 3.5rem;
+		bottom: -2.3rem;
+		left: 3rem;
+		height: 4.6rem;
+		width: 4.6rem;
+		border-radius: 6rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		font-size: 1.4rem;
-		// background-color: red;
+		background-color: $red-color;
 		border: none;
-		background: none;
+		// background: none;
 		color: white;
 		z-index: 1;
 	}

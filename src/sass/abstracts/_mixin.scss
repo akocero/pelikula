@@ -1,0 +1,25 @@
+@mixin modified-scrollbar {
+	&::-webkit-scrollbar {
+		height: 0.8rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		border-radius: 6px;
+		background: #161616;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: $red-color;
+	}
+}
+
+@mixin default-transition {
+	transition: all 0.3s ease;
+}

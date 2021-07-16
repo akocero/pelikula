@@ -6,13 +6,10 @@
 	border: 1px solid $red-color;
 	background-color: $red-color;
 	color: white;
-	border-radius: 5rem;
+	border-radius: 50%;
 	cursor: pointer;
-	transition: all 0.3s ease;
 
-	&:hover {
-		background-color: darken($red-color, 1.9);
-	}
+	@include default-transition;
 }
 
 .btn {

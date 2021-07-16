@@ -1,7 +1,7 @@
 .discover {
 	position: relative;
 	z-index: 1000;
-	margin: 4rem 0;
+	margin: 3rem 0;
 	// background-color: orangered;
 
 	&__title {
@@ -10,55 +10,36 @@
 		// border-bottom: 1px solid rgb(37, 37, 37);
 		letter-spacing: 2px;
 
-		margin: 0 0 0 4rem;
+		margin: 0 0 0 $x-spacing;
 	}
 	&__list {
-		// width: 100%;
-		margin: 0 0 0 2rem;
 		display: flex;
-		// overflow: hidden;
 		overflow-x: scroll;
-		padding: 2rem 0 2rem 2rem;
+		padding: 3rem 0 3rem $x-spacing;
 
-		&::-webkit-scrollbar {
-			height: 0.8rem;
-		}
-
-		/* Track */
-		&::-webkit-scrollbar-track {
-			background: transparent;
-		}
-
-		/* Handle */
-		&::-webkit-scrollbar-thumb {
-			border-radius: 6px;
-			background: $dark-color-1;
-		}
-
-		/* Handle on hover */
-		&::-webkit-scrollbar-thumb:hover {
-			background: $red-color;
-		}
+		@include modified-scrollbar;
 	}
 
 	&__poster {
 		img {
-			margin-right: 2rem;
+			margin-right: $gutter;
 			width: 16rem;
-			border-radius: 0.6rem;
+			border-radius: $border-rad;
 			cursor: pointer;
-			transition: all 0.2s ease;
 			position: relative;
+
+			@include default-transition;
 		}
 
 		img:hover {
 			transform: scale(1.1) rotate(-3deg);
-
 			z-index: 100;
 		}
 	}
 }
 
-.home > div:nth-child(3) {
-	margin-top: -15rem !important;
+.home {
+	& > div:nth-child(3) {
+		margin-top: -15rem !important;
+	}
 }

@@ -1,16 +1,21 @@
-@import "abstract/variables";
-@import "abstract/utils";
-@import "abstract/animations";
+@import "abstracts/variables";
+@import "abstracts/utils";
+@import "abstracts/animations";
+@import "abstracts/mixin";
+
 @import "base/base";
 @import "base/typography";
 
+@import "layout/navbar";
+
 @import "components/discover";
-@import "components/navbar";
 @import "components/search";
 @import "components/card";
 @import "components/modal";
 @import "components/buttons";
 @import "components/sidebar";
+
 @import "pages/auth";
 @import "pages/home";
-@import "pages/movie-details";
+@import "pages/movie_details";
+@import "pages/browse_movies";

@@ -230,26 +230,3 @@ export default {
 	},
 };
 </script>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.4s linear;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
-}
-
-.pop-enter-active,
-.pop-leave-active {
-	transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.5s linear;
-}
-
-.pop-enter-from,
-.pop-leave-to {
-	opacity: 0;
-	transform: scale(0.3);
-}
-</style>
