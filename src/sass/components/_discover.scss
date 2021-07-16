@@ -4,7 +4,7 @@
 	margin: 3rem 0;
 	// background-color: orangered;
 
-	&__title {
+	&__heading {
 		font-size: 1.6rem;
 		font-weight: 500;
 		// border-bottom: 1px solid rgb(37, 37, 37);
@@ -12,6 +12,22 @@
 
 		margin: 0 0 0 $x-spacing;
 	}
+
+	&--vote-average {
+		color: $red-color !important;
+	}
+
+	&__content {
+		padding: 1rem;
+		font-size: $paragraph;
+		color: $grey-color;
+	}
+
+	&__title {
+		margin-bottom: 0.5rem;
+		color: $light-color;
+	}
+
 	&__list {
 		display: flex;
 		overflow-x: scroll;
@@ -21,19 +37,21 @@
 	}
 
 	&__poster {
+		margin-right: $gutter;
 		img {
-			margin-right: $gutter;
 			width: 16rem;
 			border-radius: $border-rad;
 			cursor: pointer;
 			position: relative;
-
+			box-shadow: rgba(132, 132, 146, 0.2) 0px 7px 29px 0px;
 			@include default-transition;
-		}
 
-		img:hover {
-			transform: scale(1.1) rotate(-3deg);
-			z-index: 100;
+			&:hover {
+				transform: scale(1.1) rotate(-3deg);
+				z-index: 100;
+				box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+					rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+			}
 		}
 	}
 }

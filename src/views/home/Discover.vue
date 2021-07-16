@@ -1,15 +1,27 @@
 <template>
 	<div class="discover" v-if="movies && !isPending">
-		<h4 class="discover__title">{{ title }}</h4>
+		<h4 class="discover__heading">{{ title }}</h4>
 		<div class="discover__list" v-if="movies">
 			<div
 				v-for="movie in movies.results"
 				:key="movie.id"
 				class="discover__poster"
 			>
-				<router-link :to="{ name: 'movie', params: { id: movie.id } }">
-					<img :src="request.imagePath + movie.poster_path" alt="" />
-				</router-link>
+				<img
+					:src="request.imagePath + movie.poster_path"
+					alt=""
+					@click="handleClick(movie)"
+				/>
+
+				<div class="discover__content">
+					<p class="discover__title">{{ movie.title }}</p>
+					<p>
+						{{ movie.release_date.substr(0, 4) }} |
+						<span class="discover--vote-average">{{
+							movie.vote_average
+						}}</span>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -26,7 +38,8 @@ export default {
 		url: String,
 		title: String,
 	},
-	setup(props) {
+	emits: ["showModal"],
+	setup(props, { emit }) {
 		const url = ref(props.url);
 		const { movies, error, load, isPending } = getMovies(url.value);
 
@@ -34,7 +47,11 @@ export default {
 			await load();
 		});
 
-		return { movies, error, request, isPending };
+		const handleClick = (movie) => {
+			emit("showModal", movie);
+		};
+
+		return { movies, error, request, isPending, handleClick };
 	},
 };
 </script>

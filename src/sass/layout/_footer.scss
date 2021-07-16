@@ -1,0 +1,38 @@
+.footer {
+	text-align: center;
+	font-size: $default-font-size;
+	margin: 4rem 0;
+	&__gitlab {
+		// margin-bottom: 1rem;
+		a {
+			color: $red-color;
+			text-decoration: none;
+			// font-weight: 400;
+		}
+	}
+
+	&__copyright {
+		margin-top: 2rem;
+	}
+
+	hr {
+		border: 1px dashed $dark-color-1;
+		width: 20%;
+		margin: 1rem auto;
+	}
+
+	svg {
+		max-width: 2rem;
+	}
+
+	img {
+		max-width: 1.8rem;
+	}
+
+	&__links {
+		display: flex;
+		margin: 2rem auto;
+		justify-content: space-between;
+		width: 10%;
+	}
+}

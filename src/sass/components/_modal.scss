@@ -1,12 +1,18 @@
 .modal__backdrop {
 	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: $t-dark-color-1;
+
 	z-index: 10000;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.3);
+	-webkit-backdrop-filter: grayscale(1);
+	backdrop-filter: grayscale(1);
 }
 
 .modal {
@@ -19,6 +25,7 @@
 	height: 43.9rem;
 	z-index: 10001;
 	border-radius: $border-rad;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 	&::after {
 		content: "";
