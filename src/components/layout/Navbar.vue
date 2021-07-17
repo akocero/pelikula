@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { onBeforeMount, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import feather from "feather-icons";
 import { useRoute, useRouter } from "vue-router";
 
@@ -79,27 +79,15 @@ export default {
 		const route = useRoute();
 		const router = useRouter();
 		const search = ref("");
-		const showNavSearch = ref(true);
-
-		onBeforeMount(() => {
-			showOrHideNavSearch();
-		});
 
 		const handleSearch = () => {
 			router.push({ name: "browse_movies", query: { q: search.value } });
 			search.value = "";
 		};
-
-		watch(route, () => {
-			showOrHideNavSearch();
+		const showNavSearch = computed(() => {
+			const routesNotToShowSearch = ["browse_movies", "home", "auth"];
+			return routesNotToShowSearch.includes(route.name) ? false : true;
 		});
-
-		const showOrHideNavSearch = () => {
-			const routesNotToShowSearch = ["browse_movies", "home"];
-			routesNotToShowSearch.includes(route.name)
-				? (showNavSearch.value = false)
-				: (showNavSearch.value = true);
-		};
 
 		const showNav = ref(false);
 

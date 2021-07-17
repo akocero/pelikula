@@ -1,8 +1,9 @@
 .movie-details {
-	height: 100vh;
+	// height: 100vh;
+	padding-bottom: 26rem;
 
 	&__wrapper {
-		height: 100%;
+		height: 100vh;
 		padding: 4rem;
 		display: flex;
 		justify-content: center;

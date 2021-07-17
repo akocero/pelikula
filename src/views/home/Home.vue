@@ -15,8 +15,8 @@
             to right,  
             rgba(1, 1, 1, 0.95),
             transparent), 
-            url(${request.imagePathOrig}/tM894AtE7UQTJEoQG6qF6mdfSUT.jpg)`,
-				backgroundPosition: 'top center',
+            url(${request.imagePathOrig}${randomBG})`,
+				backgroundPosition: 'center bottom 80%',
 			}"
 		>
 			<form @submit.prevent="handleSearch">
@@ -62,6 +62,7 @@ import Discover from "@/views/home/Discover";
 import Modal from "@/components/Modal";
 import Heading from "@/views/home/Heading";
 import Spinner from "@/components/Spinner";
+import useBG from "@/composables/useBG";
 import { ref } from "vue";
 import feather from "feather-icons";
 import { useRouter } from "vue-router";
@@ -91,6 +92,7 @@ export default {
 		const search = ref("");
 		const showModal = ref(false);
 		const movie = ref(null);
+		const { randomBG } = useBG();
 
 		const handleShowModal = (movieEvent) => {
 			movie.value = movieEvent;
@@ -113,6 +115,7 @@ export default {
 			handleCloseModal,
 			handleShowModal,
 			movie,
+			randomBG,
 		};
 	},
 };

@@ -1,18 +1,18 @@
 <template>
-	<div
-		class="movie-details"
-		:style="{
-			backgroundSize: 'cover',
-			backgroundImage: `linear-gradient(
+	<div class="movie-details">
+		<div
+			class="movie-details__wrapper"
+			:style="{
+				backgroundSize: 'cover',
+				backgroundImage: `linear-gradient(
             to right, 
             rgba(0, 0, 0, 0.96),
             transparent), 
             url(${request.imagePathMd}${movie.backdrop_path})`,
-			backgroundPosition: 'center center',
-		}"
-		v-if="movie"
-	>
-		<div class="movie-details__wrapper">
+				backgroundPosition: 'center center',
+			}"
+			v-if="movie"
+		>
 			<div class="movie-details__poster">
 				<img :src="request.imagePathSm + movie.poster_path" alt="" />
 			</div>
@@ -65,10 +65,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="fade-effect"></div>
-	<div class="row" v-if="movie">
-		<MovieCast :movie_id="movie.id" />
+		<div class="fade-effect"></div>
+		<div class="row" v-if="movie">
+			<MovieCast :movie_id="movie.id" />
+		</div>
 	</div>
 </template>
 
