@@ -1,6 +1,6 @@
 <template>
 	<div class="movie-cast" v-if="credits">
-		<h4 class="movie-cast__title">Top Billed Cast</h4>
+		<h4 class="movie-cast__title">{{ title }}</h4>
 		<div class="movie-cast__list" v-if="credits">
 			<div
 				class="movie-cast__item"
@@ -17,11 +17,13 @@
 
 					<div class="card__body">
 						<h4 class="card__sub-title">{{ cast.name }}</h4>
-						<h4 class="card__title">{{ cast.character }}</h4>
+						<h4 class="card__title">
+							{{ cast?.character || cast.job }}
+						</h4>
 					</div>
 				</div>
 			</div>
-			<div>View More</div>
+			<!-- <div>View More</div> -->
 		</div>
 	</div>
 </template>
@@ -30,14 +32,14 @@
 import request from "@/axios/request";
 import { computed } from "@vue/runtime-core";
 export default {
-	name: "MovieCast",
+	name: "MovieCredits",
 	components: {},
-	props: ["credits"],
+	props: ["credits", "title"],
 	setup(props) {
 		const limitCasts = computed(() => {
 			const limitToShow = 12;
 			if (props.credits) {
-				return props.credits.cast.filter(
+				return props.credits.filter(
 					(item, index) => index < limitToShow
 				);
 			}

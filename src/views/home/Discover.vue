@@ -45,6 +45,7 @@ export default {
 
 		onBeforeMount(async () => {
 			await load();
+			console.log(movies.value);
 		});
 
 		const handleClick = (movie) => {

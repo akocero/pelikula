@@ -7,6 +7,9 @@ const request = {
     imagePaths: {
         w138: 'https://image.tmdb.org/t/p/w138_and_h175_face',
     },
+    posterImagePaths: {
+        w150: 'https://image.tmdb.org/t/p/w150_and_h225_bestv2',
+    },
     imagePath: 'https://image.tmdb.org/t/p/w220_and_h330_face',
     imagePathSm: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2',
     imagePathBD: 'https://image.tmdb.org/t/p/w780',

@@ -1,5 +1,5 @@
 <template>
-	<div class="movie-details">
+	<div class="movie-details" v-if="!loading && movie">
 		<div
 			class="heading"
 			:style="{
@@ -30,7 +30,7 @@
 						>
 					</h3>
 
-					<p class="heading__info row">
+					<p class="heading__info">
 						{{ movie.release_date }} &#8226;
 						<a
 							href=""
@@ -51,7 +51,12 @@
 					</div>
 
 					<div class="heading__actions row">
-						<UserScore :percent="movie.vote_average" />
+						<div class="user-score__container">
+							<UserScore :percent="movie.vote_average" />
+							<h4 style="max-width: 40px;">
+								User Score
+							</h4>
+						</div>
 						<button class="btn-float">►</button>
 						<button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button>
@@ -80,8 +85,26 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
+		<div class="row credits" v-if="movie">
+			<MovieCredits
+				:credits="movie.credits.cast"
+				title="Top Billed Cast"
+			/>
+			<MovieCredits :credits="mainCrew" title="Director, Story, Writer" />
+		</div>
 		<div class="row" v-if="movie">
-			<MovieCast :credits="movie.credits" />
+			<MovieRelated
+				:movies="movie.similar_movies.results"
+				title="Similar Movies"
+				@relatedMovieClick="relatedMovieClick($event)"
+			/>
+		</div>
+		<div class="row" v-if="movie">
+			<MovieRelated
+				:movies="movie.recommendations.results"
+				title="Suggested Movies"
+				@relatedMovieClick="relatedMovieClick($event)"
+			/>
 		</div>
 	</div>
 </template>
@@ -91,14 +114,16 @@ import request from "@/axios/request";
 import getMovie from "@/composables/getMovie";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieCast from "./MovieCast.vue";
+import MovieCredits from "./MovieCredits.vue";
+import MovieRelated from "./MovieRelated.vue";
 import { useRoute } from "vue-router";
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, ref, watch } from "vue";
 export default {
 	name: "MovieDetails",
 	components: {
-		MovieCast,
+		MovieCredits,
 		UserScore,
+		MovieRelated,
 	},
 	data() {
 		return {
@@ -107,29 +132,20 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
-		const { error, movie, load } = getMovie(
-			`movie/${route.params.id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
-		);
+		const { error, movie, load } = getMovie();
 
 		const { result: omdb, load: exec } = useOMDB();
 		const loading = ref(false);
 
 		onBeforeMount(async () => {
 			loading.value = true;
-			await load();
+			await load(
+				`movie/${route.params.id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,collection`
+			);
 			await exec(movie.value.imdb_id);
 			loading.value = false;
-			console.log(movie.value.credits.crew[0]);
-			// console.log("IMDB RATING", result.value.imdbRating);
+			console.log(movie.value);
 		});
-
-		// const mainCrew = computed(() => {
-		// 	if (!loading) {
-		// 		return movie.value.credits.crew.filter(
-		// 			(item) => item.job === "Director"
-		// 		);
-		// 	}
-		// });
 
 		const mainCrew = computed(() => {
 			const crewJobsToShow = [
@@ -145,7 +161,18 @@ export default {
 			}
 		});
 
-		return { error, movie, omdb, loading, mainCrew };
+		const relatedMovieClick = async (movie_id) => {
+			console.log("clicked", movie_id);
+			loading.value = true;
+			await load(
+				`movie/${movie_id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
+			);
+			await exec(movie.value.imdb_id);
+			loading.value = false;
+			console.log(movie.value);
+		};
+
+		return { error, movie, omdb, loading, mainCrew, relatedMovieClick };
 	},
 };
 </script>

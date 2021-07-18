@@ -4,11 +4,11 @@
 	// overflow: hidden;
 	overflow: hidden;
 	width: 100%;
+	height: auto;
 	&__img {
-		width: 100%;
-
 		img {
 			width: 100%;
+			object-fit: cover;
 		}
 	}
 
@@ -23,6 +23,15 @@
 	&__title {
 		font-size: $paragraph;
 		// font-weight: 400;
+		@include default-transition;
+
+		&--clickable {
+			cursor: pointer;
+
+			&:hover {
+				color: $red-color;
+			}
+		}
 	}
 
 	&__sub-title {

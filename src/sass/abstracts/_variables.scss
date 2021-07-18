@@ -17,6 +17,7 @@ $default-font-size: 1.6rem;
 	position: relative;
 	width: 56px;
 	height: 56px;
+	margin-right: 0.7rem;
 
 	svg,
 	circle {
@@ -52,8 +53,8 @@ $default-font-size: 1.6rem;
 
 	.number {
 		position: absolute;
-		top: 14px;
-		right: 10px;
+		top: 16px;
+		right: 11px;
 		color: #fff;
 	}
 
@@ -77,4 +78,9 @@ $default-font-size: 1.6rem;
 			// stroke-width: 0;
 		}
 	}
+}
+
+.user-score__container {
+	display: flex;
+	align-items: center;
 }
