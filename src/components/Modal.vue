@@ -30,7 +30,7 @@
 					{{ movie.title }}
 				</h2>
 				<p class="mb-2 modal__content__info">
-					{{ movie.release_date.substr(0, 4) }}
+					{{ movie.release_date?.substr(0, 4) || "N/A" }}
 				</p>
 
 				<p class="mb-2 modal__content__tagline">

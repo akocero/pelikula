@@ -6,8 +6,81 @@ $grey-color: #8d8d8d;
 $red-color: #e62e2d;
 
 $light-color: #ededed;
+$light-color-1: #cacaca;
 $border-rad: 6px;
 $gutter: 2.6rem;
 $x-spacing: 4rem;
 $paragraph: 1.4rem;
 $default-font-size: 1.6rem;
+
+.percent {
+	position: relative;
+	width: 56px;
+	height: 56px;
+	margin-right: 0.7rem;
+
+	svg,
+	circle {
+		position: relative;
+		width: 56px;
+		height: 56px;
+	}
+
+	svg {
+		transform: rotate(-90deg);
+	}
+
+	circle {
+		position: absolute;
+		fill: none;
+		stroke-width: 4;
+		transform: translate(4px, 4px);
+		stroke-dasharray: 148;
+		stroke-linecap: round;
+	}
+
+	circle:nth-child(1) {
+		stroke-dashoffset: 0;
+		stroke: #424242;
+	}
+
+	circle:nth-child(2) {
+		//   stroke-dashoffset: calc(148 - (148 * 75) / 100);
+		stroke: gold;
+		animation: percent 1.5s linear;
+		animation-delay: 1s;
+	}
+
+	.number {
+		position: absolute;
+		top: 16px;
+		right: 11px;
+		color: #fff;
+	}
+
+	.number > p {
+		font-size: 18px;
+		font-weight: 600;
+	}
+
+	.number span {
+		font-size: 8px;
+		opacity: 0.7;
+	}
+
+	& > span {
+		color: gold;
+	}
+
+	@keyframes percent {
+		0% {
+			stroke-dashoffset: 0;
+			// stroke-width: 0;
+		}
+	}
+}
+
+.user-score__container {
+	display: flex;
+	align-items: center;
+}

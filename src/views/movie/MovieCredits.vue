@@ -1,6 +1,6 @@
 <template>
-	<div class="movie-cast" v-if="!isPending">
-		<h4 class="movie-cast__title">Top Billed Cast</h4>
+	<div class="movie-cast" v-if="credits">
+		<h4 class="movie-cast__title">{{ title }}</h4>
 		<div class="movie-cast__list" v-if="credits">
 			<div
 				class="movie-cast__item"
@@ -17,43 +17,35 @@
 
 					<div class="card__body">
 						<h4 class="card__sub-title">{{ cast.name }}</h4>
-						<h4 class="card__title">{{ cast.character }}</h4>
+						<h4 class="card__title">
+							{{ cast?.character || cast.job }}
+						</h4>
 					</div>
 				</div>
 			</div>
-			<div>View More</div>
+			<!-- <div>View More</div> -->
 		</div>
 	</div>
 </template>
 
 <script>
 import request from "@/axios/request";
-import getMovies from "@/composables/getMovies";
-import { computed, onBeforeMount } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
 export default {
-	name: "MovieCast",
+	name: "MovieCredits",
 	components: {},
-	props: ["movie_id"],
+	props: ["credits", "title"],
 	setup(props) {
-		const { movies: credits, isPending, error, load } = getMovies(
-			`movie/${props.movie_id}/credits?api_key=${request.apikey}&language=en-US`
-		);
-
-		onBeforeMount(async () => {
-			await load();
-			console.log(credits.value);
-		});
-
 		const limitCasts = computed(() => {
 			const limitToShow = 12;
-			if (credits.value) {
-				return credits.value.cast.filter(
+			if (props.credits) {
+				return props.credits.filter(
 					(item, index) => index < limitToShow
 				);
 			}
 		});
 
-		return { request, credits, isPending, error, limitCasts };
+		return { request, limitCasts };
 	},
 };
 </script>
