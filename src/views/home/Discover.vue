@@ -16,7 +16,7 @@
 				<div class="discover__content">
 					<p class="discover__title">{{ movie.title }}</p>
 					<p>
-						{{ movie.release_date.substr(0, 4) }} |
+						{{ movie.release_date?.substr(0, 4) || "N/A" }} |
 						<span class="discover--vote-average">{{
 							movie.vote_average
 						}}</span>

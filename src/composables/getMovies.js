@@ -12,7 +12,7 @@ const getMovies = (url) => {
         try {
             const res = await axios.get(url);
            
-            console.log('from getMovies',res.data)
+            // console.log('from getMovies',res.data)
             movies.value = res.data
             isPending.value = false
            return res.data

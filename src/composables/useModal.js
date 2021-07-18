@@ -6,7 +6,6 @@ export default () => {
 
    const handleShowModal = (movieEvent) => {
       modalContent.value = movieEvent;
-      console.log("from composable modal", movieEvent);
       showModal.value = true;
    };
 

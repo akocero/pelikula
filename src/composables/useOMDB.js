@@ -1,19 +1,19 @@
 import { ref } from 'vue'
 import axios from '@/axios'
 
-const getMovie = (url) => {
+const useOMDB = () => {
 
-    const movie = ref(null)
+    const result = ref(null)
     const loading = ref(false)
     const error = ref(null)
 
-    const load = async () => {
+    const load = async (imdb_id) => {
         loading.value = true
         try {
-            const res = await axios.get(url);
+            const res = await axios.get(`http://www.omdbapi.com/?i=${imdb_id}&apikey=${process.env.VUE_APP_OMDB_API_KEY}`);
            
-            // console.log(res.data)
-            movie.value = res.data
+            // console.log(res)
+            result.value = res.data
             loading.value = false
            return res.data
         }
@@ -23,7 +23,7 @@ const getMovie = (url) => {
         }
     }
 
-    return { movie, error, load, loading }
+    return { result, error, load, loading }
 }
 
-export default getMovie
+export default useOMDB
