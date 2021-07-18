@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC1r7E3oOBM1te3izJd1IA5VhvB40ctc94",
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
   authDomain: "movie-app-5adc1.firebaseapp.com",
   projectId: "movie-app-5adc1",
   storageBucket: "movie-app-5adc1.appspot.com",

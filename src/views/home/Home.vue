@@ -3,20 +3,24 @@
 		<div class="modal__backdrop" v-if="showModal"></div>
 	</transition>
 	<transition name="pop" appear>
-		<Modal :movie="movie" v-if="showModal" @closeModal="handleCloseModal" />
+		<Modal
+			:movie="modalContent"
+			v-if="showModal"
+			@closeModal="handleCloseModal"
+		/>
 	</transition>
 	<div class="home">
-		<!-- <Heading :movie="movie" /> -->
+		<!-- <Heading :modalContent="modalContent" /> -->
 		<div
 			class="search"
 			:style="{
 				backgroundSize: 'cover',
 				backgroundImage: `linear-gradient(
             to right,  
-            rgba(1, 1, 1, 0.95),
-            transparent), 
-            url(${request.imagePathOrig}/tM894AtE7UQTJEoQG6qF6mdfSUT.jpg)`,
-				backgroundPosition: 'top center',
+            rgba(1, 1, 1, 0.99),
+            rgba(1, 1, 1, 0.60)), 
+            url(${request.imagePathOrig}${randomBG})`,
+				backgroundPosition: 'center bottom 80%',
 			}"
 		>
 			<form @submit.prevent="handleSearch">
@@ -62,9 +66,11 @@ import Discover from "@/views/home/Discover";
 import Modal from "@/components/Modal";
 import Heading from "@/views/home/Heading";
 import Spinner from "@/components/Spinner";
+import getBG from "@/composables/getBG";
 import { ref } from "vue";
 import feather from "feather-icons";
 import { useRouter } from "vue-router";
+import useModal from "@/composables/useModal";
 
 export default {
 	name: "Home",
@@ -89,30 +95,26 @@ export default {
 	setup() {
 		const router = useRouter();
 		const search = ref("");
-		const showModal = ref(false);
-		const movie = ref(null);
-
-		const handleShowModal = (movieEvent) => {
-			movie.value = movieEvent;
-			console.log("show modal", movieEvent);
-			showModal.value = true;
-		};
-
-		const handleCloseModal = () => {
-			movie.value = null;
-			showModal.value = false;
-		};
+		const { randomBG } = getBG();
+		const {
+			modalContent,
+			showModal,
+			handleShowModal,
+			handleCloseModal,
+		} = useModal();
 
 		const handleSearch = () => {
 			router.push({ name: "browse_movies", query: { q: search.value } });
 		};
+
 		return {
 			handleSearch,
 			search,
 			showModal,
 			handleCloseModal,
 			handleShowModal,
-			movie,
+			modalContent,
+			randomBG,
 		};
 	},
 };

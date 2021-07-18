@@ -39,3 +39,8 @@ body {
 ul {
 	list-style-type: none;
 }
+
+#app {
+	position: relative;
+	min-height: 100vh;
+}

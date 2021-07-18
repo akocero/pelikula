@@ -7,7 +7,7 @@
             to right, 
             rgba(1, 1, 1, 0.85),
             transparent), 
-            url(${request.imagePathOrig}${bg})`,
+            url(${request.imagePathOrig}${randomBG})`,
 			backgroundPosition: 'right center',
 		}"
 	>
@@ -32,10 +32,11 @@
 
 <script>
 import request from "@/axios/request";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import Signin from "./Signin.vue";
 import Signup from "./Signup.vue";
 import { useRouter } from "vue-router";
+import getBG from "@/composables/getBG";
 export default {
 	name: "Auth",
 	components: {
@@ -50,27 +51,14 @@ export default {
 	setup() {
 		const showSignup = ref(false);
 		const router = useRouter();
-		// Backdrop Path
-		const imageArray = ref([
-			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
-			"/eNb0zhVdxdo9U0950s0LnrjndWR.jpg", // Apocalypto
-			"/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg", // Parasite
-			"/pbrkL804c8yAv3zBZR4QPEafpAR.jpg", // interstellar
-			"/194dso1hBwQEgIU3fgS7mXHtFAj.jpg", // city of god
-			"/4vwz1RMV9WTSofBM5gNZQV8eafc.jpg", // I saw the devil
-		]);
+		const { randomBG } = getBG();
 
 		const enterForum = () => {
 			console.log("Entered Forum");
 			router.push({ name: "forum" });
 		};
 
-		const bg =
-			imageArray.value[
-				Math.floor(Math.random() * imageArray.value.length)
-			];
-
-		return { bg, showSignup, enterForum };
+		return { randomBG, showSignup, enterForum };
 	},
 };
 </script>

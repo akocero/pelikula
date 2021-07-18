@@ -1,7 +1,12 @@
 .footer {
+	position: absolute;
+	bottom: 0;
+	height: 26rem;
+
+	width: 100%;
 	text-align: center;
 	font-size: $default-font-size;
-	margin: 4rem 0;
+	padding-top: 5.5rem;
 	&__gitlab {
 		// margin-bottom: 1rem;
 		a {

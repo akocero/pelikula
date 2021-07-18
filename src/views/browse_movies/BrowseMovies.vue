@@ -1,11 +1,11 @@
 <template>
 	<transition name="fade" appear>
-		<div class="modal__backdrop" v-if="movieDetails"></div>
+		<div class="modal__backdrop" v-if="showModal"></div>
 	</transition>
 	<transition name="pop" appear>
 		<Modal
-			:movie="movieDetails"
-			v-if="movieDetails"
+			:movie="modalContent"
+			v-if="showModal"
 			@closeModal="handleCloseModal"
 		/>
 	</transition>
@@ -18,8 +18,8 @@
             to right, 
             rgba(1, 1, 1, 0.85),
             transparent), 
-            url(${request.imagePathOrig}/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg)`,
-				backgroundPosition: 'center center',
+            url(${request.imagePathOrig}${randomBG})`,
+				backgroundPosition: 'center bottom 80%',
 			}"
 		>
 			<form @submit.prevent="handleSearch">
@@ -55,7 +55,7 @@
 				v-for="(movie, index) in movies"
 				:key="movie.id"
 				:data-index="index"
-				@click="showModal(movie)"
+				@click="handleShowModal(movie)"
 			>
 				<img
 					v-if="movie.poster_path"
@@ -110,6 +110,8 @@ import { useRoute, useRouter } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
 import feather from "feather-icons";
 import gsap from "gsap";
+import useModal from "@/composables/useModal";
+import getBG from "@/composables/getBG";
 export default {
 	name: "BrowseMovies",
 	components: {
@@ -133,11 +135,18 @@ export default {
 	setup() {
 		const route = useRoute();
 		const router = useRouter();
+		const { randomBG } = getBG();
 		const { data: movies, loading, error, fetch, totalPages } = useSearch();
 		const pageNumber = ref(1);
 		const search = ref(route.query.q);
+
 		const animationCounter = ref(0);
-		const movieDetails = ref(null);
+		const {
+			modalContent,
+			showModal,
+			handleShowModal,
+			handleCloseModal,
+		} = useModal();
 
 		onBeforeMount(async () => {
 			if (route.query.q) {
@@ -191,23 +200,6 @@ export default {
 				ease: "back",
 				delay: el.dataset.index * 0.15 - animationCounter.value,
 			});
-
-			console.log(el.dataset.index * 0.15, animationCounter.value);
-		};
-
-		const showModal = (movie) => {
-			movieDetails.value = null;
-			movieDetails.value = movie;
-			// document.body.classList.add("modal--open");
-			// document.querySelector(".modal__backdrop").classList.add("show");
-			console.log("show modal");
-
-			console.log(movieDetails.value);
-		};
-
-		const handleCloseModal = () => {
-			movieDetails.value = null;
-			console.log("close modal");
 		};
 
 		return {
@@ -223,9 +215,13 @@ export default {
 			pageNumber,
 			beforeEnter,
 			enter,
+
 			showModal,
-			movieDetails,
+			modalContent,
 			handleCloseModal,
+			handleShowModal,
+
+			randomBG,
 		};
 	},
 };
