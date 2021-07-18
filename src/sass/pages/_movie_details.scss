@@ -1,83 +1,73 @@
 .movie-details {
-	// height: 100vh;
 	padding-bottom: 26rem;
 
-	&__wrapper {
+	.heading {
 		height: 100vh;
-		padding: 4rem;
+		width: 100%;
+		padding: 0 $x-spacing;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
 
-	&__content {
-		margin-top: 3rem;
-		padding: 1rem;
-	}
-
-	&__poster {
-		margin-right: 2.5rem;
-		margin-top: 4rem;
-		img {
-			border-radius: $border-rad;
-			box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
-				0 15px 12px rgba(0, 0, 0, 0.22);
+		&__container {
+			display: flex;
+			height: 70%;
 		}
-	}
 
-	&__title {
-		font-size: 4rem;
-		font-weight: 700;
-		margin-bottom: 0.3rem;
-		letter-spacing: 2px;
-		text-shadow: 2px -2px 11px #110805;
-	}
-
-	&__info {
-		font-size: 1.6rem;
-		margin-bottom: 1.6rem;
-	}
-
-	.row {
-		margin-bottom: 2.5rem;
-	}
-
-	&__genre {
-		font-size: 1.6rem;
-		display: flex;
-		margin-bottom: 1.6rem;
-		* {
-			margin-right: 1rem;
-			padding: 0.6rem 1.2rem;
-			background-color: $t-dark-color-1;
-			border-radius: 2rem;
+		&__content {
+			margin-top: 3rem;
+			padding: 1rem;
 		}
-	}
 
-	&__actions {
-		* {
-			margin-right: 2rem;
+		&__poster {
+			margin-right: 2.5rem;
+			margin-top: 4rem;
+			img {
+				border-radius: $border-rad;
+				box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+					0 15px 12px rgba(0, 0, 0, 0.22);
+			}
 		}
-	}
 
-	&__overview {
-		h4 {
-			font-size: 1.8rem;
-			font-weight: 600;
-			letter-spacing: 1.6px;
+		&__title {
+			font-size: 4rem;
+			font-weight: 700;
+			margin-bottom: 0.3rem;
+			letter-spacing: 2px;
+			text-shadow: 2px -2px 11px #110805;
+		}
+
+		&__info {
+			font-size: 1.6rem;
 			margin-bottom: 1.6rem;
-			color: $grey-color;
 		}
 
-		p {
+		&__genre {
+			font-size: 1.6rem;
+			display: flex;
+			margin-bottom: 1.6rem;
+			* {
+				margin-right: 1rem;
+				padding: 0.6rem 1.2rem;
+				background-color: $t-dark-color-1;
+				border-radius: 2rem;
+			}
+		}
+
+		&__overview {
 			letter-spacing: 1.2px;
 			line-height: 1.4;
 		}
-	}
 
-	&__other-info {
-		display: flex;
-		justify-content: space-between;
+		&__actions {
+			* {
+				margin-right: 2rem;
+			}
+		}
+
+		.row {
+			margin-bottom: 2.5rem;
+		}
 	}
 }
 

@@ -36,7 +36,7 @@ import { computed, ref } from "vue";
 import Signin from "./Signin.vue";
 import Signup from "./Signup.vue";
 import { useRouter } from "vue-router";
-import useBG from "@/composables/useBG";
+import getBG from "@/composables/getBG";
 export default {
 	name: "Auth",
 	components: {
@@ -51,7 +51,7 @@ export default {
 	setup() {
 		const showSignup = ref(false);
 		const router = useRouter();
-		const { randomBG } = useBG();
+		const { randomBG } = getBG();
 
 		const enterForum = () => {
 			console.log("Entered Forum");

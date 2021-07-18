@@ -1,27 +1,27 @@
 .home {
 	padding-bottom: 26rem;
-}
 
-.heading {
-	height: 60vh;
-	color: $grey-color;
-	// padding: 2.4rem;
-	display: flex;
-	align-items: flex-end;
+	.heading {
+		height: 60vh;
+		color: $grey-color;
+		// padding: 2.4rem;
+		display: flex;
+		align-items: flex-end;
 
-	&__content {
-		// text-align: center;
-		margin-left: 4rem;
-		width: 50%;
-	}
+		&__content {
+			// text-align: center;
+			margin-left: 4rem;
+			width: 50%;
+		}
 
-	&__title {
-		font-size: 4rem;
-		margin-bottom: 2.4rem;
-	}
+		&__title {
+			font-size: 4rem;
+			margin-bottom: 2.4rem;
+		}
 
-	&__overview {
-		font-size: 1.8rem;
+		&__overview {
+			font-size: 1.8rem;
+		}
 	}
 }
 

@@ -14,11 +14,11 @@
 							}"
 							class="navbar__link"
 							@click="showNav = false"
-							>Search</router-link
+							>Browse Movies</router-link
 						>
 					</li>
 					<li class="navbar__item">
-						<a href="" class="navbar__link">My Playlist</a>
+						<a href="" class="navbar__link">My Watchlist</a>
 					</li>
 					<li class="navbar__item">
 						<a href="" class="navbar__link">
@@ -28,9 +28,12 @@
 								}"
 								@click="showNav = false"
 								class="navbar__link"
-								>Sign In / Sign Up</router-link
+								>Sign In / Register</router-link
 							>
 						</a>
+					</li>
+					<li class="navbar__item">
+						<a href="" class="navbar__link">FORUM</a>
 					</li>
 				</ul>
 			</nav>
@@ -49,11 +52,8 @@
 			/>
 			<button><i v-html="iSearch"></i></button>
 		</form>
-		<div
-			class="navbar__burger"
-			:class="!showNavSearch && 'ml-auto'"
-			@click="showNav = !showNav"
-		>
+		<div class="user" :class="!showNavSearch && 'ml-auto'">E</div>
+		<div class="navbar__burger" @click="showNav = !showNav">
 			<div></div>
 			<div></div>
 			<div></div>

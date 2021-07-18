@@ -1,7 +1,7 @@
-const apikey = '7d7a6c7d574c704591e07f29b54b6b0b';
+const apikey = process.env.VUE_APP_TMDB_API_KEY;
 
 const request = {
-    apikey: '7d7a6c7d574c704591e07f29b54b6b0b',
+    apikey,
     search: `search/movie?api_key=${apikey}&query=`,
     youtube: 'https://www.youtube.com/embed/',
     imagePaths: {

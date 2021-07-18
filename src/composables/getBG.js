@@ -1,6 +1,6 @@
 import { computed, ref } from "vue-demi";
 
-const useBG = () => {
+const getBG = () => {
    const bgArray = ref([
 			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
 			"/nNX6KhETd0UIKfZStltsyg2M3v0.jpg", // Apocalypto
@@ -19,4 +19,4 @@ const useBG = () => {
    return { randomBG }
 }
 
-export default useBG
+export default getBG
