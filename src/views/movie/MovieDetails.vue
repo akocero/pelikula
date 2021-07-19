@@ -92,14 +92,14 @@
 			/>
 			<MovieCredits :credits="mainCrew" title="Director, Story, Writer" />
 		</div>
-		<div class="row" v-if="movie">
+		<div class="row" v-if="movie.similar_movies.results.length">
 			<MovieRelated
 				:movies="movie.similar_movies.results"
 				title="Similar Movies"
 				@relatedMovieClick="relatedMovieClick($event)"
 			/>
 		</div>
-		<div class="row" v-if="movie">
+		<div class="row" v-if="movie.recommendations.results.length">
 			<MovieRelated
 				:movies="movie.recommendations.results"
 				title="Suggested Movies"
@@ -117,7 +117,7 @@ import UserScore from "@/components/UserScore";
 import MovieCredits from "./MovieCredits.vue";
 import MovieRelated from "./MovieRelated.vue";
 import { useRoute } from "vue-router";
-import { computed, onBeforeMount, ref, watch } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 export default {
 	name: "MovieDetails",
 	components: {
