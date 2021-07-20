@@ -1,5 +1,22 @@
 <template>
 	<div class="movie-details" v-if="!loading && movie">
+		<!-- padding-bottom: 56.25%; -->
+		<div class="trailer-backdrop" v-if="showTrailer">
+			<div class="trailer-container">
+				<iframe
+					:src="request.youtube + trailerLink"
+					frameborder="0"
+					allowfullscreen="allowfullscreen"
+					mozallowfullscreen="mozallowfullscreen"
+					msallowfullscreen="msallowfullscreen"
+					oallowfullscreen="oallowfullscreen"
+					webkitallowfullscreen="webkitallowfullscreen"
+				></iframe>
+				<button type="button" @click="showTrailer = false">
+					&#x2715;
+				</button>
+			</div>
+		</div>
 		<div
 			class="heading"
 			:style="{
@@ -59,7 +76,13 @@
 								User Score
 							</h4>
 						</div>
-						<button class="btn-float">►</button>
+						<button
+							v-if="movie.videos && movie.videos.results[0]"
+							class="btn-float"
+							@click="playTrailer(movie.videos.results[0])"
+						>
+							►
+						</button>
 						<button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button>
 					</div>
@@ -170,6 +193,8 @@ export default {
 		const { error, movie, load } = getMovie();
 
 		const { result: omdb, load: exec } = useOMDB();
+		const showTrailer = ref(false);
+		const trailerLink = ref(null);
 		const loading = ref(false);
 
 		onBeforeMount(async () => {
@@ -208,7 +233,22 @@ export default {
 			console.log(movie.value);
 		};
 
-		return { error, movie, omdb, loading, mainCrew, relatedMovieClick };
+		const playTrailer = (trailer) => {
+			trailerLink.value = trailer.key;
+			showTrailer.value = true;
+		};
+
+		return {
+			error,
+			movie,
+			omdb,
+			loading,
+			mainCrew,
+			relatedMovieClick,
+			playTrailer,
+			showTrailer,
+			trailerLink,
+		};
 	},
 };
 </script>

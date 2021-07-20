@@ -12,7 +12,7 @@
 		}"
 	>
 		<button class="modal__button-close" @click="handleCloseModal">
-			<i v-html="iX"></i>
+			&#x2715;
 		</button>
 		<router-link
 			:to="{ name: 'movie', params: { id: movie.id } }"
