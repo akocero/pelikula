@@ -19,7 +19,7 @@
             to right,  
             rgba(1, 1, 1, 0.99),
             rgba(1, 1, 1, 0.60)), 
-            url(${request.imagePathOrig}${randomBG})`,
+            url(${request.image_path.backdrop.w1920}${randomBG})`,
 				backgroundPosition: 'center bottom 80%',
 			}"
 		>

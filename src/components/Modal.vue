@@ -7,12 +7,12 @@
             to right, 
             rgba(10,10,10, 0.6),
             transparent), 
-            url(${request.imagePathBD}${movie.backdrop_path})`,
+            url(${request.image_path.backdrop.w780}${movie.backdrop_path})`,
 			backgroundPosition: 'center center',
 		}"
 	>
 		<button class="modal__button-close" @click="handleCloseModal">
-			<i v-html="iX"></i>
+			&#x2715;
 		</button>
 		<router-link
 			:to="{ name: 'movie', params: { id: movie.id } }"
