@@ -2,6 +2,11 @@
 	height: 60vh;
 	padding: 0 $x-spacing;
 
+	@include respond(tab-port) {
+		// width < 900?
+		padding: 0 2rem;
+	}
+
 	form {
 		width: 100%;
 		margin: 0 auto;

@@ -9,6 +9,14 @@
 	grid-template-columns: repeat(7, 1fr);
 	grid-gap: 3rem;
 	padding: 0 4rem;
+
+	@include respond(tab-port) {
+		margin-top: -25rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1.5rem;
+		padding: 0 $m-x-spacing;
+	}
 	z-index: 101;
 
 	.card {

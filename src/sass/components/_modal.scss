@@ -27,6 +27,11 @@
 	border-radius: $border-rad;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
+	@include respond(tab-port) {
+		// width < 900?
+		width: 92%;
+	}
+
 	&::after {
 		content: "";
 		position: absolute;
@@ -53,6 +58,11 @@
 		margin: $x-spacing 0 0 $x-spacing;
 		width: 45%;
 		color: rgb(245, 245, 245);
+
+		@include respond(tab-port) {
+			// width < 900?
+			width: 80%;
+		}
 
 		&__info {
 			color: $grey-color;

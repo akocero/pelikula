@@ -11,6 +11,11 @@
 		letter-spacing: 2px;
 
 		margin: 0 0 0 $x-spacing;
+
+		@include respond(tab-port) {
+			// width < 900?
+			margin: 0 0 0 $m-x-spacing;
+		}
 	}
 
 	&--vote-average {
@@ -33,6 +38,11 @@
 		overflow-x: scroll;
 		padding: 3rem 0 3rem $x-spacing;
 
+		@include respond(tab-port) {
+			// width < 900?
+			padding: 3rem 0 3rem $m-x-spacing;
+		}
+
 		@include modified-scrollbar;
 	}
 
@@ -53,11 +63,5 @@
 					rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 			}
 		}
-	}
-}
-
-.home {
-	& > div:nth-child(3) {
-		margin-top: -15rem !important;
 	}
 }

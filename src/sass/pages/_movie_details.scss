@@ -8,6 +8,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		@include respond(tab-port) {
+			// width < 900?
+			padding: 0 $m-x-spacing;
+		}
 		&__tagline {
 			font-style: italic;
 			font-size: 1.8rem;
@@ -25,6 +30,11 @@
 		&__content {
 			margin-top: 3rem;
 			padding: 1rem;
+
+			@include respond(tab-port) {
+				// width < 900?
+				padding: 0;
+			}
 		}
 
 		&__poster {
@@ -34,6 +44,11 @@
 				border-radius: $border-rad;
 				box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
 					0 15px 12px rgba(0, 0, 0, 0.22);
+			}
+
+			@include respond(tab-port) {
+				// width < 900?
+				display: none;
 			}
 		}
 
@@ -121,15 +136,21 @@
 }
 .credits {
 	width: 100%;
-	display: flex;
-	& > div:nth-child(1) {
-		width: 60%;
-		margin-right: 1rem;
+
+	@include reverseRespond(tab-port) {
+		// width < 1200?
+		display: flex;
+
+		& > div:nth-child(1) {
+			width: calc(60% - 1rem);
+			margin-right: 1rem;
+		}
+
+		& > div:nth-child(2) {
+			width: 40%;
+		}
 	}
 
-	& > div:nth-child(2) {
-		width: 40%;
-	}
 	// grid-template-columns: 3fr 1fr;
 }
 
@@ -138,14 +159,25 @@
 	&__title {
 		font-size: 2.3rem;
 		margin-left: 4rem;
+
 		margin-top: 4rem;
+
+		@include respond(tab-port) {
+			// width < 900?
+			margin-left: $m-x-spacing;
+		}
 	}
 
 	&__list {
 		display: flex;
 		overflow-x: auto;
 		overflow-y: hidden;
-		padding: 2rem 4rem;
+		padding: 2rem $x-spacing;
+
+		@include respond(tab-port) {
+			// width < 900?
+			padding: 2rem $m-x-spacing;
+		}
 		// overflow-y: scroll;
 
 		@include modified-scrollbar;
@@ -164,6 +196,10 @@
 		font-size: 2.3rem;
 		margin-left: 4rem;
 		margin-top: 4rem;
+		@include respond(tab-port) {
+			// width < 900?
+			margin-left: $m-x-spacing;
+		}
 	}
 
 	&__list {
@@ -172,6 +208,11 @@
 		overflow-y: hidden;
 		padding: 2rem 4rem;
 		// overflow-y: scroll;
+
+		@include respond(tab-port) {
+			// width < 900?
+			padding: 2rem $m-x-spacing;
+		}
 
 		@include modified-scrollbar;
 	}
