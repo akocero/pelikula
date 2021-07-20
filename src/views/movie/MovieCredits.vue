@@ -1,16 +1,19 @@
 <template>
-	<div class="movie-cast" v-if="credits">
-		<h4 class="movie-cast__title">{{ title }}</h4>
-		<div class="movie-cast__list" v-if="credits">
+	<div class="scrollable" v-if="credits">
+		<h4 class="scrollable__title">{{ title }}</h4>
+		<div class="scrollable__list" v-if="credits">
 			<div
-				class="movie-cast__item"
+				class="scrollable__item scrollable__item--credits"
 				v-for="cast in limitCasts"
 				:key="cast.cast_id"
 			>
 				<div class="card">
 					<div class="card__img">
 						<img
-							:src="request.imagePaths.w138 + cast.profile_path"
+							:src="
+								request.image_path.credits.w138 +
+									cast.profile_path
+							"
 							alt=""
 						/>
 					</div>
@@ -45,7 +48,7 @@ export default {
 			}
 		});
 
-		return { request, limitCasts };
+		return { limitCasts, request };
 	},
 };
 </script>

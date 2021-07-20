@@ -8,7 +8,7 @@
 				class="discover__poster"
 			>
 				<img
-					:src="request.imagePath + movie.poster_path"
+					:src="request.image_path.poster.w220 + movie.poster_path"
 					alt=""
 					@click="handleClick(movie)"
 				/>
@@ -52,7 +52,7 @@ export default {
 			emit("showModal", movie);
 		};
 
-		return { movies, error, request, isPending, handleClick };
+		return { movies, error, isPending, handleClick, request };
 	},
 };
 </script>

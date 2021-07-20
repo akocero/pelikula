@@ -18,7 +18,7 @@
             to right, 
             rgba(1, 1, 1, 0.85),
             transparent), 
-            url(${request.imagePathOrig}${randomBG})`,
+            url(${request.image_path.backdrop.w1920}${randomBG})`,
 				backgroundPosition: 'center bottom 80%',
 			}"
 		>
@@ -59,7 +59,7 @@
 			>
 				<img
 					v-if="movie.poster_path"
-					:src="request.imagePath + movie.poster_path"
+					:src="request.image_path.poster.w220 + movie.poster_path"
 					class="card__image"
 				/>
 				<div v-else class="card__no-image">

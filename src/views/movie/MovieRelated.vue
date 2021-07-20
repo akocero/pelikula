@@ -1,10 +1,10 @@
 <template>
-	<div class="related-movies" v-if="movies">
-		<h4 class="related-movies__title">{{ title }}</h4>
-		<div class="related-movies__list" v-if="movies">
+	<div class="scrollable" v-if="movies">
+		<h4 class="scrollable__title">{{ title }}</h4>
+		<div class="scrollable__list" v-if="movies">
 			<!-- <pre>{{ movies }}</pre> -->
 			<div
-				class="related-movies__item"
+				class="scrollable__item scrollable__item--related-movies"
 				v-for="movie in movies"
 				:key="movie.id"
 			>
@@ -12,7 +12,7 @@
 					<div class="card__img">
 						<img
 							:src="
-								request.posterImagePaths.w150 +
+								request.image_path.poster.w150 +
 									movie.poster_path
 							"
 							alt=""

@@ -1,5 +1,6 @@
 .movie-details {
 	padding-bottom: 26rem;
+	// max-width: 1366px;
 
 	.heading {
 		height: 100vh;
@@ -30,6 +31,7 @@
 		&__content {
 			margin-top: 3rem;
 			padding: 1rem;
+			// min-width: 100%;
 
 			@include respond(tab-port) {
 				// width < 900?
@@ -38,12 +40,12 @@
 		}
 
 		&__poster {
-			margin-right: 2.5rem;
-			margin-top: 4rem;
+			min-width: 30rem;
+
+			margin-right: 2rem;
 			img {
 				border-radius: $border-rad;
-				box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
-					0 15px 12px rgba(0, 0, 0, 0.22);
+				box-shadow: rgba(132, 132, 146, 0.2) 0px 7px 29px 0px;
 			}
 
 			@include respond(tab-port) {
@@ -128,102 +130,88 @@
 				margin-right: 2rem;
 			}
 		}
-
-		.row {
-			margin-bottom: 2.5rem;
+	}
+	&__more-info {
+		ul {
+			li {
+				margin-bottom: 2rem;
+				font-weight: 400;
+				h4 {
+					padding-bottom: 0.5rem;
+				}
+				span {
+					color: $grey-color;
+				}
+			}
 		}
 	}
-}
-.credits {
-	width: 100%;
 
-	@include reverseRespond(tab-port) {
-		// width < 1200?
+	&__links {
 		display: flex;
+		border-bottom: 1px solid rgb(46, 46, 46);
+		padding-bottom: 2rem;
 
-		& > div:nth-child(1) {
-			width: calc(60% - 1rem);
-			margin-right: 1rem;
+		a {
+			color: $light-color;
+			@include default-transition;
+			&:hover {
+				color: $red-color;
+			}
+		}
+		& > * {
+			margin-right: 1.5rem;
 		}
 
-		& > div:nth-child(2) {
-			width: 40%;
-		}
+		// margin-bottom: 2rem;
 	}
-
-	// grid-template-columns: 3fr 1fr;
-}
-
-.movie-cast {
-	// width: 100% !important;
-	&__title {
-		font-size: 2.3rem;
-		margin-left: 4rem;
-
-		margin-top: 4rem;
-
-		@include respond(tab-port) {
-			// width < 900?
-			margin-left: $m-x-spacing;
-		}
-	}
-
-	&__list {
-		display: flex;
-		overflow-x: auto;
-		overflow-y: hidden;
-		padding: 2rem $x-spacing;
-
-		@include respond(tab-port) {
-			// width < 900?
-			padding: 2rem $m-x-spacing;
-		}
-		// overflow-y: scroll;
-
-		@include modified-scrollbar;
-	}
-
-	&__item {
-		margin-right: 2rem;
-		max-width: 13.8rem;
-		min-width: 13.8rem;
-	}
-}
-
-.related-movies {
-	// width: 100% !important;
-	&__title {
-		font-size: 2.3rem;
-		margin-left: 4rem;
-		margin-top: 4rem;
-		@include respond(tab-port) {
-			// width < 900?
-			margin-left: $m-x-spacing;
-		}
-	}
-
-	&__list {
-		display: flex;
-		overflow-x: auto;
-		overflow-y: hidden;
-		padding: 2rem 4rem;
-		// overflow-y: scroll;
-
-		@include respond(tab-port) {
-			// width < 900?
-			padding: 2rem $m-x-spacing;
-		}
-
-		@include modified-scrollbar;
-	}
-
-	&__item {
-		margin-right: 2rem;
-		max-width: 15rem;
-		min-width: 15rem;
+	.row {
+		margin-bottom: 2.5rem;
 	}
 }
 
 .imdb-rating {
 	display: flex;
+
+	img {
+		width: 46px;
+	}
+}
+
+.grid {
+	display: flex;
+
+	& > .col:nth-child(1) {
+		width: calc(77% - 3.5rem);
+		margin-right: 3.5rem;
+	}
+
+	& > .col:nth-child(2) {
+		padding: 4.5rem $x-spacing 0 0;
+		width: 23%;
+		padding-top: 4rem;
+	}
+}
+
+.collection {
+	width: 300px;
+	height: 450px;
+	border-radius: $border-rad;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__title {
+		font-size: 2.8rem;
+		font-weight: 600;
+		margin-bottom: 2rem;
+	}
+
+	&__content {
+		text-align: center;
+	}
+
+	&__img {
+		// width: 80%;
+		margin: 0 auto;
+	}
 }

@@ -7,7 +7,7 @@
             to right, 
             rgba(10,10,10, 0.6),
             transparent), 
-            url(${request.imagePathBD}${movie.backdrop_path})`,
+            url(${request.image_path.backdrop.w780}${movie.backdrop_path})`,
 			backgroundPosition: 'center center',
 		}"
 	>

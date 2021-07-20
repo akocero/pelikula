@@ -8,7 +8,7 @@
             to right, 
             rgba(0, 0, 0, 0.96),
             rgba(0, 0, 0, 0.65)), 
-            url(${request.imagePathMd}${movie.backdrop_path})`,
+            url(${request.image_path.backdrop.w1280}${movie.backdrop_path})`,
 				backgroundPosition: 'center center',
 			}"
 			v-if="!loading && movie"
@@ -16,7 +16,9 @@
 			<div class="heading__container">
 				<div class="heading__poster">
 					<img
-						:src="request.imagePathSm + movie.poster_path"
+						:src="
+							request.image_path.poster.w300 + movie.poster_path
+						"
 						alt=""
 					/>
 				</div>
@@ -68,6 +70,8 @@
 
 					<p class="heading__overview row">
 						{{ movie.overview }}
+						<!-- Lorem ipsum dolor sit amet, consectetur adipisicing
+							elit. Repellendus, iste? -->
 					</p>
 
 					<ul class="heading__main-crew">
@@ -85,12 +89,35 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
-		<div class="row credits" v-if="movie">
-			<MovieCredits
-				:credits="movie.credits.cast"
-				title="Top Billed Cast"
-			/>
-			<MovieCredits :credits="mainCrew" title="Director, Story, Writer" />
+		<div class="grid">
+			<div class="col">
+				<div class="row" v-if="movie">
+					<MovieCredits
+						:credits="movie.credits.cast"
+						title="Top Billed Cast"
+					/>
+				</div>
+				<div class="row">
+					<MovieCredits
+						:credits="mainCrew"
+						title="Director, Story, Writer"
+					/>
+				</div>
+			</div>
+			<div class="col">
+				<div class="row" v-if="movie?.external_ids || movie.homepage">
+					<MovieExternalID
+						:external_ids="movie?.external_ids || null"
+						:homepage="movie?.homepage || null"
+					/>
+				</div>
+				<div class="row">
+					<MovieMoreInfo :movie="movie" />
+				</div>
+				<div class="row">
+					<MovieCollection :movie="movie" :request="request" />
+				</div>
+			</div>
 		</div>
 		<div class="row" v-if="movie.similar_movies.results.length">
 			<MovieRelated
@@ -116,7 +143,11 @@ import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
 import MovieCredits from "./MovieCredits.vue";
 import MovieRelated from "./MovieRelated.vue";
-import { useRoute } from "vue-router";
+import MovieMoreInfo from "./MovieMoreInfo.vue";
+import MovieExternalID from "./MovieExternalID.vue";
+import MovieCollection from "./MovieCollection.vue";
+import { useRoute, useRouter } from "vue-router";
+
 import { computed, onBeforeMount, ref } from "vue";
 export default {
 	name: "MovieDetails",
@@ -124,6 +155,9 @@ export default {
 		MovieCredits,
 		UserScore,
 		MovieRelated,
+		MovieExternalID,
+		MovieMoreInfo,
+		MovieCollection,
 	},
 	data() {
 		return {
@@ -132,6 +166,7 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
+		const router = useRouter();
 		const { error, movie, load } = getMovie();
 
 		const { result: omdb, load: exec } = useOMDB();
@@ -140,7 +175,7 @@ export default {
 		onBeforeMount(async () => {
 			loading.value = true;
 			await load(
-				`movie/${route.params.id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,collection`
+				`movie/${route.params.id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,collection,external_ids`
 			);
 			await exec(movie.value.imdb_id);
 			loading.value = false;
@@ -163,6 +198,7 @@ export default {
 
 		const relatedMovieClick = async (movie_id) => {
 			console.log("clicked", movie_id);
+			router.push({ name: "movie", params: { id: movie_id } });
 			loading.value = true;
 			await load(
 				`movie/${movie_id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
