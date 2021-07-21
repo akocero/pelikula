@@ -5,7 +5,7 @@
 			<!-- <pre>{{ movies }}</pre> -->
 			<div
 				class="scrollable__item scrollable__item--related-movies"
-				v-for="movie in movies"
+				v-for="movie in limitedMovies"
 				:key="movie.id"
 			>
 				<div class="card">
@@ -38,8 +38,9 @@
 
 <script>
 import request from "@/axios/request";
+import { computed } from "@vue/runtime-core";
 export default {
-	name: "MovieList",
+	name: "MovieRelated",
 	components: {},
 	data() {
 		return {
@@ -47,6 +48,17 @@ export default {
 		};
 	},
 	props: ["movies", "title"],
+	setup(props) {
+		const limitedMovies = computed(() => {
+			const limitToShow = 12;
+			if (props.movies) {
+				return props.movies.filter(
+					(item, index) => index < limitToShow
+				);
+			}
+		});
+		return { limitedMovies };
+	},
 };
 </script>
 
