@@ -1,6 +1,18 @@
 <template>
+	<Loading
+		v-model:active="loading"
+		:is-full-page="true"
+		color="#ededed"
+		loader="bars"
+		:width="200"
+		:height="150"
+		background-color="#000"
+		:opacity="0.95"
+		:lock-scroll="true"
+	/>
 	<div class="movie-details" v-if="!loading && movie">
 		<!-- padding-bottom: 56.25%; -->
+
 		<ModalTrailer
 			v-if="showTrailer"
 			@closeTrailer="showTrailer = false"
@@ -160,6 +172,8 @@ import MovieExternalID from "./MovieExternalID.vue";
 import MovieCollection from "./MovieCollection.vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
 	name: "MovieDetails",
@@ -171,6 +185,7 @@ export default {
 		MovieMoreInfo,
 		MovieCollection,
 		ModalTrailer,
+		Loading,
 	},
 	data() {
 		return {
@@ -207,6 +222,8 @@ export default {
 			}
 		});
 
+		const loadingings = ref(true);
+
 		const loadContent = async (id) => {
 			loading.value = true;
 			await load(
@@ -225,6 +242,7 @@ export default {
 			playTrailer,
 			showTrailer,
 			trailerLink,
+			loadingings,
 		};
 	},
 };
