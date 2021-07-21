@@ -58,13 +58,13 @@
 				@click="handleShowModal(movie)"
 			>
 				<img
-					v-if="movie.poster_path"
-					:src="request.image_path.poster.w220 + movie.poster_path"
+					v-if="!movie.poster_path"
+					src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
 					class="card__image"
 				/>
 				<img
-					v-else
-					src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
+					v-if="movie.poster_path"
+					:src="request.image_path.poster.w220 + movie.poster_path"
 					class="card__image"
 				/>
 			</div>

@@ -10,7 +10,7 @@ const useOMDB = () => {
     const load = async (imdb_id) => {
         loading.value = true
         try {
-            const res = await axios.get(`http://www.omdbapi.com/?i=${imdb_id}&apikey=${process.env.VUE_APP_OMDB_API_KEY}`);
+            const res = await axios.get(`https://www.omdbapi.com/?i=${imdb_id}&apikey=${process.env.VUE_APP_OMDB_API_KEY}`);
            
             // console.log(res)
             result.value = res.data

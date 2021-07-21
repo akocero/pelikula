@@ -201,6 +201,7 @@ export default {
 
 		onBeforeMount(async () => {
 			await loadContent(route.params.id);
+			console.log(movie.value);
 		});
 
 		onBeforeRouteUpdate(async (to, from, next) => {
