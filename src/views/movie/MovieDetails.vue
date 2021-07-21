@@ -1,6 +1,6 @@
 <template>
 	<Loading
-		v-model:active="loadingings"
+		v-model:active="loading"
 		:is-full-page="true"
 		color="#ededed"
 		loader="bars"

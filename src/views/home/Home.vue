@@ -9,6 +9,7 @@
 			@closeModal="handleCloseModal"
 		/>
 	</transition>
+
 	<div class="home">
 		<!-- <Heading :modalContent="modalContent" /> -->
 		<div
