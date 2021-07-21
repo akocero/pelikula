@@ -1,22 +1,11 @@
 <template>
 	<div class="movie-details" v-if="!loading && movie">
 		<!-- padding-bottom: 56.25%; -->
-		<div class="trailer-backdrop" v-if="showTrailer">
-			<div class="trailer-container">
-				<iframe
-					:src="request.youtube + trailerLink"
-					frameborder="0"
-					allowfullscreen="allowfullscreen"
-					mozallowfullscreen="mozallowfullscreen"
-					msallowfullscreen="msallowfullscreen"
-					oallowfullscreen="oallowfullscreen"
-					webkitallowfullscreen="webkitallowfullscreen"
-				></iframe>
-				<button type="button" @click="showTrailer = false">
-					&#x2715;
-				</button>
-			</div>
-		</div>
+		<ModalTrailer
+			v-if="showTrailer"
+			@closeTrailer="showTrailer = false"
+			:trailerLink="trailerLink"
+		/>
 		<div
 			class="heading"
 			:style="{
@@ -146,14 +135,12 @@
 			<MovieRelated
 				:movies="movie.similar_movies.results"
 				title="Similar Movies"
-				@relatedMovieClick="relatedMovieClick($event)"
 			/>
 		</div>
 		<div class="row" v-if="movie.recommendations.results.length">
 			<MovieRelated
 				:movies="movie.recommendations.results"
 				title="Suggested Movies"
-				@relatedMovieClick="relatedMovieClick($event)"
 			/>
 		</div>
 	</div>
@@ -162,16 +149,18 @@
 <script>
 import request from "@/axios/request";
 import getMovie from "@/composables/getMovie";
+import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
 import MovieCredits from "./MovieCredits.vue";
 import MovieRelated from "./MovieRelated.vue";
 import MovieMoreInfo from "./MovieMoreInfo.vue";
+import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieCollection from "./MovieCollection.vue";
-import { useRoute, useRouter } from "vue-router";
-
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
+
 export default {
 	name: "MovieDetails",
 	components: {
@@ -181,6 +170,7 @@ export default {
 		MovieExternalID,
 		MovieMoreInfo,
 		MovieCollection,
+		ModalTrailer,
 	},
 	data() {
 		return {
@@ -189,22 +179,18 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
-		const router = useRouter();
 		const { error, movie, load } = getMovie();
-
-		const { result: omdb, load: exec } = useOMDB();
-		const showTrailer = ref(false);
-		const trailerLink = ref(null);
+		const { result: omdb, load: loadOmdb } = useOMDB();
+		const { showTrailer, playTrailer, trailerLink } = useModalTrailer();
 		const loading = ref(false);
 
 		onBeforeMount(async () => {
-			loading.value = true;
-			await load(
-				`movie/${route.params.id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,collection,external_ids`
-			);
-			await exec(movie.value.imdb_id);
-			loading.value = false;
-			console.log(movie.value);
+			await loadContent(route.params.id);
+		});
+
+		onBeforeRouteUpdate(async (to, from, next) => {
+			await loadContent(to.params.id);
+			next();
 		});
 
 		const mainCrew = computed(() => {
@@ -221,21 +207,13 @@ export default {
 			}
 		});
 
-		const relatedMovieClick = async (movie_id) => {
-			console.log("clicked", movie_id);
-			router.push({ name: "movie", params: { id: movie_id } });
+		const loadContent = async (id) => {
 			loading.value = true;
 			await load(
-				`movie/${movie_id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
+				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
 			);
-			await exec(movie.value.imdb_id);
+			await loadOmdb(movie.value.imdb_id);
 			loading.value = false;
-			console.log(movie.value);
-		};
-
-		const playTrailer = (trailer) => {
-			trailerLink.value = trailer.key;
-			showTrailer.value = true;
 		};
 
 		return {
@@ -244,7 +222,6 @@ export default {
 			omdb,
 			loading,
 			mainCrew,
-			relatedMovieClick,
 			playTrailer,
 			showTrailer,
 			trailerLink,

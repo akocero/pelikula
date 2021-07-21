@@ -4,7 +4,7 @@
 		<div class="scrollable__list" v-if="credits">
 			<div
 				class="scrollable__item scrollable__item--credits"
-				v-for="cast in limitCasts"
+				v-for="cast in limitedCredits"
 				:key="cast.cast_id"
 			>
 				<div class="card">
@@ -39,7 +39,7 @@ export default {
 	components: {},
 	props: ["credits", "title"],
 	setup(props) {
-		const limitCasts = computed(() => {
+		const limitedCredits = computed(() => {
 			const limitToShow = 12;
 			if (props.credits) {
 				return props.credits.filter(
@@ -48,7 +48,7 @@ export default {
 			}
 		});
 
-		return { limitCasts, request };
+		return { limitedCredits, request };
 	},
 };
 </script>
