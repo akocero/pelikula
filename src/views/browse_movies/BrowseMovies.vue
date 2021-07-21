@@ -62,31 +62,11 @@
 					:src="request.image_path.poster.w220 + movie.poster_path"
 					class="card__image"
 				/>
-				<div v-else class="card__no-image">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="60%"
-						height="60%"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="feather feather-image"
-					>
-						<rect
-							x="3"
-							y="3"
-							width="18"
-							height="18"
-							rx="2"
-							ry="2"
-						></rect>
-						<circle cx="8.5" cy="8.5" r="1.5"></circle>
-						<polyline points="21 15 16 10 5 21"></polyline>
-					</svg>
-				</div>
+				<img
+					v-else
+					src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
+					class="card__image"
+				/>
 			</div>
 		</transition-group>
 

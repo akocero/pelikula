@@ -11,10 +11,16 @@
 				<div class="card">
 					<div class="card__img">
 						<img
+							v-if="movie.poster_path"
 							:src="
 								request.image_path.poster.w150 +
 									movie.poster_path
 							"
+							alt=""
+						/>
+						<img
+							v-else
+							src="https://via.placeholder.com/150x225/3F3F3F/FFFFFF/?text=Poster N/A"
 							alt=""
 						/>
 					</div>

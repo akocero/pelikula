@@ -1,4 +1,4 @@
-import { computed, ref } from "vue-demi";
+import { computed, ref } from "vue";
 
 const getBG = () => {
    const bgArray = ref([
