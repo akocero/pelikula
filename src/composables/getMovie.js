@@ -13,7 +13,7 @@ const getMovie = () => {
             const res = await axios.get(url);
             movie.value = res.data
             loading.value = false
-           return res.data
+            return res.data
         }
         catch (err) {
             loading.value = false

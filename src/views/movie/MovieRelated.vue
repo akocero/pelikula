@@ -20,14 +20,14 @@
 					</div>
 
 					<div class="card__body">
-						<h4
+						<router-link
 							class="card__title card__title--clickable"
-							@click="handleClick(movie.id)"
+							:to="{ name: 'movie', params: { id: movie.id } }"
 						>
 							{{ movie.title }} ({{
 								movie.release_date?.substr(0, 4)
 							}})
-						</h4>
+						</router-link>
 					</div>
 				</div>
 			</div>
@@ -38,29 +38,15 @@
 
 <script>
 import request from "@/axios/request";
-import { computed } from "@vue/runtime-core";
 export default {
 	name: "MovieList",
 	components: {},
-	props: ["movies", "title"],
-	emits: ["relatedMovieClick"],
-	setup(props, { emit }) {
-		console.log("movieslist", props.movies);
-		// const limitCasts = computed(() => {
-		// 	const limitToShow = 12;
-		// 	if (props.credits) {
-		// 		return props.credits.filter(
-		// 			(item, index) => index < limitToShow
-		// 		);
-		// 	}
-		// });
-
-		const handleClick = (movie_id) => {
-			emit("relatedMovieClick", movie_id);
+	data() {
+		return {
+			request: request,
 		};
-
-		return { request, handleClick };
 	},
+	props: ["movies", "title"],
 };
 </script>
 
