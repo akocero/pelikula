@@ -30,15 +30,24 @@
 		color: $red-color !important;
 	}
 
-	&__content {
-		padding: 1rem;
-		font-size: $paragraph;
-		color: $grey-color;
-	}
+	&__poster-title {
+		display: block;
+		margin: 0.5em 0 0 0.2em;
 
-	&__title {
-		margin-bottom: 0.5rem;
 		color: $light-color;
+		@include default-transition;
+
+		span {
+			font-weight: 500;
+		}
+
+		&--clickable {
+			text-decoration: none;
+
+			&:hover {
+				color: $red-color;
+			}
+		}
 	}
 
 	&__list {

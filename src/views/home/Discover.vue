@@ -12,16 +12,13 @@
 					alt=""
 					@click="handleClick(movie)"
 				/>
-
-				<div class="discover__content">
-					<p class="discover__title">{{ movie.title }}</p>
-					<p>
-						{{ movie.release_date?.substr(0, 4) || "N/A" }} |
-						<span class="discover--vote-average">{{
-							movie.vote_average
-						}}</span>
-					</p>
-				</div>
+				<router-link
+					:to="{ name: 'movie', params: { id: movie.id } }"
+					class="discover__poster-title discover__poster-title--clickable"
+				>
+					{{ movie.title }}
+					<span>({{ movie.release_date?.substr(0, 4) }})</span>
+				</router-link>
 			</div>
 		</div>
 	</div>
