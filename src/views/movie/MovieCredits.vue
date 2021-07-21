@@ -5,15 +5,21 @@
 			<div
 				class="scrollable__item scrollable__item--credits"
 				v-for="cast in limitedCredits"
-				:key="cast.cast_id"
+				:key="cast?.cast_id || cast.crew_id"
 			>
 				<div class="card">
 					<div class="card__img">
 						<img
+							v-if="cast.profile_path"
 							:src="
 								request.image_path.credits.w138 +
 									cast.profile_path
 							"
+							alt=""
+						/>
+						<img
+							v-else
+							src="https://via.placeholder.com/138x175/3F3F3F/FFFFFF/?text=Profile N/A"
 							alt=""
 						/>
 					</div>
