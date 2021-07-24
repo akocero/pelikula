@@ -1,0 +1,76 @@
+$grid-columns: (2, 3, 4, 5, 6, 7, 8, 9, 10);
+$flex-columns: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+$flex-gutter: 2%;
+.flex-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	@each $col in $flex-columns {
+		&__col--#{$col} {
+			width: calc(#{$col}0% - #{$flex-gutter});
+		}
+	}
+
+	@include respond(tab-land) {
+		@each $col in $flex-columns {
+			&__col-md--#{$col} {
+				width: calc(#{$col}0% - #{$flex-gutter});
+			}
+		}
+	}
+
+	@include respond(tab-port) {
+		@each $col in $flex-columns {
+			&__col-sm--#{$col} {
+				width: calc(#{$col}0% - #{$flex-gutter});
+			}
+		}
+	}
+
+	@include respond(phone) {
+		@each $col in $flex-columns {
+			&__col-xs--#{$col} {
+				width: calc(#{$col}0% - #{$flex-gutter});
+				@if $col == 10 {
+					width: calc(#{$col}0%);
+				}
+			}
+		}
+	}
+}
+
+.grid {
+	display: grid;
+	grid-gap: 2rem;
+
+	@each $col in $grid-columns {
+		&--#{$col} {
+			grid-template-columns: repeat(#{$col}, 1fr);
+		}
+	}
+
+	@include respond(tab-land) {
+		@each $col in $grid-columns {
+			&__md--#{$col} {
+				grid-template-columns: repeat(#{$col}, 1fr);
+			}
+		}
+	}
+
+	@include respond(tab-port) {
+		@each $col in $grid-columns {
+			&__sm--#{$col} {
+				grid-template-columns: repeat(#{$col}, 1fr);
+			}
+		}
+	}
+
+	@include respond(phone) {
+		@each $col in $grid-columns {
+			&__xs--#{$col} {
+				grid-template-columns: repeat(#{$col}, 1fr);
+			}
+		}
+	}
+}

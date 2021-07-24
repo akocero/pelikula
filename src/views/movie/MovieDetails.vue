@@ -113,8 +113,10 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
-		<div class="grid">
-			<div class="col">
+		<div class="flex-row bg-red">
+			<div
+				class="flex-row__col--8 flex-row__col-sm--7 flex-row__col-xs--10"
+			>
 				<div class="row" v-if="movie">
 					<MovieCredits
 						:credits="movie.credits.cast"
@@ -128,7 +130,9 @@
 					/>
 				</div>
 			</div>
-			<div class="col">
+			<div
+				class="flex-row__col--2 flex-row__col-sm--3 flex-row__col-xs--10"
+			>
 				<div class="row" v-if="movie?.external_ids || movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
@@ -228,7 +232,7 @@ export default {
 		const loadContent = async (id) => {
 			loading.value = true;
 			await load(
-				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
+				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids`
 			);
 			await loadOmdb(movie.value.imdb_id);
 			loading.value = false;
