@@ -5,8 +5,8 @@ const useModalTrailer = () => {
    const trailerLink = ref(null);
    
    const playTrailer = (trailer) => {
-			trailerLink.value = trailer.key;
-			showTrailer.value = true;
+      trailerLink.value = trailer.key;
+      showTrailer.value = true;
 	};
 
    return { showTrailer, trailerLink, playTrailer}

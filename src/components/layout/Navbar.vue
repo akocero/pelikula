@@ -1,7 +1,7 @@
 <template>
 	<div class="navbar">
 		<div class="navbar__brand">
-			<router-link :to="{ name: 'home' }" class="">PELIKULAD</router-link>
+			<router-link :to="{ name: 'home' }" class="">PELIKULA</router-link>
 		</div>
 
 		<transition name="nav">

@@ -44,29 +44,32 @@
 		<div className="fade-effect"></div>
 
 		<transition-group
-			class="movie-list"
+			class="grid grid--7 grid__xs--3 grid__sm--4 grid__md--6"
 			tag="div"
 			appear
 			@before-enter="beforeEnter"
 			@enter="enter"
 		>
 			<div
-				class="card"
+				class="flex__col--2"
 				v-for="(movie, index) in movies"
 				:key="movie.id"
 				:data-index="index"
-				@click="handleShowModal(movie)"
 			>
-				<img
-					v-if="!movie.poster_path"
-					src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
-					class="card__image"
-				/>
-				<img
-					v-if="movie.poster_path"
-					:src="request.image_path.poster.w220 + movie.poster_path"
-					class="card__image"
-				/>
+				<div class="card" @click="handleShowModal(movie)">
+					<img
+						v-if="!movie.poster_path"
+						src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
+						class="card__image"
+					/>
+					<img
+						v-if="movie.poster_path"
+						:src="
+							request.image_path.poster.w220 + movie.poster_path
+						"
+						class="card__image"
+					/>
+				</div>
 			</div>
 		</transition-group>
 
@@ -78,6 +81,16 @@
 		</div>
 
 		<!-- <div v-else>No more movies</div> -->
+
+		<!-- <div class="flex">
+			<div
+				class="flex__col flex__col--2"
+				v-for="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+				:key="item"
+			>
+				{{ item }}
+			</div>
+		</div> -->
 	</div>
 </template>
 
