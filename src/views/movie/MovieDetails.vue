@@ -113,7 +113,7 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
-		<div class="flex-row bg-red">
+		<div class="flex-row container">
 			<div class="col-9 col-sm-8 col-xs-12">
 				<div class="row" v-if="movie">
 					<MovieCredits
@@ -143,13 +143,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" v-if="movie.similar_movies.results.length">
+		<div class="container" v-if="movie.similar_movies.results.length">
 			<MovieRelated
 				:movies="movie.similar_movies.results"
 				title="Similar Movies"
 			/>
 		</div>
-		<div class="row" v-if="movie.recommendations.results.length">
+		<div class="container" v-if="movie.recommendations.results.length">
 			<MovieRelated
 				:movies="movie.recommendations.results"
 				title="Suggested Movies"
