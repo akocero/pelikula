@@ -88,7 +88,6 @@ export default {
 		limit: Number,
 	},
 	setup(props) {
-		console.log(props.limit);
 		const limitedData = computed(() => {
 			return props.data.slice(0, props.limit);
 		});

@@ -13,27 +13,52 @@
 								alt=""
 							/>
 						</div>
+						<div class="movie-details__more-info">
+							<h4 class="mb-2">Personal Info</h4>
+							<ul>
+								<li>
+									<h4>Known For</h4>
+									<span>{{ data.known_for_department }}</span>
+								</li>
+								<li>
+									<h4>Known Credits</h4>
+									<span>{{
+										data.combined_credits.cast.length +
+											data.combined_credits.crew.length
+									}}</span>
+								</li>
+								<li>
+									<h4>Birthday</h4>
+									<span
+										>{{ data.birthday }} ({{
+											getAge(data.birthday)
+										}}
+										years old)</span
+									>
+								</li>
+								<li>
+									<h4>Place of Birth</h4>
+									<span>{{ data.place_of_birth }}</span>
+								</li>
+								<li>
+									<h4>Also Known As</h4>
+									<ul>
+										<li
+											v-for="name in data.also_known_as"
+											:key="name"
+										>
+											<span>{{ name }}</span>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class="col-9">
-						<h4 class="heading__title">Eugene badato</h4>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Ea laudantium molestias unde facilis voluptas,
-							fuga officia recusandae nobis ratione temporibus?
-							Doloribus, nisi. Dignissimos distinctio illo itaque
-							vitae iste, laboriosam odit eaque suscipit explicabo
-							aliquid dolores dicta qui aliquam optio obcaecati
-							porro cupiditate dolore voluptas, quae quaerat error
-							minus officia. Facere neque iusto nihil voluptatum
-							magnam. Ipsa repellat, ut hic doloremque
-							voluptatibus veniam ad expedita consequuntur
-							necessitatibus amet asperiores. Porro, ut amet
-							incidunt voluptatibus adipisci similique reiciendis
-							laboriosam eius iste, cumque ipsum eligendi
-							quibusdam voluptate. Ipsam dignissimos veniam neque
-							optio, accusamus error voluptas repellendus
-							molestiae deleniti sit doloribus similique quam.
-							Facilis!
+					<div class="col-9 heading__content">
+						<h4 class="heading__title pb-2">{{ data.name }}</h4>
+						<h5 class="heading__subtitle mb-1">Biography</h5>
+						<p style="white-space: pre-wrap;">
+							{{ data.biography }}
 						</p>
 						<BaseScrollable
 							title="Known For"
@@ -41,6 +66,22 @@
 							type="movies"
 							:limit="10"
 						/>
+
+						<div>
+							<ul>
+								<li
+									v-for="credit in data.combined_credits.cast"
+									:key="credit.id"
+								>
+									{{
+										credit?.release_date ||
+											"- " + credit.first_air_date
+									}}
+									-
+									{{ credit?.title || credit.name }}
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -74,6 +115,17 @@ export default {
 			console.log(data.value);
 		});
 
+		const getAge = (dateString) => {
+			var today = new Date();
+			var birthDate = new Date(dateString);
+			var age = today.getFullYear() - birthDate.getFullYear();
+			var m = today.getMonth() - birthDate.getMonth();
+			if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+				age--;
+			}
+			return age;
+		};
+
 		const sortedByVoteCount = computed(() => {
 			if (domLoaded.value) {
 				return data.value?.combined_credits.cast.sort(function(a, b) {
@@ -82,17 +134,24 @@ export default {
 			}
 		});
 
-		return { sortedByVoteCount, request, data, domLoaded };
+		const sortedByDateRelease = computed(() => {
+			if (domLoaded.value) {
+				return data.value?.combined_credits.cast.sort(function(a, b) {
+					return b.release_date - a.release_date;
+				});
+			}
+		});
+
+		return {
+			sortedByVoteCount,
+			request,
+			data,
+			domLoaded,
+			getAge,
+			sortedByDateRelease,
+		};
 	},
 };
 </script>
 
-<style>
-.person-details .heading {
-	height: 100vh;
-}
-
-.person-details {
-	padding-bottom: 26rem;
-}
-</style>
+<style></style>
