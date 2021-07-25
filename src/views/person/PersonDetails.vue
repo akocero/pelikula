@@ -37,7 +37,9 @@
 						</p>
 						<BaseScrollable
 							title="Known For"
-							:movies="limitedMovies"
+							:data="sortedByVoteCount"
+							type="movies"
+							:limit="10"
 						/>
 					</div>
 				</div>
@@ -72,21 +74,15 @@ export default {
 			console.log(data.value);
 		});
 
-		const limitedMovies = computed(() => {
+		const sortedByVoteCount = computed(() => {
 			if (domLoaded.value) {
-				data.value?.combined_credits.cast.sort(function(a, b) {
+				return data.value?.combined_credits.cast.sort(function(a, b) {
 					return b.vote_count - a.vote_count;
 				});
-
-				return data.value.combined_credits.cast.splice(0, 8);
 			}
 		});
 
-		setTimeout(() => {
-			console.log(data.value.combined_credits.cast);
-		}, 10000);
-
-		return { limitedMovies, request, data, domLoaded };
+		return { sortedByVoteCount, request, data, domLoaded };
 	},
 };
 </script>

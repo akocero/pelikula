@@ -116,15 +116,19 @@
 		<div class="flex-row container">
 			<div class="col-9 col-sm-8 col-xs-12">
 				<div class="row" v-if="movie">
-					<MovieCredits
-						:credits="movie.credits.cast"
+					<BaseScrollable
 						title="Top Billed Cast"
+						:data="movie.credits.cast"
+						type="credits"
+						:limit="12"
 					/>
 				</div>
 				<div class="row">
-					<MovieCredits
-						:credits="mainCrew"
+					<BaseScrollable
 						title="Director, Story, Writer"
+						:data="mainCrew"
+						type="credits"
+						:limit="10"
 					/>
 				</div>
 			</div>
@@ -144,15 +148,19 @@
 			</div>
 		</div>
 		<div class="container" v-if="movie.similar_movies.results.length">
-			<MovieRelated
-				:movies="movie.similar_movies.results"
+			<BaseScrollable
 				title="Similar Movies"
+				:data="movie.similar_movies.results"
+				type="movies"
+				:limit="12"
 			/>
 		</div>
 		<div class="container" v-if="movie.recommendations.results.length">
-			<MovieRelated
-				:movies="movie.recommendations.results"
+			<BaseScrollable
 				title="Suggested Movies"
+				:data="movie.recommendations.results"
+				type="movies"
+				:limit="12"
 			/>
 		</div>
 	</div>
@@ -164,12 +172,11 @@ import getMovie from "@/composables/getMovie";
 import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieCredits from "./MovieCredits.vue";
-import MovieRelated from "./MovieRelated.vue";
 import MovieMoreInfo from "./MovieMoreInfo.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieCollection from "./MovieCollection.vue";
+import BaseScrollable from "@/components/BaseScrollable";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
@@ -178,14 +185,13 @@ import "vue-loading-overlay/dist/vue-loading.css";
 export default {
 	name: "MovieDetails",
 	components: {
-		MovieCredits,
 		UserScore,
-		MovieRelated,
 		MovieExternalID,
 		MovieMoreInfo,
 		MovieCollection,
 		ModalTrailer,
 		Loading,
+		BaseScrollable,
 	},
 	data() {
 		return {
