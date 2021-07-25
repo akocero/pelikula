@@ -1,39 +1,45 @@
 $grid-columns: (2, 3, 4, 5, 6, 7, 8, 9, 10);
-$flex-columns: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-$flex-gutter: 2%;
+$flex-columns: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 .flex-row {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-
+	[class^="col-"]:not(:last-child) {
+		padding-right: 1.6rem;
+	}
 	@each $col in $flex-columns {
-		&__col--#{$col} {
-			width: calc(#{$col}0% - #{$flex-gutter});
+		.col-#{$col} {
+			width: calc(8.333333333333333% * #{$col});
+			max-width: calc(8.333333333333333% * #{$col});
 		}
 	}
 
 	@include respond(tab-land) {
 		@each $col in $flex-columns {
-			&__col-md--#{$col} {
-				width: calc(#{$col}0% - #{$flex-gutter});
+			.col-md-#{$col} {
+				width: calc(8.333333333333333% * #{$col});
+				max-width: calc(8.333333333333333% * #{$col});
 			}
 		}
 	}
 
 	@include respond(tab-port) {
 		@each $col in $flex-columns {
-			&__col-sm--#{$col} {
-				width: calc(#{$col}0% - #{$flex-gutter});
+			.col-sm-#{$col} {
+				width: calc(8.333333333333333% * #{$col});
+				max-width: calc(8.333333333333333% * #{$col});
 			}
 		}
 	}
 
 	@include respond(phone) {
 		@each $col in $flex-columns {
-			&__col-xs--#{$col} {
-				width: calc(#{$col}0% - #{$flex-gutter});
-				@if $col == 10 {
-					width: calc(#{$col}0%);
+			.col-xs-#{$col} {
+				width: calc(8.333333333333333% * #{$col});
+				max-width: calc(8.333333333333333% * #{$col});
+
+				@if $col == 12 {
+					padding-right: 0 !important;
 				}
 			}
 		}

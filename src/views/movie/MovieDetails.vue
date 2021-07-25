@@ -114,9 +114,7 @@
 		</div>
 		<div class="fade-effect"></div>
 		<div class="flex-row bg-red">
-			<div
-				class="flex-row__col--8 flex-row__col-sm--7 flex-row__col-xs--10"
-			>
+			<div class="col-9 col-sm-8 col-xs-12">
 				<div class="row" v-if="movie">
 					<MovieCredits
 						:credits="movie.credits.cast"
@@ -130,9 +128,7 @@
 					/>
 				</div>
 			</div>
-			<div
-				class="flex-row__col--2 flex-row__col-sm--3 flex-row__col-xs--10"
-			>
+			<div class="col-3 col-sm-4 col-xs-12">
 				<div class="row" v-if="movie?.external_ids || movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
