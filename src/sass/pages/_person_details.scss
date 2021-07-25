@@ -1,0 +1,26 @@
+.person-details {
+	// height: 100vh;
+
+	.heading {
+		padding-top: 10rem;
+
+		&__title {
+			font-size: 3rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+			letter-spacing: 2px;
+			text-shadow: 2px -2px 11px #110805;
+		}
+
+		&__subtitle {
+			font-size: 2rem;
+		}
+		&__content {
+			padding-left: 2rem;
+		}
+	}
+}
+
+.person-details {
+	padding-bottom: 26rem;
+}
