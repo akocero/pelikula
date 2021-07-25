@@ -1,52 +1,12 @@
 .browse-movies {
 	padding-bottom: 26rem;
-}
 
-.movie-list {
-	position: relative;
-	margin-top: -15rem;
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 3rem;
-	padding: 0 4rem;
+	&__results {
+		position: relative;
+		z-index: 100000;
 
-	@include respond(tab-port) {
-		margin-top: -25rem;
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 1.5rem;
-		padding: 0 $m-x-spacing;
-	}
-	z-index: 101;
-
-	.card {
-		border-radius: $border-rad;
-		overflow: hidden;
-		transition: all 0.3s ease;
-		img.card__image {
-			width: 100%;
-		}
-
-		&__no-image {
-			background-color: rgb(37, 37, 37);
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-			svg {
-				color: rgb(77, 77, 77);
-			}
-		}
-
-		&__title {
-			font-size: 1.6rem;
-			font-weight: 400;
-		}
-
-		&:hover {
-			cursor: pointer;
-			transform: scale(1.1) rotate(-3deg) !important;
+		img {
+			border-radius: $border-rad;
 		}
 	}
 }

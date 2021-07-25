@@ -1,6 +1,7 @@
 .movie-details {
 	position: relative;
 	padding-bottom: 26rem;
+	// padding: 0 $x-spacing 26rem $x-spacing;
 	// max-width: 1366px;
 
 	.heading {
@@ -178,21 +179,6 @@
 		width: 46px;
 	}
 }
-
-// .grid {
-// 	display: flex;
-
-// 	& > .col:nth-child(1) {
-// 		width: calc(77% - 3.5rem);
-// 		margin-right: 3.5rem;
-// 	}
-
-// 	& > .col:nth-child(2) {
-// 		padding: 4.5rem $x-spacing 0 0;
-// 		width: 23%;
-// 		padding-top: 4rem;
-// 	}
-// }
 
 .collection {
 	// width: 300px;
