@@ -31,7 +31,7 @@
 									<h4>Birthday</h4>
 									<span
 										>{{ data.birthday }} ({{
-											getAge(data.birthday)
+											computeAge(data.birthday)
 										}}
 										years old)</span
 									>
@@ -68,17 +68,35 @@
 						/>
 
 						<div>
-							<ul>
+							<ul class="actor-movies grid grid--6">
 								<li
-									v-for="credit in data.combined_credits.cast"
+									class="actor-movies__item flex-row"
+									v-for="credit in sortedByDateRelease"
 									:key="credit.id"
 								>
-									{{
-										credit?.release_date ||
-											"- " + credit.first_air_date
-									}}
-									-
-									{{ credit?.title || credit.name }}
+									<img
+										class="col-5"
+										:src="
+											request.image_path.poster.w92 +
+												credit.poster_path
+										"
+										alt=""
+									/>
+									<!-- <div class="actor-movies__content col-7">
+										<h4 class="actor-movies__title">
+											{{ credit.original_title }}
+											<span
+												class="actor-movies__release_date"
+												>({{
+													credit.release_date
+												}})</span
+											>
+										</h4>
+
+										<span class="actor-movies__character">{{
+											credit.character
+										}}</span>
+									</div> -->
 								</li>
 							</ul>
 						</div>
@@ -115,11 +133,11 @@ export default {
 			console.log(data.value);
 		});
 
-		const getAge = (dateString) => {
-			var today = new Date();
-			var birthDate = new Date(dateString);
-			var age = today.getFullYear() - birthDate.getFullYear();
-			var m = today.getMonth() - birthDate.getMonth();
+		const computeAge = (birthday) => {
+			const today = new Date();
+			const birthDate = new Date(birthday);
+			let age = today.getFullYear() - birthDate.getFullYear();
+			const m = today.getMonth() - birthDate.getMonth();
 			if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
 				age--;
 			}
@@ -136,8 +154,19 @@ export default {
 
 		const sortedByDateRelease = computed(() => {
 			if (domLoaded.value) {
-				return data.value?.combined_credits.cast.sort(function(a, b) {
-					return b.release_date - a.release_date;
+				const newCredit = data.value.combined_credits.cast.filter(
+					(credit) => {
+						if (
+							credit.release_date &&
+							credit.media_type === "movie"
+						) {
+							return credit.release_date;
+						}
+					}
+				);
+
+				return newCredit.sort(function(a, b) {
+					return new Date(b.release_date) - new Date(a.release_date);
 				});
 			}
 		});
@@ -147,7 +176,7 @@ export default {
 			request,
 			data,
 			domLoaded,
-			getAge,
+			computeAge,
 			sortedByDateRelease,
 		};
 	},
