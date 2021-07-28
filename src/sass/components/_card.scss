@@ -1,10 +1,11 @@
 .card {
-	background-color: $dark-color-1;
-	border-radius: $border-rad;
+	// background-color: $dark-color-1;
+	// border-radius: $border-rad;
 	// overflow: hidden;
 	overflow: hidden;
 	width: 100%;
 	height: auto;
+
 	&__img {
 		img {
 			width: 100%;
@@ -13,7 +14,7 @@
 	}
 
 	&__body {
-		padding: 1rem;
+		// padding: 1rem;
 
 		*:not(:last-child) {
 			margin-bottom: 1rem;

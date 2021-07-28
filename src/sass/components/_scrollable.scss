@@ -25,10 +25,8 @@
 
 		@include modified-scrollbar;
 	}
-	&__title {
+	&__heading {
 		font-size: 2.3rem;
-		// margin-left: 4rem;
-
 		margin-top: 4rem;
 
 		@include respond(tab-port) {
@@ -37,8 +35,12 @@
 		}
 	}
 
+	img {
+		border-radius: $border-rad;
+	}
+
 	&__item {
-		margin-right: 2rem;
+		margin-right: 2.5rem;
 		max-width: 10rem;
 		min-width: 10rem;
 
@@ -51,5 +53,44 @@
 			max-width: 150px;
 			min-width: 150px;
 		}
+	}
+
+	&__title {
+		display: block;
+		margin-top: 0.4em;
+		font-size: 1.4rem;
+		color: $light-color;
+		@include default-transition;
+
+		span {
+			font-weight: 500;
+		}
+
+		&--clickable {
+			text-decoration: none;
+
+			&:hover {
+				color: $red-color;
+			}
+		}
+	}
+
+	&__subtitle {
+		margin-top: 0.2em;
+		color: $grey-color;
+	}
+
+	&__more-info {
+		color: $grey-color;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__average {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #f1c40f;
 	}
 }

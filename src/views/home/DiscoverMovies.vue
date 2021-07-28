@@ -15,22 +15,40 @@
 				<div
 					v-for="movie in movies.results"
 					:key="movie.id"
-					class="discover__poster"
+					class="discover__item"
 				>
 					<img
 						:src="
-							request.image_path.poster.w220 + movie.poster_path
+							request.image_path.poster.w220 + movie?.poster_path
 						"
 						alt=""
 						@click="handleClick(movie)"
 					/>
-					<router-link
-						:to="{ name: 'movie', params: { id: movie.id } }"
-						class="discover__poster-title discover__poster-title--clickable"
-					>
-						{{ movie.title }}
-						<span>({{ movie.release_date?.substr(0, 4) }})</span>
-					</router-link>
+
+					<div class="discover__content">
+						<router-link
+							:to="{
+								name: 'movie',
+								params: { id: movie.id },
+							}"
+							class="discover__title discover__title--clickable"
+						>
+							<!-- {{ movie.title?.substr(0, 20) }}... -->
+							{{
+								movie.title?.length >= 18
+									? movie.title?.substr(0, 18) + "..."
+									: movie.title
+							}}
+							<!-- <span>({{ movie.release_date?.substr(0, 4) }})</span> -->
+						</router-link>
+						<h5 class="discover__more-info">
+							<span>{{ movie.release_date?.substr(0, 4) }}</span>
+							<span class="discover__vote-average"
+								><i v-html="iStar" class="pr-1"></i
+								>{{ movie.vote_average }}</span
+							>
+						</h5>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -43,23 +61,33 @@ import request from "@/axios/request";
 import { onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import feather from "feather-icons";
 export default {
-	name: "Discover",
+	name: "DiscoverMovies",
 	components: {
 		Loading,
+	},
+	computed: {
+		iStar: function() {
+			return feather.icons["star"].toSvg({
+				width: 14,
+			});
+		},
 	},
 	props: {
 		url: String,
 		title: String,
+		type: String,
 	},
 	emits: ["showModal"],
 	setup(props, { emit }) {
 		const url = ref(props.url);
 		const { movies, error, load, isPending } = getMovies(url.value);
-
+		console.log(props.url);
 		onBeforeMount(async () => {
 			await load();
 			console.log(movies.value);
+			console.log(movies);
 		});
 
 		const handleClick = (movie) => {

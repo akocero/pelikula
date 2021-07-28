@@ -1,21 +1,12 @@
 .discover {
 	position: relative;
 	z-index: 1000;
-	margin: 3rem 0;
-	// background-color: orangered;
-	// &::after {
-	// 	content: "";
-	// 	position: absolute;
-	// 	top: 0;
-	// 	right: 0;
-	// 	width: 5em;
-	// 	height: 100%;
-	// 	background-image: linear-gradient(to left, $dark-color, transparent);
-	// }
+	// margin: 3rem 0;
+
 	&__heading {
+		padding-top: 3rem;
 		font-size: 2rem;
 		font-weight: 500;
-		// border-bottom: 1px solid rgb(37, 37, 37);
 		letter-spacing: 2px;
 
 		margin: 0 0 0 $x-spacing;
@@ -26,13 +17,23 @@
 		}
 	}
 
-	&--vote-average {
-		color: $red-color !important;
+	&__more-info {
+		color: $grey-color;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
-	&__poster-title {
+	&__vote-average {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #f1c40f;
+	}
+
+	&__title {
 		display: block;
-		margin: 0.5em 0 0 0.2em;
+		margin-top: 0.4em;
 		font-size: 1.4rem;
 		color: $light-color;
 		@include default-transition;
@@ -63,20 +64,20 @@
 		@include modified-scrollbar;
 	}
 
-	&__poster {
+	&__item {
 		margin-right: $gutter;
 		img {
 			width: 16rem;
 			border-radius: $border-rad;
 			cursor: pointer;
 			position: relative;
-			box-shadow: rgba(132, 132, 146, 0.2) 0px 7px 29px 0px;
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px;
 			@include default-transition;
 
 			&:hover {
 				transform: scale(1.1) rotate(-3deg);
 				z-index: 100;
-				box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+				box-shadow: rgba(132, 132, 146, 0.2) 0px 7px 29px 0px,
 					rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 			}
 		}

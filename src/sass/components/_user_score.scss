@@ -33,7 +33,7 @@
 
 	circle:nth-child(2) {
 		//   stroke-dashoffset: calc(148 - (148 * 75) / 100);
-		stroke: gold;
+		stroke: #f1c40f;
 		animation: percent 1.5s linear;
 		animation-delay: 1s;
 	}
@@ -56,7 +56,7 @@
 	}
 
 	& > span {
-		color: gold;
+		color: #f1c40f;
 	}
 
 	@keyframes percent {
