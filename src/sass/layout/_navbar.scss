@@ -116,7 +116,7 @@
 
 	&__burger {
 		height: 35px;
-		width: 3rem;
+		width: 3.5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -125,6 +125,7 @@
 
 		* {
 			height: 2px;
+			border-radius: 4px;
 			background-color: white;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.493),
 				0 15px 12px rgba(0, 0, 0, 0.22);

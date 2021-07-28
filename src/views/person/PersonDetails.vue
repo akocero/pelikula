@@ -129,7 +129,6 @@ export default {
 				`person/${route.params.id}?api_key=${request.apikey}&language=en-US&append_to_response=combined_credits,known_for_department`
 			);
 			domLoaded.value = true;
-
 			console.log(data.value);
 		});
 
@@ -146,15 +145,15 @@ export default {
 
 		const sortedByVoteCount = computed(() => {
 			if (domLoaded.value) {
-				return data.value?.combined_credits.cast.sort(function(a, b) {
-					return b.vote_count - a.vote_count;
-				});
+				return data.value?.combined_credits.cast.sort(
+					(a, b) => b.vote_count - a.vote_count
+				);
 			}
 		});
 
 		const sortedByDateRelease = computed(() => {
 			if (domLoaded.value) {
-				const newCredit = data.value.combined_credits.cast.filter(
+				const filteredCredit = data.value.combined_credits.cast.filter(
 					(credit) => {
 						if (
 							credit.release_date &&
@@ -165,9 +164,10 @@ export default {
 					}
 				);
 
-				return newCredit.sort(function(a, b) {
-					return new Date(b.release_date) - new Date(a.release_date);
-				});
+				return filteredCredit.sort(
+					(a, b) =>
+						new Date(b.release_date) - new Date(a.release_date)
+				);
 			}
 		});
 

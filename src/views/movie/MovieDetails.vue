@@ -11,8 +11,6 @@
 		:lock-scroll="true"
 	/>
 	<div class="movie-details" v-if="!loading && movie">
-		<!-- padding-bottom: 56.25%; -->
-
 		<ModalTrailer
 			v-if="showTrailer"
 			@closeTrailer="showTrailer = false"
@@ -57,10 +55,10 @@
 							v-for="(genre, index) in movie.genres"
 							:key="genre.id"
 						>
-							{{ genre.name
-							}}<span v-if="index !== movie.genres.length - 1"
-								>, {{
-							}}</span>
+							{{ genre.name }}
+							<span v-if="index !== movie.genres.length - 1"
+								>,
+							</span>
 						</a>
 						&#8226; {{ movie.runtime }} mins
 					</p>
@@ -94,8 +92,6 @@
 
 					<p class="heading__overview row">
 						{{ movie.overview }}
-						<!-- Lorem ipsum dolor sit amet, consectetur adipisicing
-							elit. Repellendus, iste? -->
 					</p>
 
 					<ul class="heading__main-crew">
