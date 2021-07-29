@@ -71,6 +71,7 @@ export default {
 		iStar: function() {
 			return feather.icons["star"].toSvg({
 				width: 14,
+				fill: "#f1c40f",
 			});
 		},
 	},

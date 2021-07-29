@@ -18,10 +18,7 @@
 					class="discover__item"
 				>
 					<img
-						:src="
-							request.image_path.poster.w220 +
-								person?.profile_path
-						"
+						:src="image_path.poster.w220 + person?.profile_path"
 						alt=""
 						@click="handleClick(person)"
 					/>
@@ -60,7 +57,7 @@
 
 <script>
 import getMovies from "@/composables/getMovies";
-import request from "@/axios/request";
+import { image_path } from "@/axios/request";
 import { onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
@@ -104,7 +101,14 @@ export default {
 
 		const fakeloader = ref(true);
 
-		return { people, error, isPending, handleClick, request, fakeloader };
+		return {
+			people,
+			error,
+			isPending,
+			handleClick,
+			fakeloader,
+			image_path,
+		};
 	},
 };
 </script>

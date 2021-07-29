@@ -91,6 +91,10 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: #f1c40f;
+		//
+		color: $light-color;
+		i {
+			color: #f1c40f;
+		}
 	}
 }

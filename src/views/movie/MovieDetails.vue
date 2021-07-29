@@ -75,15 +75,16 @@
 								User Score
 							</h4>
 						</div>
-						<button
-							v-if="movie.videos && movie.videos.results[0]"
-							class="btn-float"
-							@click="playTrailer(movie.videos.results[0])"
-						>
-							►
-						</button>
+
 						<button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button>
+						<button
+							v-if="movie.videos && movie.videos.results[0]"
+							class="btn"
+							@click="playTrailer(movie.videos.results[0])"
+						>
+							<i v-html="iPlay" class="pr-1"></i> Play Trailer
+						</button>
 					</div>
 
 					<h5 class="heading__tagline row" v-if="movie.tagline">
@@ -177,6 +178,7 @@ import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import feather from "feather-icons";
 
 export default {
 	name: "MovieDetails",
@@ -193,6 +195,20 @@ export default {
 		return {
 			request: request,
 		};
+	},
+	computed: {
+		iPlay: function() {
+			return feather.icons["play"].toSvg({
+				width: 16,
+				fill: "#fff",
+				color: "#fff",
+			});
+		},
+		iAward: function() {
+			return feather.icons["activity"].toSvg({
+				width: 14,
+			});
+		},
 	},
 	setup() {
 		const route = useRoute();

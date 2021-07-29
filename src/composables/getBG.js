@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 
-const getBG = () => {
+export default function getBG() {
    const bgArray = ref([
 			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
          "/tM894AtE7UQTJEoQG6qF6mdfSUT.jpg", // guardians of the galaxy
@@ -15,5 +15,3 @@ const getBG = () => {
 
    return { randomBG }
 }
-
-export default getBG

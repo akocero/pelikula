@@ -30,6 +30,25 @@ const request = {
     // topPopular: `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=1&region=ph` with region
 }
 
+export const image_path = {
+    original: 'https://image.tmdb.org/t/p/original',
+    credits: {
+        w138: 'https://image.tmdb.org/t/p/w138_and_h175_face',
+    },
+    poster: {
+        w92: 'https://image.tmdb.org/t/p/w92',
+        w150: 'https://image.tmdb.org/t/p/w150_and_h225_bestv2',
+        w220: 'https://image.tmdb.org/t/p/w220_and_h330_face',
+        w300: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2',
+        w600: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
+    },
+    backdrop: {
+        w780: 'https://image.tmdb.org/t/p/w780',
+        w1920: 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces',
+        w1280: 'https://image.tmdb.org/t/p/w1280',
+    }
+}
+
 // "backdrop_sizes": [
 //   "w300",
 //   "w780",

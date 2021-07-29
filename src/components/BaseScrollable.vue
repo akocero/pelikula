@@ -80,10 +80,9 @@
 							}}
 						</router-link>
 						<h5 class="scrollable__subtitle" v-if="item.character">
-							As
 							{{
-								item.character?.length >= 15
-									? item.character?.substr(0, 15) + "..."
+								item.character?.length >= 17
+									? item.character?.substr(0, 17) + "..."
 									: item.character
 							}}
 						</h5>
