@@ -11,8 +11,6 @@
 		:lock-scroll="true"
 	/>
 	<div class="movie-details" v-if="!loading && movie">
-		<!-- padding-bottom: 56.25%; -->
-
 		<ModalTrailer
 			v-if="showTrailer"
 			@closeTrailer="showTrailer = false"
@@ -57,10 +55,10 @@
 							v-for="(genre, index) in movie.genres"
 							:key="genre.id"
 						>
-							{{ genre.name
-							}}<span v-if="index !== movie.genres.length - 1"
-								>, {{
-							}}</span>
+							{{ genre.name }}
+							<span v-if="index !== movie.genres.length - 1"
+								>,
+							</span>
 						</a>
 						&#8226; {{ movie.runtime }} mins
 					</p>
@@ -77,15 +75,16 @@
 								User Score
 							</h4>
 						</div>
-						<button
-							v-if="movie.videos && movie.videos.results[0]"
-							class="btn-float"
-							@click="playTrailer(movie.videos.results[0])"
-						>
-							►
-						</button>
+
 						<button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button>
+						<button
+							v-if="movie.videos && movie.videos.results[0]"
+							class="btn"
+							@click="playTrailer(movie.videos.results[0])"
+						>
+							<i v-html="iPlay" class="pr-1"></i> Play Trailer
+						</button>
 					</div>
 
 					<h5 class="heading__tagline row" v-if="movie.tagline">
@@ -94,8 +93,6 @@
 
 					<p class="heading__overview row">
 						{{ movie.overview }}
-						<!-- Lorem ipsum dolor sit amet, consectetur adipisicing
-							elit. Repellendus, iste? -->
 					</p>
 
 					<ul class="heading__main-crew">
@@ -181,6 +178,7 @@ import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import feather from "feather-icons";
 
 export default {
 	name: "MovieDetails",
@@ -197,6 +195,20 @@ export default {
 		return {
 			request: request,
 		};
+	},
+	computed: {
+		iPlay: function() {
+			return feather.icons["play"].toSvg({
+				width: 16,
+				fill: "#fff",
+				color: "#fff",
+			});
+		},
+		iAward: function() {
+			return feather.icons["activity"].toSvg({
+				width: 14,
+			});
+		},
 	},
 	setup() {
 		const route = useRoute();

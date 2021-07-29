@@ -38,22 +38,29 @@
 			</form>
 		</div>
 		<div className="fade-effect"></div>
-		<Discover
+		<DiscoverMovies
 			:url="request.topPopular"
 			title="What's Popular?"
 			@showModal="handleShowModal($event)"
 		/>
-		<Discover
+
+		<DiscoverPeople
+			:url="request.topPeople"
+			title="Top People"
+			@showModal="handleShowModal($event)"
+		/>
+
+		<DiscoverMovies
 			:url="request.trending"
 			title="What's Trending?"
 			@showModal="handleShowModal($event)"
 		/>
-		<Discover
+		<DiscoverMovies
 			:url="request.topRated"
 			title="Top Rated"
 			@showModal="handleShowModal($event)"
 		/>
-		<Discover
+		<DiscoverMovies
 			:url="request.topAction"
 			title="Top Action"
 			@showModal="handleShowModal($event)"
@@ -63,7 +70,8 @@
 
 <script>
 import request from "@/axios/request";
-import Discover from "@/views/home/Discover";
+import DiscoverMovies from "./DiscoverMovies";
+import DiscoverPeople from "./DiscoverPeople";
 import Modal from "@/components/Modal";
 import Heading from "@/views/home/Heading";
 import Spinner from "@/components/Spinner";
@@ -76,7 +84,8 @@ import useModal from "@/composables/useModal";
 export default {
 	name: "Home",
 	components: {
-		Discover,
+		DiscoverMovies,
+		DiscoverPeople,
 		Heading,
 		Spinner,
 		Modal,
