@@ -13,13 +13,19 @@
 }
 
 .btn {
-	padding: 0.7rem 1.5rem;
-	font-size: 1.2rem;
 	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.6rem 2rem;
+	font-size: 1.4rem;
 	font-weight: 600;
-	background: transparent;
-	border: 2px solid rgb(255, 255, 255);
-	color: rgb(197, 197, 197);
-	letter-spacing: 1.6px;
+	color: $light-color;
+	background-color: transparent;
+	border-radius: 4rem;
+	border: none;
+	letter-spacing: 1.2px;
+	font-family: "Nunito";
+	font-weight: 700;
 	cursor: pointer;
 }

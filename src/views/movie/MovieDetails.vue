@@ -11,8 +11,6 @@
 		:lock-scroll="true"
 	/>
 	<div class="movie-details" v-if="!loading && movie">
-		<!-- padding-bottom: 56.25%; -->
-
 		<ModalTrailer
 			v-if="showTrailer"
 			@closeTrailer="showTrailer = false"
@@ -57,10 +55,10 @@
 							v-for="(genre, index) in movie.genres"
 							:key="genre.id"
 						>
-							{{ genre.name
-							}}<span v-if="index !== movie.genres.length - 1"
-								>, {{
-							}}</span>
+							{{ genre.name }}
+							<span v-if="index !== movie.genres.length - 1"
+								>,
+							</span>
 						</a>
 						&#8226; {{ movie.runtime }} mins
 					</p>
@@ -77,15 +75,16 @@
 								User Score
 							</h4>
 						</div>
-						<button
-							v-if="movie.videos && movie.videos.results[0]"
-							class="btn-float"
-							@click="playTrailer(movie.videos.results[0])"
-						>
-							►
-						</button>
+
 						<button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button>
+						<button
+							v-if="movie.videos && movie.videos.results[0]"
+							class="btn"
+							@click="playTrailer(movie.videos.results[0])"
+						>
+							<i v-html="iPlay" class="pr-1"></i> Play Trailer
+						</button>
 					</div>
 
 					<h5 class="heading__tagline row" v-if="movie.tagline">
@@ -94,8 +93,6 @@
 
 					<p class="heading__overview row">
 						{{ movie.overview }}
-						<!-- Lorem ipsum dolor sit amet, consectetur adipisicing
-							elit. Repellendus, iste? -->
 					</p>
 
 					<ul class="heading__main-crew">
@@ -113,22 +110,26 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
-		<div class="grid">
-			<div class="col">
+		<div class="flex-row container">
+			<div class="col-9 col-sm-8 col-xs-12">
 				<div class="row" v-if="movie">
-					<MovieCredits
-						:credits="movie.credits.cast"
+					<BaseScrollable
 						title="Top Billed Cast"
+						:data="movie.credits.cast"
+						type="credits"
+						:limit="12"
 					/>
 				</div>
 				<div class="row">
-					<MovieCredits
-						:credits="mainCrew"
+					<BaseScrollable
 						title="Director, Story, Writer"
+						:data="mainCrew"
+						type="credits"
+						:limit="10"
 					/>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-3 col-sm-4 col-xs-12">
 				<div class="row" v-if="movie?.external_ids || movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
@@ -143,16 +144,20 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" v-if="movie.similar_movies.results.length">
-			<MovieRelated
-				:movies="movie.similar_movies.results"
+		<div class="container" v-if="movie.similar_movies.results.length">
+			<BaseScrollable
 				title="Similar Movies"
+				:data="movie.similar_movies.results"
+				type="movies"
+				:limit="12"
 			/>
 		</div>
-		<div class="row" v-if="movie.recommendations.results.length">
-			<MovieRelated
-				:movies="movie.recommendations.results"
+		<div class="container" v-if="movie.recommendations.results.length">
+			<BaseScrollable
 				title="Suggested Movies"
+				:data="movie.recommendations.results"
+				type="movies"
+				:limit="12"
 			/>
 		</div>
 	</div>
@@ -164,33 +169,46 @@ import getMovie from "@/composables/getMovie";
 import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieCredits from "./MovieCredits.vue";
-import MovieRelated from "./MovieRelated.vue";
 import MovieMoreInfo from "./MovieMoreInfo.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieCollection from "./MovieCollection.vue";
+import BaseScrollable from "@/components/BaseScrollable";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { computed, onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import feather from "feather-icons";
 
 export default {
 	name: "MovieDetails",
 	components: {
-		MovieCredits,
 		UserScore,
-		MovieRelated,
 		MovieExternalID,
 		MovieMoreInfo,
 		MovieCollection,
 		ModalTrailer,
 		Loading,
+		BaseScrollable,
 	},
 	data() {
 		return {
 			request: request,
 		};
+	},
+	computed: {
+		iPlay: function() {
+			return feather.icons["play"].toSvg({
+				width: 16,
+				fill: "#fff",
+				color: "#fff",
+			});
+		},
+		iAward: function() {
+			return feather.icons["activity"].toSvg({
+				width: 14,
+			});
+		},
 	},
 	setup() {
 		const route = useRoute();
@@ -228,7 +246,7 @@ export default {
 		const loadContent = async (id) => {
 			loading.value = true;
 			await load(
-				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images`
+				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids`
 			);
 			await loadOmdb(movie.value.imdb_id);
 			loading.value = false;

@@ -1,0 +1,63 @@
+.person-details {
+	// height: 100vh;
+
+	.heading {
+		padding-top: 10rem;
+
+		&__title {
+			font-size: 3rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+			letter-spacing: 2px;
+			text-shadow: 2px -2px 11px #110805;
+		}
+
+		&__subtitle {
+			font-size: 2rem;
+		}
+		&__content {
+			padding-left: 2rem;
+		}
+	}
+}
+
+.person-details {
+	padding-bottom: 26rem;
+}
+
+.actor-movies {
+	padding: 2rem 0;
+	overflow-x: hidden;
+	/* display: grid;
+	grid-auto-columns: repeat(2, 1fr); */
+
+	&__item {
+		padding: 0.5rem;
+		border: 1px solid rgb(36, 36, 36);
+		border-radius: 4px;
+		color: $grey-color;
+	}
+
+	&__content {
+		padding: 0.3rem;
+	}
+
+	&__title,
+	&__release_date {
+		font-family: "Roboto";
+		font-size: 1.4rem;
+		font-weight: 500;
+		color: $light-color;
+	}
+
+	&__title {
+		margin-bottom: 0.2em;
+	}
+
+	&__character {
+		color: $grey-color;
+	}
+
+	&__release_date {
+	}
+}
