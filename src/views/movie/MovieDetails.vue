@@ -83,7 +83,7 @@
 							class="btn"
 							@click="playTrailer(movie.videos.results[0])"
 						>
-							<i v-html="iPlay" class="pr-1"></i> Play Trailer
+							<i v-html="iPlay"></i>
 						</button>
 					</div>
 
@@ -199,7 +199,7 @@ export default {
 	computed: {
 		iPlay: function() {
 			return feather.icons["play"].toSvg({
-				width: 16,
+				width: 14,
 				fill: "#fff",
 				color: "#fff",
 			});

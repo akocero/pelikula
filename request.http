@@ -1,1 +1,15 @@
 http://www.omdbapi.com/?i=tt9777666&plot=full&apikey=2ff9984a
+
+###
+
+GET http://127.0.0.1:8000/api/setupcompany
+
+###
+POST http://127.0.0.1:8000/api/payrolluser
+Accept: application/json
+Content-Type: application/json
+
+{
+   "companies" : [1,2],
+   "hasdhj"
+}
