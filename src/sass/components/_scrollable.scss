@@ -47,6 +47,12 @@
 		&--credits {
 			max-width: 138px;
 			min-width: 138px;
+
+			img {
+				object-fit: cover;
+				height: 138px;
+				border-radius: 400px;
+			}
 		}
 
 		&--related-movies {
