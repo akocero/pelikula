@@ -57,7 +57,10 @@
 					<div class="col-9 heading__content">
 						<h4 class="heading__title pb-2">{{ data.name }}</h4>
 						<h5 class="heading__subtitle mb-1">Biography</h5>
-						<p style="white-space: pre-wrap;">
+						<p
+							style="white-space: pre-wrap;"
+							class="heading__biography"
+						>
 							{{ data.biography }}
 						</p>
 						<BaseScrollable

@@ -18,6 +18,11 @@
 		&__content {
 			padding-left: 2rem;
 		}
+
+		&__biography {
+			max-height: 20rem;
+			overflow-y: hidden;
+		}
 	}
 }
 
