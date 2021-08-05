@@ -1,4 +1,15 @@
 <template>
+	<Loading
+		v-model:active="loading"
+		:is-full-page="true"
+		color="#ededed"
+		loader="bars"
+		:width="200"
+		:height="150"
+		background-color="#000"
+		:opacity="0.95"
+		:lock-scroll="true"
+	/>
 	<div class="person-details" v-if="domLoaded">
 		<div class="heading">
 			<div class="heading__wrapper">
@@ -116,10 +127,13 @@ import request from "@/axios/request";
 import { onBeforeMount, computed, ref } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 import BaseScrollable from "@/components/BaseScrollable";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 export default {
 	name: "PersonDetails",
 	components: {
 		BaseScrollable,
+		Loading,
 	},
 	setup() {
 		const route = useRoute();
@@ -181,6 +195,7 @@ export default {
 			domLoaded,
 			getComputedAge,
 			sortedCreditsByDateRelease,
+			loading,
 		};
 	},
 };

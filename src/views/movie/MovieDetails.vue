@@ -76,14 +76,14 @@
 							</h4>
 						</div>
 
-						<button class="btn-float">❤</button>
-						<button class="btn-float">⚑</button>
+						<!-- <button class="btn-float">❤</button>
+						<button class="btn-float">⚑</button> -->
 						<button
 							v-if="movie.videos && movie.videos.results[0]"
 							class="btn"
 							@click="playTrailer(movie.videos.results[0])"
 						>
-							<i v-html="iPlay"></i>
+							<i v-html="iPlay"></i> Trailer
 						</button>
 					</div>
 
