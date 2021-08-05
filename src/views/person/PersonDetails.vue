@@ -31,7 +31,7 @@
 									<h4>Birthday</h4>
 									<span
 										>{{ data.birthday }} ({{
-											computeAge(data.birthday)
+											getComputedAge(data.birthday)
 										}}
 										years old)</span
 									>
@@ -65,7 +65,7 @@
 						</p>
 						<BaseScrollable
 							title="Known For"
-							:data="sortedByVoteCount"
+							:data="sortedCreditsByVoteCount"
 							type="movies"
 							:limit="10"
 						/>
@@ -74,7 +74,7 @@
 							<ul class="actor-movies grid grid--6">
 								<li
 									class="actor-movies__item flex-row"
-									v-for="credit in sortedByDateRelease"
+									v-for="credit in sortedCreditsByDateRelease"
 									:key="credit.id"
 								>
 									<img
@@ -135,7 +135,7 @@ export default {
 			console.log(data.value);
 		});
 
-		const computeAge = (birthday) => {
+		const getComputedAge = (birthday) => {
 			const today = new Date();
 			const birthDate = new Date(birthday);
 			let age = today.getFullYear() - birthDate.getFullYear();
@@ -146,7 +146,7 @@ export default {
 			return age;
 		};
 
-		const sortedByVoteCount = computed(() => {
+		const sortedCreditsByVoteCount = computed(() => {
 			if (domLoaded.value) {
 				return data.value?.combined_credits.cast.sort(
 					(a, b) => b.vote_count - a.vote_count
@@ -154,7 +154,7 @@ export default {
 			}
 		});
 
-		const sortedByDateRelease = computed(() => {
+		const sortedCreditsByDateRelease = computed(() => {
 			if (domLoaded.value) {
 				const filteredCredit = data.value.combined_credits.cast.filter(
 					(credit) => {
@@ -175,12 +175,12 @@ export default {
 		});
 
 		return {
-			sortedByVoteCount,
+			sortedCreditsByVoteCount,
 			request,
 			data,
 			domLoaded,
-			computeAge,
-			sortedByDateRelease,
+			getComputedAge,
+			sortedCreditsByDateRelease,
 		};
 	},
 };
