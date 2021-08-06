@@ -23,7 +23,20 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/home/Home.vue')
+    component: () => import('@/views/home/Home.vue'),
+    meta: {
+      title: 'Home Page - Example App',
+      metaTags: [
+        {
+          name: 'description',
+          content: 'The home page of our example app.'
+        },
+        {
+          property: 'og:description',
+          content: 'The home page of our example app.'
+        }
+      ]
+    }
   },
   {
     path: '/browse_movies',

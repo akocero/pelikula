@@ -104,17 +104,8 @@
 		}
 
 		&__main-crew {
-			// max-width: 80%;
-			// display: flex;
-			& > * {
-				display: inline-block;
-				margin-right: 8rem;
-				margin-bottom: 2rem;
-			}
-
 			&__name {
 				font-weight: 700;
-				white-space: nowrap;
 			}
 
 			&__job {
@@ -123,7 +114,7 @@
 			}
 
 			// justify-content: space-between;
-			letter-spacing: 1.2px;
+			letter-spacing: 1px;
 		}
 
 		&__actions {
@@ -147,6 +138,11 @@
 				}
 			}
 		}
+	}
+
+	.right {
+		margin-top: 4rem;
+		padding-left: 1.5rem;
 	}
 
 	&__links {

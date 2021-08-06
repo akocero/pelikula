@@ -78,7 +78,7 @@
 							title="Known For"
 							:data="sortedCreditsByVoteCount"
 							type="movies"
-							:limit="10"
+							:limit="15"
 						/>
 
 						<div>
