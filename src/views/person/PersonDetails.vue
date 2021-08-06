@@ -75,7 +75,7 @@
 							{{ data.biography }}
 						</p>
 						<BaseScrollable
-							title="Known For"
+							title="Best Movies"
 							:data="sortedCreditsByVoteCount"
 							type="movies"
 							:limit="15"
