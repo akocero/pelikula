@@ -1,13 +1,24 @@
 <template>
+	<Loading
+		v-model:active="loading"
+		:is-full-page="true"
+		color="#ededed"
+		loader="bars"
+		:width="200"
+		:height="150"
+		background-color="#000"
+		:opacity="0.95"
+		:lock-scroll="true"
+	/>
 	<div class="person-details" v-if="domLoaded">
 		<div class="heading">
 			<div class="heading__wrapper">
 				<div class="flex-row container">
-					<div class="col-3">
+					<div class="col-2">
 						<div class="heading__poster">
 							<img
 								:src="
-									request.image_path.poster.w300 +
+									request.image_path.poster.w220 +
 										data.profile_path
 								"
 								alt=""
@@ -54,20 +65,23 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-9 heading__content">
-						<h4 class="heading__title pb-2">{{ data.name }}</h4>
-						<h5 class="heading__subtitle mb-1">Biography</h5>
-						<p
-							style="white-space: pre-wrap;"
-							class="heading__biography"
-						>
-							{{ data.biography }}
-						</p>
+					<div class="col-10 heading__content">
+						<h4 class="heading__title">{{ data.name }}</h4>
+						<div style="display: flex;">
+							<p
+								style="white-space: pre-wrap;"
+								class="heading__biography"
+							>
+								{{ data.biography }}
+							</p>
+							<i v-html="iArrowDown"></i>
+						</div>
+
 						<BaseScrollable
-							title="Known For"
+							title="Most Popular Movies"
 							:data="sortedCreditsByVoteCount"
 							type="movies"
-							:limit="10"
+							:limit="15"
 						/>
 
 						<div>
@@ -116,10 +130,21 @@ import request from "@/axios/request";
 import { onBeforeMount, computed, ref } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 import BaseScrollable from "@/components/BaseScrollable";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+import feather from "feather-icons";
 export default {
 	name: "PersonDetails",
 	components: {
 		BaseScrollable,
+		Loading,
+	},
+	computed: {
+		iArrowDown: function() {
+			return feather.icons["chevron-down"].toSvg({
+				width: 28,
+			});
+		},
 	},
 	setup() {
 		const route = useRoute();
@@ -181,6 +206,7 @@ export default {
 			domLoaded,
 			getComputedAge,
 			sortedCreditsByDateRelease,
+			loading,
 		};
 	},
 };
