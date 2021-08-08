@@ -72,7 +72,7 @@
 						<div class="user-score__container">
 							<UserScore :percent="movie.vote_average" />
 							<h4 style="max-width: 40px;">
-								User Score
+								TMDB Score
 							</h4>
 						</div>
 

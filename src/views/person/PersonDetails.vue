@@ -24,22 +24,21 @@
 								alt=""
 							/>
 						</div>
-						<div class="movie-details__more-info">
-							<h4 class="mb-2">Personal Info</h4>
+						<div class="person-details__more-info">
 							<ul>
 								<li>
-									<h4>Known For</h4>
+									<h5>Known For</h5>
 									<span>{{ data.known_for_department }}</span>
 								</li>
 								<li>
-									<h4>Known Credits</h4>
+									<h5>Known Credits</h5>
 									<span>{{
 										data.combined_credits.cast.length +
 											data.combined_credits.crew.length
 									}}</span>
 								</li>
 								<li>
-									<h4>Birthday</h4>
+									<h5>Birthday</h5>
 									<span
 										>{{ data.birthday }} ({{
 											getComputedAge(data.birthday)
@@ -48,19 +47,18 @@
 									>
 								</li>
 								<li>
-									<h4>Place of Birth</h4>
+									<h5>Place of Birth</h5>
 									<span>{{ data.place_of_birth }}</span>
 								</li>
 								<li>
-									<h4>Also Known As</h4>
-									<ul>
-										<li
-											v-for="name in data.also_known_as"
-											:key="name"
-										>
-											<span>{{ name }}</span>
-										</li>
-									</ul>
+									<h5>Also Known As</h5>
+
+									<span
+										v-for="name in data.also_known_as"
+										:key="name"
+									>
+										{{ name }}
+									</span>
 								</li>
 							</ul>
 						</div>
@@ -85,35 +83,46 @@
 						/>
 
 						<div>
-							<ul class="actor-movies grid grid--6">
+							<div class="mt-3">
+								<h4>Movies</h4>
+							</div>
+
+							<ul class="actor-movies grid grid--9">
 								<li
-									class="actor-movies__item flex-row"
+									class="actor-movies__item"
 									v-for="credit in sortedCreditsByDateRelease"
 									:key="credit.id"
 								>
 									<img
-										class="col-5"
+										v-if="!credit.poster_path"
+										src="https://via.placeholder.com/150x225/3F3F3F/FFFFFF/?text=Poster N/A"
+										alt=""
+									/>
+									<img
+										v-else
+										class=""
 										:src="
 											request.image_path.poster.w92 +
 												credit.poster_path
 										"
 										alt=""
 									/>
-									<!-- <div class="actor-movies__content col-7">
+
+									<div class="actor-movies__content">
 										<h4 class="actor-movies__title">
 											{{ credit.original_title }}
-											<span
+											<!-- <span
 												class="actor-movies__release_date"
 												>({{
 													credit.release_date
 												}})</span
-											>
+											> -->
 										</h4>
 
-										<span class="actor-movies__character">{{
+										<!-- <span class="actor-movies__character">{{
 											credit.character
-										}}</span>
-									</div> -->
+										}}</span> -->
+									</div>
 								</li>
 							</ul>
 						</div>

@@ -1,6 +1,23 @@
 .person-details {
 	// height: 100vh;
+	&__more-info {
+		li {
+			border-bottom: 1px solid rgb(34, 34, 34);
+			margin-bottom: 1rem;
+			padding: 0.5rem;
 
+			h5 {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: rgb(65, 65, 65);
+			}
+
+			span {
+				display: inline-block;
+				font-size: 1.4rem;
+			}
+		}
+	}
 	.heading {
 		padding-top: 10rem;
 
@@ -39,10 +56,15 @@
 	grid-auto-columns: repeat(2, 1fr); */
 
 	&__item {
-		padding: 0.5rem;
-		border: 1px solid rgb(36, 36, 36);
-		border-radius: 4px;
+		padding: 0;
+		// border: 2px solid rgb(27, 27, 27);
+		// box-shadow: 5px 0px 10px rgba(255, 255, 255, 0.034);
+		border-radius: 8px;
 		color: $grey-color;
+
+		img {
+			border-radius: $border-rad;
+		}
 	}
 
 	&__content {

@@ -6,9 +6,7 @@
 				>Fix it on GitHub</a
 			>
 		</p>
-
 		<hr />
-
 		<div class="footer__copyright">
 			<p class="mb-1">Copyright © 2021 Pelikula</p>
 			<p>
