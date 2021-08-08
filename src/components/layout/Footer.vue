@@ -1,7 +1,7 @@
 <template>
 	<footer class="footer">
 		<p class="footer__gitlab">
-			Find an issue with this page? <a href="">Fix it on GitLab</a>
+			Find an issue with this page? <a href="">Fix it on GitHub</a>
 		</p>
 
 		<hr />
@@ -54,7 +54,7 @@
 
 		<ul class="footer__links">
 			<li><i v-html="iFb"></i></li>
-			<li><i v-html="iGitlab"></i></li>
+			<li><i v-html="iGitHub"></i></li>
 			<li><i v-html="iLinkedin"></i></li>
 			<li><i v-html="itwitter"></i></li>
 		</ul>
@@ -70,8 +70,8 @@ export default {
 				width: 42,
 			});
 		},
-		iGitlab: function() {
-			return feather.icons["gitlab"].toSvg({
+		iGitHub: function() {
+			return feather.icons["github"].toSvg({
 				width: 42,
 			});
 		},
