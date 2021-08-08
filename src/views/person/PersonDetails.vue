@@ -84,7 +84,12 @@
 						<div class="actor-movies">
 							<div class="mt-3 actor-movies__heading">
 								<h4>{{ data.name }} Movies</h4>
-								<button>Newest</button>
+								<button v-if="newest" @click="newest = !newest">
+									Newest
+								</button>
+								<button v-else @click="newest = !newest">
+									Oldest
+								</button>
 							</div>
 
 							<ul class="actor-movies__list">
@@ -158,6 +163,7 @@ export default {
 
 		const { data, error, loading, load } = getPerson();
 		const domLoaded = ref(false);
+		const newest = ref(true);
 
 		onBeforeMount(async () => {
 			await load(
@@ -198,11 +204,17 @@ export default {
 						}
 					}
 				);
-
-				return filteredCredit.sort(
-					(a, b) =>
-						new Date(b.release_date) - new Date(a.release_date)
-				);
+				if (newest.value) {
+					return filteredCredit.sort(
+						(a, b) =>
+							new Date(b.release_date) - new Date(a.release_date)
+					);
+				} else {
+					return filteredCredit.sort(
+						(a, b) =>
+							new Date(a.release_date) - new Date(b.release_date)
+					);
+				}
 			}
 		});
 
@@ -214,6 +226,7 @@ export default {
 			getComputedAge,
 			sortedCreditsByDateRelease,
 			loading,
+			newest,
 		};
 	},
 };
