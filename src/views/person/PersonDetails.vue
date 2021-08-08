@@ -14,7 +14,7 @@
 		<div class="heading">
 			<div class="heading__wrapper">
 				<div class="flex-row container">
-					<div class="col-2">
+					<div class="col-2 person-details__left">
 						<div class="heading__poster">
 							<img
 								:src="
@@ -63,7 +63,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-10 heading__content">
+					<div class="col-10 pl-4 heading__content">
 						<h4 class="heading__title">{{ data.name }}</h4>
 						<div style="display: flex;">
 							<p
@@ -87,41 +87,27 @@
 								<h4>Movies</h4>
 							</div>
 
-							<ul class="actor-movies grid grid--9">
+							<ul class="actor-movies">
 								<li
 									class="actor-movies__item"
 									v-for="credit in sortedCreditsByDateRelease"
 									:key="credit.id"
 								>
-									<img
-										v-if="!credit.poster_path"
-										src="https://via.placeholder.com/150x225/3F3F3F/FFFFFF/?text=Poster N/A"
-										alt=""
-									/>
-									<img
-										v-else
-										class=""
-										:src="
-											request.image_path.poster.w92 +
-												credit.poster_path
-										"
-										alt=""
-									/>
-
 									<div class="actor-movies__content">
-										<h4 class="actor-movies__title">
-											{{ credit.original_title }}
-											<!-- <span
-												class="actor-movies__release_date"
-												>({{
-													credit.release_date
-												}})</span
-											> -->
-										</h4>
-
-										<!-- <span class="actor-movies__character">{{
-											credit.character
-										}}</span> -->
+										<span class="actor-movies__year">{{
+											credit?.release_date.substr(0, 4)
+										}}</span>
+										-
+										<span class="actor-movies__title">{{
+											credit.original_title
+										}}</span>
+										<span class="actor-movies__character">
+											as {{ credit.character }}</span
+										>
+									</div>
+									<div class="actor-movies__vote">
+										<i v-html="iStar"></i>
+										<span>{{ credit.vote_average }}</span>
 									</div>
 								</li>
 							</ul>
@@ -152,6 +138,12 @@ export default {
 		iArrowDown: function() {
 			return feather.icons["chevron-down"].toSvg({
 				width: 28,
+			});
+		},
+		iStar: function() {
+			return feather.icons["star"].toSvg({
+				width: 14,
+				fill: "gold",
 			});
 		},
 	},
