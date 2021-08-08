@@ -7,7 +7,7 @@
 		&__title {
 			font-size: 3rem;
 			font-weight: 700;
-			margin-bottom: 0.5rem;
+			// margin-bottom: 0.5rem;
 			letter-spacing: 2px;
 			text-shadow: 2px -2px 11px #110805;
 		}
@@ -20,8 +20,10 @@
 		}
 
 		&__biography {
-			max-height: 20rem;
+			max-height: 2rem;
+			max-width: 95%;
 			overflow-y: hidden;
+			color: $grey-color;
 		}
 	}
 }
