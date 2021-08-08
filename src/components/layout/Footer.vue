@@ -1,7 +1,10 @@
 <template>
 	<footer class="footer">
 		<p class="footer__gitlab">
-			Find an issue with this page? <a href="">Fix it on GitHub</a>
+			Find an issue with this page?
+			<a href="https://github.com/akocero/pelikula/issues" target="_blank"
+				>Fix it on GitHub</a
+			>
 		</p>
 
 		<hr />
@@ -53,10 +56,30 @@
 		<hr />
 
 		<ul class="footer__links">
-			<li><i v-html="iFb"></i></li>
-			<li><i v-html="iGitHub"></i></li>
-			<li><i v-html="iLinkedin"></i></li>
-			<li><i v-html="itwitter"></i></li>
+			<li>
+				<a
+					href="https://www.facebook.com/hisoka.morow.904/"
+					target="_blank"
+					><i v-html="iFb"></i
+				></a>
+			</li>
+			<li>
+				<a href="https://github.com/akocero" target="_blank"
+					><i v-html="iGitHub"></i
+				></a>
+			</li>
+			<li>
+				<a
+					href="https://www.linkedin.com/in/eugene-paul-badato-1305751aa/"
+					target="_blank"
+					><i v-html="iLinkedin"></i
+				></a>
+			</li>
+			<li>
+				<a href="https://twitter.com/eugenebadato" target="_blank"
+					><i v-html="itwitter"></i
+				></a>
+			</li>
 		</ul>
 	</footer>
 </template>
