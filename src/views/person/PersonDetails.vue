@@ -74,30 +74,36 @@
 							</p>
 							<i v-html="iArrowDown"></i>
 						</div>
-
+						<!-- <h5>Most Popular Movies</h5> -->
 						<BaseScrollable
-							title="Most Popular Movies"
 							:data="sortedCreditsByVoteCount"
 							type="movies"
 							:limit="15"
 						/>
 
-						<div>
-							<div class="mt-3">
-								<h4>Movies</h4>
+						<div class="actor-movies">
+							<div class="mt-3 actor-movies__heading">
+								<h4>{{ data.name }} Movies</h4>
+								<button>Newest</button>
 							</div>
 
-							<ul class="actor-movies">
+							<ul class="actor-movies__list">
 								<li
 									class="actor-movies__item"
 									v-for="credit in sortedCreditsByDateRelease"
 									:key="credit.id"
 								>
 									<div class="actor-movies__content">
-										<span class="actor-movies__year">{{
-											credit?.release_date.substr(0, 4)
-										}}</span>
-										-
+										<span class="actor-movies__year"
+											>{{
+												credit?.release_date.substr(
+													0,
+													4
+												)
+											}}
+											|
+										</span>
+
 										<span class="actor-movies__title">{{
 											credit.original_title
 										}}</span>
