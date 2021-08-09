@@ -204,17 +204,12 @@ export default {
 						}
 					}
 				);
-				if (newest.value) {
-					return filteredCredit.sort(
-						(a, b) =>
-							new Date(b.release_date) - new Date(a.release_date)
-					);
-				} else {
-					return filteredCredit.sort(
-						(a, b) =>
-							new Date(a.release_date) - new Date(b.release_date)
-					);
-				}
+
+				return filteredCredit.sort((a, b) =>
+					newest.value
+						? new Date(b.release_date) - new Date(a.release_date)
+						: new Date(a.release_date) - new Date(b.release_date)
+				);
 			}
 		});
 

@@ -4,7 +4,7 @@
 		margin: 1rem;
 		li {
 			&:not(:last-child) {
-				border-bottom: 1px solid rgb(34, 34, 34);
+				border-bottom: 1px solid rgb(27, 27, 27);
 			}
 
 			margin-bottom: 2rem;
@@ -29,6 +29,7 @@
 		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
 		height: fit-content;
 		padding-bottom: 1rem;
+		border-radius: 8px;
 		// grid-auto-rows: 100px;
 	}
 	.heading {
