@@ -1,6 +1,37 @@
 .person-details {
 	// height: 100vh;
+	&__more-info {
+		margin: 1rem;
+		li {
+			&:not(:last-child) {
+				border-bottom: 1px solid rgb(27, 27, 27);
+			}
 
+			margin-bottom: 2rem;
+			padding: 0.5rem;
+
+			h5 {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: rgb(88, 88, 88);
+			}
+
+			span {
+				display: inline-block;
+				font-size: 1.4rem;
+			}
+		}
+	}
+
+	&__left {
+		padding-right: 0 !important;
+		// box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
+		height: fit-content;
+		padding-bottom: 1rem;
+		border-radius: 8px;
+		// grid-auto-rows: 100px;
+	}
 	.heading {
 		padding-top: 10rem;
 
@@ -12,11 +43,18 @@
 			text-shadow: 2px -2px 11px #110805;
 		}
 
+		&__poster {
+			// width: 100%;
+			img {
+				border-radius: $border-rad;
+			}
+		}
+
 		&__subtitle {
 			font-size: 2rem;
 		}
 		&__content {
-			padding-left: 2rem;
+			padding-left: 3.5rem;
 		}
 
 		&__biography {
@@ -33,38 +71,49 @@
 }
 
 .actor-movies {
-	padding: 2rem 0;
-	overflow-x: hidden;
-	/* display: grid;
-	grid-auto-columns: repeat(2, 1fr); */
+	&__heading {
+		display: flex;
+		justify-content: space-between;
 
+		button {
+			padding: 0.2rem 1rem;
+			border: none;
+			cursor: pointer;
+			border-radius: $border-rad;
+			background-color: rgb(36, 36, 36);
+			color: $light-color;
+			font-family: "Poppins";
+			letter-spacing: 1px;
+		}
+	}
 	&__item {
-		padding: 0.5rem;
-		border: 1px solid rgb(36, 36, 36);
-		border-radius: 4px;
-		color: $grey-color;
+		padding: 1rem 1.5rem;
+		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
+		border-radius: 8px;
+		margin: 2rem 0;
+		display: flex;
+		cursor: pointer;
 	}
-
-	&__content {
-		padding: 0.3rem;
-	}
-
-	&__title,
-	&__release_date {
-		font-family: "Roboto";
-		font-size: 1.4rem;
-		font-weight: 500;
+	&__title {
+		font-weight: 700;
 		color: $light-color;
 	}
-
-	&__title {
-		margin-bottom: 0.2em;
-	}
-
 	&__character {
+		color: rgb(80, 80, 80);
+	}
+	&__year {
 		color: $grey-color;
 	}
+	&__vote {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
 
-	&__release_date {
+		i {
+			margin-bottom: -3px;
+			margin-right: 0.5rem;
+			color: #f1c40f;
+			// color: gold;
+		}
 	}
 }

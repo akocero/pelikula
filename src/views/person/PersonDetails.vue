@@ -14,7 +14,7 @@
 		<div class="heading">
 			<div class="heading__wrapper">
 				<div class="flex-row container">
-					<div class="col-2">
+					<div class="col-2 person-details__left">
 						<div class="heading__poster">
 							<img
 								:src="
@@ -24,22 +24,21 @@
 								alt=""
 							/>
 						</div>
-						<div class="movie-details__more-info">
-							<h4 class="mb-2">Personal Info</h4>
+						<div class="person-details__more-info">
 							<ul>
 								<li>
-									<h4>Known For</h4>
+									<h5>Known For</h5>
 									<span>{{ data.known_for_department }}</span>
 								</li>
 								<li>
-									<h4>Known Credits</h4>
+									<h5>Known Credits</h5>
 									<span>{{
 										data.combined_credits.cast.length +
 											data.combined_credits.crew.length
 									}}</span>
 								</li>
 								<li>
-									<h4>Birthday</h4>
+									<h5>Birthday</h5>
 									<span
 										>{{ data.birthday }} ({{
 											getComputedAge(data.birthday)
@@ -48,24 +47,23 @@
 									>
 								</li>
 								<li>
-									<h4>Place of Birth</h4>
+									<h5>Place of Birth</h5>
 									<span>{{ data.place_of_birth }}</span>
 								</li>
 								<li>
-									<h4>Also Known As</h4>
-									<ul>
-										<li
-											v-for="name in data.also_known_as"
-											:key="name"
-										>
-											<span>{{ name }}</span>
-										</li>
-									</ul>
+									<h5>Also Known As</h5>
+
+									<span
+										v-for="name in data.also_known_as"
+										:key="name"
+									>
+										{{ name }}
+									</span>
 								</li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-10 heading__content">
+					<div class="col-10 pl-4 heading__content">
 						<h4 class="heading__title">{{ data.name }}</h4>
 						<div style="display: flex;">
 							<p
@@ -76,44 +74,52 @@
 							</p>
 							<i v-html="iArrowDown"></i>
 						</div>
-
+						<!-- <h5>Most Popular Movies</h5> -->
 						<BaseScrollable
-							title="Most Popular Movies"
 							:data="sortedCreditsByVoteCount"
 							type="movies"
 							:limit="15"
 						/>
 
-						<div>
-							<ul class="actor-movies grid grid--6">
+						<div class="actor-movies">
+							<div class="mt-3 actor-movies__heading">
+								<h4>{{ data.name }} Movies</h4>
+								<button v-if="newest" @click="newest = !newest">
+									Newest
+								</button>
+								<button v-else @click="newest = !newest">
+									Oldest
+								</button>
+							</div>
+
+							<ul class="actor-movies__list">
 								<li
-									class="actor-movies__item flex-row"
+									class="actor-movies__item"
 									v-for="credit in sortedCreditsByDateRelease"
 									:key="credit.id"
 								>
-									<img
-										class="col-5"
-										:src="
-											request.image_path.poster.w92 +
-												credit.poster_path
-										"
-										alt=""
-									/>
-									<!-- <div class="actor-movies__content col-7">
-										<h4 class="actor-movies__title">
-											{{ credit.original_title }}
-											<span
-												class="actor-movies__release_date"
-												>({{
-													credit.release_date
-												}})</span
-											>
-										</h4>
+									<div class="actor-movies__content">
+										<span class="actor-movies__year"
+											>{{
+												credit?.release_date.substr(
+													0,
+													4
+												)
+											}}
+											|
+										</span>
 
-										<span class="actor-movies__character">{{
-											credit.character
+										<span class="actor-movies__title">{{
+											credit.original_title
 										}}</span>
-									</div> -->
+										<span class="actor-movies__character">
+											as {{ credit.character }}</span
+										>
+									</div>
+									<div class="actor-movies__vote">
+										<i v-html="iStar"></i>
+										<span>{{ credit.vote_average }}</span>
+									</div>
 								</li>
 							</ul>
 						</div>
@@ -145,12 +151,19 @@ export default {
 				width: 28,
 			});
 		},
+		iStar: function() {
+			return feather.icons["star"].toSvg({
+				width: 14,
+				fill: "gold",
+			});
+		},
 	},
 	setup() {
 		const route = useRoute();
 
 		const { data, error, loading, load } = getPerson();
 		const domLoaded = ref(false);
+		const newest = ref(true);
 
 		onBeforeMount(async () => {
 			await load(
@@ -192,9 +205,10 @@ export default {
 					}
 				);
 
-				return filteredCredit.sort(
-					(a, b) =>
-						new Date(b.release_date) - new Date(a.release_date)
+				return filteredCredit.sort((a, b) =>
+					newest.value
+						? new Date(b.release_date) - new Date(a.release_date)
+						: new Date(a.release_date) - new Date(b.release_date)
 				);
 			}
 		});
@@ -207,6 +221,7 @@ export default {
 			getComputedAge,
 			sortedCreditsByDateRelease,
 			loading,
+			newest,
 		};
 	},
 };
