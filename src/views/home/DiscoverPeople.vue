@@ -41,12 +41,10 @@
 						</router-link>
 						<h5 class="discover__more-info">
 							<span>{{ person.known_for_department }}</span>
-							<span class="discover__vote-average"
-								><i v-html="iAward" class="pr-1"></i
-								>{{
-									Math.round(person.popularity * 100) / 100
-								}}%</span
-							>
+							<span class="discover__vote-average">
+								<i v-html="iAward" class="pr-1"></i>
+								{{ Math.round(person.popularity * 100) / 100 }}%
+							</span>
 						</h5>
 					</div>
 				</div>

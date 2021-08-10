@@ -39,5 +39,11 @@
 		margin: 2rem auto;
 		justify-content: space-between;
 		width: 10%;
+		a {
+			color: $light-color;
+			&:hover {
+				color: $red-color;
+			}
+		}
 	}
 }

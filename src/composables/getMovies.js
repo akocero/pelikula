@@ -11,15 +11,14 @@ const getMovies = (url) => {
         isPending.value = true
         try {
             const res = await axios.get(url);
-           
-            // console.log('from getMovies',res.data)
+
             movies.value = res.data
-            isPending.value = false
-           return res.data
+            return res.data
         }
         catch (err) {
-            isPending.value = false
             console.log(err.message)
+        } finally {
+            isPending.value = false
         }
     }
 

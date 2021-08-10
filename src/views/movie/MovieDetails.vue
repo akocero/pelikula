@@ -72,18 +72,18 @@
 						<div class="user-score__container">
 							<UserScore :percent="movie.vote_average" />
 							<h4 style="max-width: 40px;">
-								User Score
+								TMDB Score
 							</h4>
 						</div>
 
-						<button class="btn-float">❤</button>
-						<button class="btn-float">⚑</button>
+						<!-- <button class="btn-float">❤</button>
+						<button class="btn-float">⚑</button> -->
 						<button
 							v-if="movie.videos && movie.videos.results[0]"
 							class="btn"
 							@click="playTrailer(movie.videos.results[0])"
 						>
-							<i v-html="iPlay" class="pr-1"></i> Play Trailer
+							<i v-html="iPlay"></i> Trailer
 						</button>
 					</div>
 
@@ -95,7 +95,7 @@
 						{{ movie.overview }}
 					</p>
 
-					<ul class="heading__main-crew">
+					<ul class="heading__main-crew grid grid--4 grid__sm--2">
 						<li v-for="crew in mainCrew" :key="crew.credit_id">
 							<span class="heading__main-crew__name">{{
 								crew.name
@@ -129,8 +129,8 @@
 					/>
 				</div>
 			</div>
-			<div class="col-3 col-sm-4 col-xs-12">
-				<div class="row" v-if="movie?.external_ids || movie.homepage">
+			<div class="col-3 col-sm-4 col-xs-12 right">
+				<div class="row" v-if="movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
 						:homepage="movie?.homepage || null"
@@ -199,7 +199,7 @@ export default {
 	computed: {
 		iPlay: function() {
 			return feather.icons["play"].toSvg({
-				width: 16,
+				width: 14,
 				fill: "#fff",
 				color: "#fff",
 			});

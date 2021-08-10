@@ -1,17 +1,16 @@
 <template>
 	<div class="movie-details__more-info">
-		<h4 class="mb-2">More Information</h4>
 		<ul>
 			<li>
-				<h4>Status</h4>
+				<h5>Status</h5>
 				<span>{{ movie.status }}</span>
 			</li>
 			<li>
-				<h4>Release Date</h4>
+				<h5>Release Date</h5>
 				<span>{{ movie.release_date }}</span>
 			</li>
 			<li>
-				<h4>Original Language</h4>
+				<h5>Original Language</h5>
 				<span>{{
 					movie.original_language === "en"
 						? "English"
@@ -19,19 +18,19 @@
 				}}</span>
 			</li>
 			<li>
-				<h4>Budget</h4>
+				<h5>Budget</h5>
 				<span>{{ movie.budget }}</span>
 			</li>
 			<li>
-				<h4>Revenue</h4>
+				<h5>Revenue</h5>
 				<span>{{ movie.revenue }}</span>
 			</li>
 			<li>
-				<h4>Popularity</h4>
+				<h5>Popularity</h5>
 				<span>{{ movie.popularity }}</span>
 			</li>
 			<li>
-				<h4>Vote Count</h4>
+				<h5>Vote Count</h5>
 				<span>{{ movie.vote_count }}</span>
 			</li>
 		</ul>

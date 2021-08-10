@@ -38,6 +38,7 @@
 				</ul>
 			</nav>
 		</transition>
+
 		<form
 			@submit.prevent="handleSearch"
 			action=""
