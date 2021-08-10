@@ -86,7 +86,6 @@ export default {
 	setup(props, { emit }) {
 		const url = ref(props.url);
 		const { movies: people, error, load, isPending } = getMovies(url.value);
-		console.log(props.url);
 		onBeforeMount(async () => {
 			await load();
 			console.log(people.value);
