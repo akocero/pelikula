@@ -39,16 +39,16 @@
 					/>
 				</div>
 				<div class="heading__content">
-					<h3 class="heading__title">
+					<h1 class="h1">
 						{{ movie.title }}
-						<span class="heading__title--year"
+						<span class=""
 							>({{
 								movie.release_date?.substr(0, 4) || "N/A"
 							}})</span
 						>
-					</h3>
+					</h1>
 
-					<p class="heading__info">
+					<label class="label">
 						{{ movie.release_date }} &#8226;
 						<a
 							href=""
@@ -61,14 +61,14 @@
 							</span>
 						</a>
 						&#8226; {{ movie.runtime }} mins
-					</p>
+					</label>
 
-					<div class="imdb-rating row">
+					<div class="imdb-rating mb-2 mt-2">
 						<img src="@/assets/imdb_logo.svg" alt="" />
-						<p class="ml-1">{{ omdb?.imdbRating || "N/A" }}</p>
+						<h4 class="ml-1">{{ omdb?.imdbRating || "N/A" }}</h4>
 					</div>
 
-					<div class="heading__actions row">
+					<div class="heading__actions mb-3">
 						<div class="user-score__container">
 							<UserScore :percent="movie.vote_average" />
 							<h4 style="max-width: 40px;">
@@ -87,23 +87,19 @@
 						</button>
 					</div>
 
-					<h5 class="heading__tagline row" v-if="movie.tagline">
+					<h5 class="tagline mb-2" v-if="movie.tagline">
 						"{{ movie.tagline }}"
 					</h5>
 
-					<p class="heading__overview row">
+					<p class="p mb-2">
 						{{ movie.overview }}
 					</p>
 
-					<ul class="heading__main-crew grid grid--4 grid__sm--2">
+					<ul class="grid grid--4 grid__sm--2">
 						<li v-for="crew in mainCrew" :key="crew.credit_id">
-							<span class="heading__main-crew__name">{{
-								crew.name
-							}}</span>
+							<span class="h5">{{ crew.name }}</span>
 							<br />
-							<span class="heading__main-crew__job">{{
-								crew.job
-							}}</span>
+							<span class="p">{{ crew.job }}</span>
 						</li>
 					</ul>
 				</div>
@@ -112,7 +108,7 @@
 		<div class="fade-effect"></div>
 		<div class="flex-row container">
 			<div class="col-9 col-sm-8 col-xs-12">
-				<div class="row" v-if="movie">
+				<div class="mb-2" v-if="movie">
 					<BaseScrollable
 						title="Top Billed Cast"
 						:data="movie.credits.cast"
@@ -120,7 +116,7 @@
 						:limit="12"
 					/>
 				</div>
-				<div class="row">
+				<div class="mb-2">
 					<BaseScrollable
 						title="Director, Story, Writer"
 						:data="mainCrew"
@@ -130,16 +126,16 @@
 				</div>
 			</div>
 			<div class="col-3 col-sm-4 col-xs-12 right">
-				<div class="row" v-if="movie.homepage">
+				<div class="mb-2" v-if="movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
 						:homepage="movie?.homepage || null"
 					/>
 				</div>
-				<div class="row">
+				<div class="mb-2">
 					<MovieMoreInfo :movie="movie" />
 				</div>
-				<div class="row">
+				<div class="mb-2">
 					<MovieCollection :movie="movie" :request="request" />
 				</div>
 			</div>

@@ -10,10 +10,11 @@
 			margin-bottom: 2rem;
 			padding: 0.5rem;
 
-			h5 {
+			label {
 				font-size: 1.2rem;
 				font-weight: 700;
 				color: rgb(88, 88, 88);
+				display: block;
 			}
 
 			span {
@@ -35,14 +36,6 @@
 	.heading {
 		padding-top: 10rem;
 
-		&__title {
-			font-size: 3rem;
-			font-weight: 700;
-			// margin-bottom: 0.5rem;
-			letter-spacing: 2px;
-			text-shadow: 2px -2px 11px #110805;
-		}
-
 		&__poster {
 			// width: 100%;
 			img {
@@ -50,9 +43,6 @@
 			}
 		}
 
-		&__subtitle {
-			font-size: 2rem;
-		}
 		&__content {
 			padding-left: 3.5rem;
 		}
@@ -61,7 +51,6 @@
 			max-height: 2rem;
 			max-width: 95%;
 			overflow-y: hidden;
-			color: $grey-color;
 		}
 	}
 }
