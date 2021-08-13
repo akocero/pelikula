@@ -27,18 +27,18 @@
 						<div class="person-details__more-info">
 							<ul>
 								<li>
-									<h5>Known For</h5>
+									<label>Known For</label>
 									<span>{{ data.known_for_department }}</span>
 								</li>
 								<li>
-									<h5>Known Credits</h5>
+									<label>Known Credits</label>
 									<span>{{
 										data.combined_credits.cast.length +
 											data.combined_credits.crew.length
 									}}</span>
 								</li>
 								<li>
-									<h5>Birthday</h5>
+									<label>Birthday</label>
 									<span
 										>{{ data.birthday }} ({{
 											getComputedAge(data.birthday)
@@ -47,11 +47,11 @@
 									>
 								</li>
 								<li>
-									<h5>Place of Birth</h5>
+									<label>Place of Birth</label>
 									<span>{{ data.place_of_birth }}</span>
 								</li>
 								<li>
-									<h5>Also Known As</h5>
+									<label>Also Known As</label>
 
 									<span
 										v-for="name in data.also_known_as"
@@ -64,11 +64,11 @@
 						</div>
 					</div>
 					<div class="col-10 pl-4 heading__content">
-						<h4 class="heading__title">{{ data.name }}</h4>
+						<h1 class="h1">{{ data.name }}</h1>
 						<div style="display: flex;">
 							<p
 								style="white-space: pre-wrap;"
-								class="heading__biography"
+								class="heading__biography p"
 							>
 								{{ data.biography }}
 							</p>
@@ -83,7 +83,7 @@
 
 						<div class="actor-movies">
 							<div class="mt-3 actor-movies__heading">
-								<h4>{{ data.name }} Movies</h4>
+								<h5 class="h5">{{ data.name }} Movies</h5>
 								<button v-if="newest" @click="newest = !newest">
 									Newest
 								</button>
