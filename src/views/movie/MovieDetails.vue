@@ -21,7 +21,7 @@
 			:style="{
 				backgroundSize: 'cover',
 				backgroundImage: `url(${request.image_path.backdrop.w1280}${movie.backdrop_path})`,
-				backgroundPosition: 'center center',
+				backgroundPosition: 'top center',
 			}"
 			v-if="!loading && movie"
 		>
@@ -117,7 +117,7 @@
 						:limit="12"
 					/>
 				</div>
-				<div class="mb-2">
+				<div class="mb-5">
 					<BaseScrollable
 						title="Director, Story, Writer"
 						:data="mainCrew"
@@ -125,10 +125,43 @@
 						:limit="10"
 					/>
 				</div>
-				<MovieTrailers
-					:videos="movie.videos.results"
-					@playTrailer="playTrailer($event)"
-				/>
+				<div class="movie-details__media">
+					<div class="movie-details__media-heading">
+						<h2 class="mr-5">Media</h2>
+						<button
+							v-for="(mediaItem, index) in media"
+							:key="index"
+							@click="handleShowMedia(mediaItem.name)"
+						>
+							{{ mediaItem.name }}
+							<span v-if="mediaItem.name === 'Videos'">
+								{{ movie.videos?.results?.length }}
+							</span>
+							<span v-if="mediaItem.name === 'Posters'">
+								{{ movie.images.posters?.length }}
+							</span>
+							<span v-if="mediaItem.name === 'Backdrops'">
+								{{ movie.images.backdrops?.length }}
+							</span>
+						</button>
+					</div>
+
+					<MovieTrailers
+						v-if="media[0].active"
+						:videos="movie.videos.results"
+						@playTrailer="playTrailer($event)"
+					/>
+					<MovieImages
+						v-if="media[1].active"
+						:images="movie.images.posters"
+						type="poster"
+					/>
+					<MovieImages
+						v-if="media[2].active"
+						:images="movie.images.backdrops"
+						type="backdrop"
+					/>
+				</div>
 			</div>
 			<div class="col-3 col-sm-4 col-xs-12 right">
 				<div class="mb-2" v-if="movie.homepage">
@@ -174,6 +207,7 @@ import MovieMoreInfo from "./MovieMoreInfo.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieTrailers from "./MovieTrailers.vue";
+import MovieImages from "./MovieImages.vue";
 import MovieCollection from "./MovieCollection.vue";
 import BaseScrollable from "@/components/BaseScrollable";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
@@ -193,6 +227,7 @@ export default {
 		Loading,
 		BaseScrollable,
 		MovieTrailers,
+		MovieImages,
 	},
 	data() {
 		return {
@@ -219,6 +254,25 @@ export default {
 		const { result: omdb, load: loadOmdb } = useOMDB();
 		const { showTrailer, playTrailer, trailerLink } = useModalTrailer();
 		const loading = ref(false);
+
+		const media = ref([
+			{ name: "Videos", active: true },
+			{ name: "Posters", active: false },
+			{ name: "Backdrops", active: false },
+		]);
+
+		const handleShowMedia = (mediaItem) => {
+			media.value.forEach((item) => {
+				if (mediaItem === item.name) {
+					item.active = true;
+					console.log(item.name);
+				} else {
+					item.active = false;
+				}
+			});
+
+			console.log(media.value);
+		};
 
 		onBeforeMount(async () => {
 			await loadContent(route.params.id);
@@ -266,6 +320,8 @@ export default {
 			showTrailer,
 			trailerLink,
 			loadingings,
+			media,
+			handleShowMedia,
 		};
 	},
 };

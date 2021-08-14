@@ -74,3 +74,13 @@ $spaceAmounts: (0, 1, 2, 3, 4, 5, 6, 7);
 .offset-y-15 {
 	margin-top: -15rem;
 }
+
+.scrollable-x {
+	display: flex;
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 2rem 0;
+
+	@include modified-scrollbar;
+}

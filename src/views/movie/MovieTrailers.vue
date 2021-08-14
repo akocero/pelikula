@@ -1,9 +1,9 @@
 <template>
-	<div class="movie-details__tailers">
+	<div class="movie-details__trailers scrollable-x">
 		<div v-for="video in videos" :key="video.id">
 			<!-- https://i.ytimg.com/vi/tgbNymZ7vqY/hqdefault.jpg -->
 			<div
-				class="video"
+				class="movie-details__trailers-item"
 				:style="{
 					background: `url('https://i.ytimg.com/vi/${video.key}/hqdefault.jpg')`,
 					backgroundSize: 'cover',

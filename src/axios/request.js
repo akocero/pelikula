@@ -47,6 +47,7 @@ export const image_path = {
         w600: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
     },
     backdrop: {
+        w300: 'https://image.tmdb.org/t/p/w300',
         w780: 'https://image.tmdb.org/t/p/w780',
         w1920: 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces',
         w1280: 'https://image.tmdb.org/t/p/w1280',

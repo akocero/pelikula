@@ -90,6 +90,7 @@
 		&__content {
 			// align-self: flex-start;
 			// margin-left: 2rem;
+			padding-top: 5rem;
 			height: 100%;
 			display: flex;
 			flex-direction: column;
@@ -175,35 +176,63 @@
 		// margin-bottom: 2rem;
 	}
 
-	&__tailers {
-		display: flex;
-		width: 100%;
-		overflow-x: auto;
+	&__media {
+		&-heading {
+			display: flex;
 
-		.video {
+			button {
+				padding: 0.2rem 1rem;
+				border: none;
+				cursor: pointer;
+				border-radius: $border-rad;
+				background-color: rgb(36, 36, 36);
+				color: $light-color;
+				font-family: "Poppins";
+				letter-spacing: 1px;
+
+				&:not(:last-child) {
+					margin-right: 1rem;
+				}
+			}
+		}
+	}
+
+	&__trailers {
+		&-item {
 			height: 180px;
 			width: 320px;
 			margin-right: 2rem;
-			border-radius: 6px;
+			border-radius: $border-rad;
 			position: relative;
 
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@include flex-center;
 
 			a {
 				background-color: $t-dark-color-1;
 				height: 5rem;
 				width: 5rem;
 				border-radius: 50%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
 				cursor: pointer;
+
+				@include flex-center;
 
 				i {
 					padding: 4px 0 0 3px;
 				}
+			}
+		}
+	}
+
+	&__images {
+		&-item {
+			margin-right: 2rem;
+			img.poster {
+				width: 150px;
+				border-radius: $border-rad;
+			}
+			img.backdrop {
+				width: 300px;
+				border-radius: $border-rad;
 			}
 		}
 	}
