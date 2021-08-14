@@ -16,28 +16,23 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0.6rem 1.5rem;
 	border-radius: 8px;
 	border: none;
-	background-color: rgb(36, 36, 36);
+	// background-color: rgb(36, 36, 36);
+	background: transparent;
 	color: rgb(231, 231, 231);
-	border: 1px solid rgb(48, 48, 48);
+	// border: 1px solid rgb(48, 48, 48);
 	// text-transform: uppercase;
 	font-weight: 500;
 	letter-spacing: 1px;
 	font-weight: 500;
 	font-family: "Poppins";
-	box-shadow: 0 20px 20px 10px rgba(145, 145, 145, 0.1);
+	// box-shadow: 0 20px 20px 10px rgba(145, 145, 145, 0.1);
 	transition: all 0.2s ease-in-out;
 	// border: 1px solid $red-color;
 	cursor: pointer;
 	i {
 		margin-bottom: -4px;
 		margin-right: 0.8rem;
-	}
-	&:hover {
-		// background-color: $red-color;
-		box-shadow: 0 20px 40px 10px rgba(187, 187, 187, 0.2);
-		transform: translateY(-4px);
 	}
 }

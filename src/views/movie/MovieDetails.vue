@@ -37,7 +37,7 @@
 
 				<div class="heading__content">
 					<div
-						class="heading__img-container"
+						class="heading__img-container mb-5"
 						v-if="movie.images.logos.length"
 					>
 						<img
@@ -51,7 +51,7 @@
 								maxHeight: '30vh',
 								aspectRatio: movie.images.logos[0].aspect_ratio,
 							}"
-							class="mb-5"
+							class=""
 						/>
 					</div>
 
@@ -74,33 +74,34 @@
 						| {{ movie.runtime }} mins
 					</label>
 
-					<div class="imdb-rating mb-2 mt-2">
-						<img src="@/assets/imdb_logo.svg" alt="" />
-						<h4 class="ml-1">{{ omdb?.imdbRating || "N/A" }}</h4>
-					</div>
-
-					<!-- <div class="heading__actions mb-3">
-						<div class="user-score__container">
-							<UserScore :percent="movie.vote_average" />
-							<h4 style="max-width: 40px;">
-								TMDB Score
-							</h4>
-						</div> -->
-
-					<!-- <button class="btn-float">❤</button>
+					<div class="heading__actions mb-2 mt-2">
+						<div class="ratings">
+							<div class="ratings__imdb">
+								<img src="@/assets/imdb_logo.svg" alt="" />
+								<span class="ml-1">
+									{{ omdb?.imdbRating || "N/A" }}
+								</span>
+							</div>
+							<div class="ratings__tmdb">
+								<img src="@/assets/tmdb.svg" alt="" />
+								<span class="ml-1">
+									{{ movie.vote_average || "N/A" }}
+								</span>
+							</div>
+						</div>
+						<!-- <button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button> -->
-					<!-- <button
+						<button
 							v-if="movie.videos && movie.videos.results[0]"
 							class="btn"
 							@click="playTrailer(movie.videos.results[0])"
 						>
-							<i v-html="iPlay"></i> Trailer
+							<i v-html="iPlay"></i> Play Trailer
 						</button>
-					</div> -->
+					</div>
 
-					<p class="p">
+					<p class="p  mb-2">
 						{{ omdb.Plot }}
-						<!-- {{ movie.overview }} -->
 					</p>
 				</div>
 			</div>
@@ -201,7 +202,7 @@ export default {
 	computed: {
 		iPlay: function() {
 			return feather.icons["play"].toSvg({
-				width: 14,
+				width: 16,
 				fill: "#fff",
 				color: "#fff",
 			});
