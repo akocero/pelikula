@@ -20,36 +20,47 @@
 			class="heading"
 			:style="{
 				backgroundSize: 'cover',
-				backgroundImage: `linear-gradient(
-            to right, 
-            rgba(0, 0, 0, 0.96),
-            rgba(0, 0, 0, 0.65)), 
-            url(${request.image_path.backdrop.w1280}${movie.backdrop_path})`,
-				backgroundPosition: 'center center',
+				backgroundImage: `url(${request.image_path.backdrop.w1280}${movie.backdrop_path})`,
+				backgroundPosition: 'top center',
 			}"
 			v-if="!loading && movie"
 		>
 			<div class="heading__container">
-				<div class="heading__poster">
+				<!-- <div class="heading__poster">
 					<img
 						:src="
 							request.image_path.poster.w300 + movie.poster_path
 						"
 						alt=""
 					/>
-				</div>
+				</div> -->
+
 				<div class="heading__content">
-					<h1 class="h1">
+					<div
+						class="heading__img-container mb-5"
+						v-if="movie.images.logos.length"
+					>
+						<img
+							:src="
+								`${request.image_path.logo.w500}${movie.images.logos[0].file_path}`
+							"
+							alt=""
+							:style="{
+								width: 'unset',
+								maxWidth: '100%',
+								maxHeight: '30vh',
+								aspectRatio: movie.images.logos[0].aspect_ratio,
+							}"
+							class=""
+						/>
+					</div>
+
+					<h1 class="h3">
 						{{ movie.title }}
-						<span class=""
-							>({{
-								movie.release_date?.substr(0, 4) || "N/A"
-							}})</span
-						>
 					</h1>
 
-					<label class="label">
-						{{ movie.release_date }} &#8226;
+					<label class="heading__info">
+						{{ movie.release_date?.substr(0, 4) }} |
 						<a
 							href=""
 							v-for="(genre, index) in movie.genres"
@@ -60,22 +71,24 @@
 								>,
 							</span>
 						</a>
-						&#8226; {{ movie.runtime }} mins
+						| {{ movie.runtime }} mins
 					</label>
 
-					<div class="imdb-rating mb-2 mt-2">
-						<img src="@/assets/imdb_logo.svg" alt="" />
-						<h4 class="ml-1">{{ omdb?.imdbRating || "N/A" }}</h4>
-					</div>
-
-					<div class="heading__actions mb-3">
-						<div class="user-score__container">
-							<UserScore :percent="movie.vote_average" />
-							<h4 style="max-width: 40px;">
-								TMDB Score
-							</h4>
+					<div class="heading__actions mb-2 mt-2">
+						<div class="ratings">
+							<div class="ratings__imdb">
+								<img src="@/assets/imdb_logo.svg" alt="" />
+								<span class="ml-1">
+									{{ omdb?.imdbRating || "N/A" }}
+								</span>
+							</div>
+							<div class="ratings__tmdb">
+								<img src="@/assets/tmdb.svg" alt="" />
+								<span class="ml-1">
+									{{ movie.vote_average || "N/A" }}
+								</span>
+							</div>
 						</div>
-
 						<!-- <button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button> -->
 						<button
@@ -83,25 +96,13 @@
 							class="btn"
 							@click="playTrailer(movie.videos.results[0])"
 						>
-							<i v-html="iPlay"></i> Trailer
+							<i v-html="iPlay"></i> Play Trailer
 						</button>
 					</div>
 
-					<h5 class="tagline mb-2" v-if="movie.tagline">
-						"{{ movie.tagline }}"
-					</h5>
-
-					<p class="p mb-2">
-						{{ movie.overview }}
+					<p class="p  mb-2">
+						{{ omdb.Plot }}
 					</p>
-
-					<ul class="grid grid--4 grid__sm--2">
-						<li v-for="crew in mainCrew" :key="crew.credit_id">
-							<span class="h5">{{ crew.name }}</span>
-							<br />
-							<span class="p">{{ crew.job }}</span>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -116,12 +117,49 @@
 						:limit="12"
 					/>
 				</div>
-				<div class="mb-2">
+				<div class="mb-5">
 					<BaseScrollable
 						title="Director, Story, Writer"
 						:data="mainCrew"
 						type="credits"
 						:limit="10"
+					/>
+				</div>
+				<div class="movie-details__media">
+					<div class="movie-details__media-heading">
+						<h2 class="mr-5">Media</h2>
+						<button
+							v-for="(mediaItem, index) in media"
+							:key="index"
+							@click="handleShowMedia(mediaItem.name)"
+						>
+							{{ mediaItem.name }}
+							<span v-if="mediaItem.name === 'Videos'">
+								{{ movie.videos?.results?.length }}
+							</span>
+							<span v-if="mediaItem.name === 'Posters'">
+								{{ movie.images.posters?.length }}
+							</span>
+							<span v-if="mediaItem.name === 'Backdrops'">
+								{{ movie.images.backdrops?.length }}
+							</span>
+						</button>
+					</div>
+
+					<MovieTrailers
+						v-if="media[0].active"
+						:videos="movie.videos.results"
+						@playTrailer="playTrailer($event)"
+					/>
+					<MovieImages
+						v-if="media[1].active"
+						:images="movie.images.posters"
+						type="poster"
+					/>
+					<MovieImages
+						v-if="media[2].active"
+						:images="movie.images.backdrops"
+						type="backdrop"
 					/>
 				</div>
 			</div>
@@ -168,6 +206,8 @@ import UserScore from "@/components/UserScore";
 import MovieMoreInfo from "./MovieMoreInfo.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
+import MovieTrailers from "./MovieTrailers.vue";
+import MovieImages from "./MovieImages.vue";
 import MovieCollection from "./MovieCollection.vue";
 import BaseScrollable from "@/components/BaseScrollable";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
@@ -186,6 +226,8 @@ export default {
 		ModalTrailer,
 		Loading,
 		BaseScrollable,
+		MovieTrailers,
+		MovieImages,
 	},
 	data() {
 		return {
@@ -195,7 +237,7 @@ export default {
 	computed: {
 		iPlay: function() {
 			return feather.icons["play"].toSvg({
-				width: 14,
+				width: 16,
 				fill: "#fff",
 				color: "#fff",
 			});
@@ -212,6 +254,25 @@ export default {
 		const { result: omdb, load: loadOmdb } = useOMDB();
 		const { showTrailer, playTrailer, trailerLink } = useModalTrailer();
 		const loading = ref(false);
+
+		const media = ref([
+			{ name: "Videos", active: true },
+			{ name: "Posters", active: false },
+			{ name: "Backdrops", active: false },
+		]);
+
+		const handleShowMedia = (mediaItem) => {
+			media.value.forEach((item) => {
+				if (mediaItem === item.name) {
+					item.active = true;
+					console.log(item.name);
+				} else {
+					item.active = false;
+				}
+			});
+
+			console.log(media.value);
+		};
 
 		onBeforeMount(async () => {
 			await loadContent(route.params.id);
@@ -245,6 +306,7 @@ export default {
 				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids`
 			);
 			await loadOmdb(movie.value.imdb_id);
+			console.log(omdb.value);
 			loading.value = false;
 		};
 
@@ -258,6 +320,8 @@ export default {
 			showTrailer,
 			trailerLink,
 			loadingings,
+			media,
+			handleShowMedia,
 		};
 	},
 };
