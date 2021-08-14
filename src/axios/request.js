@@ -20,7 +20,11 @@ const request = {
             w780: 'https://image.tmdb.org/t/p/w780',
             w1920: 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces',
             w1280: 'https://image.tmdb.org/t/p/w1280',
-        }
+        },
+        logo: {
+            w500: "https://image.tmdb.org/t/p/w500/",
+            w300: "https://image.tmdb.org/t/p/w300/"
+        },
     },
     trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${apikey}`,
     topPeople: `https://api.themoviedb.org/3/person/popular?api_key=${apikey}`,
