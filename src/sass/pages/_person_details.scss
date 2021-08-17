@@ -27,7 +27,9 @@
 	&__left {
 		padding-right: 0 !important;
 		// box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.2);
-		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
+		// box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
+		border: 1px solid rgba(212, 212, 212, 0.062);
+		box-shadow: 0px 0px 12px rgba(212, 212, 212, 0.075);
 		height: fit-content;
 		padding-bottom: 1rem;
 		border-radius: 8px;
@@ -77,7 +79,9 @@
 	}
 	&__item {
 		padding: 1rem 1.5rem;
-		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
+		// box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
+		border: 1px solid rgba(212, 212, 212, 0.062);
+		box-shadow: 0px 0px 12px rgba(212, 212, 212, 0.075);
 		border-radius: 8px;
 		margin: 2rem 0;
 		display: flex;
