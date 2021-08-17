@@ -263,15 +263,10 @@ export default {
 
 		const handleShowMedia = (mediaItem) => {
 			media.value.forEach((item) => {
-				if (mediaItem === item.name) {
-					item.active = true;
-					console.log(item.name);
-				} else {
-					item.active = false;
-				}
+				mediaItem === item.name
+					? (item.active = true)
+					: (item.active = false);
 			});
-
-			console.log(media.value);
 		};
 
 		onBeforeMount(async () => {
