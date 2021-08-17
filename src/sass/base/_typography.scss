@@ -1,8 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 body {
@@ -10,16 +6,64 @@ body {
 	font-size: 1.6rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-a {
-	font-family: "Nunito" !important;
-	font-weight: 600;
+.h1 {
+	font-size: 3.2rem;
+	font-weight: 700;
+	letter-spacing: 2px;
 }
 
-p {
-	letter-spacing: 0.9px;
+.h2 {
+	font-size: 2.6rem;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+.h3 {
+	font-size: 2.4rem;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+.h4 {
+	font-size: 1.8rem;
+	font-weight: 600;
+	letter-spacing: 0.6px;
+}
+
+.h5 {
+	font-size: 1.6rem;
+	font-weight: 600;
+	letter-spacing: 0.6px;
+}
+
+.p {
+	letter-spacing: 0.6px;
+	line-height: 1.4;
+	font-size: 1.6rem;
+	font-weight: 400;
+	color: rgb(199, 199, 199);
+}
+
+.label {
+	font-size: 1.8rem;
+	color: $light-color-1;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.8rem;
+	@include default-transition;
+
+	&:hover {
+		color: $red-color;
+	}
+}
+
+.tagline {
+	font-style: italic;
+	font-size: 1.8rem;
+	letter-spacing: 1.4px;
+	font-weight: 400;
+	color: white;
 }
