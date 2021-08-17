@@ -26,15 +26,6 @@
 			v-if="!loading && movie"
 		>
 			<div class="heading__container">
-				<!-- <div class="heading__poster">
-					<img
-						:src="
-							request.image_path.poster.w300 + movie.poster_path
-						"
-						alt=""
-					/>
-				</div> -->
-
 				<div class="heading__content">
 					<div
 						class="heading__img-container mb-5"
@@ -107,64 +98,68 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
-		<div class="flex-row container">
-			<div class="col-9 col-sm-8 col-xs-12">
-				<div class="mb-2" v-if="movie">
-					<BaseScrollable
-						title="Top Billed Cast"
-						:data="movie.credits.cast"
-						type="credits"
-						:limit="12"
-					/>
-				</div>
-				<div class="mb-5">
-					<BaseScrollable
-						title="Director, Story, Writer"
-						:data="mainCrew"
-						type="credits"
-						:limit="10"
-					/>
-				</div>
-				<div class="movie-details__media">
-					<div class="movie-details__media-heading">
-						<h2 class="mr-5">Media</h2>
-						<button
-							v-for="(mediaItem, index) in media"
-							:key="index"
-							@click="handleShowMedia(mediaItem.name)"
-						>
-							{{ mediaItem.name }}
-							<span v-if="mediaItem.name === 'Videos'">
-								{{ movie.videos?.results?.length }}
-							</span>
-							<span v-if="mediaItem.name === 'Posters'">
-								{{ movie.images.posters?.length }}
-							</span>
-							<span v-if="mediaItem.name === 'Backdrops'">
-								{{ movie.images.backdrops?.length }}
-							</span>
-						</button>
-					</div>
+		<div class="movie-details__more-info">
+			<MovieMoreInfo :movie="movie" />
+			<MovieExternalID
+				:external_ids="movie?.external_ids || null"
+				:homepage="movie?.homepage || null"
+			/>
+		</div>
 
-					<MovieTrailers
-						v-if="media[0].active"
-						:videos="movie.videos.results"
-						@playTrailer="playTrailer($event)"
-					/>
-					<MovieImages
-						v-if="media[1].active"
-						:images="movie.images.posters"
-						type="poster"
-					/>
-					<MovieImages
-						v-if="media[2].active"
-						:images="movie.images.backdrops"
-						type="backdrop"
-					/>
-				</div>
+		<div class="mb-2 container" v-if="movie">
+			<BaseScrollable
+				title="Top Billed Cast"
+				:data="movie.credits.cast"
+				type="credits"
+				:limit="12"
+			/>
+		</div>
+		<div class="pb-4 container">
+			<BaseScrollable
+				title="Director, Story, Writer"
+				:data="mainCrew"
+				type="credits"
+				:limit="10"
+			/>
+		</div>
+		<div class="movie-details__media container">
+			<div class="movie-details__media-heading">
+				<h2 class="mr-5">Media</h2>
+				<button
+					v-for="(mediaItem, index) in media"
+					:key="index"
+					@click="handleShowMedia(mediaItem.name)"
+				>
+					{{ mediaItem.name }}
+					<span v-if="mediaItem.name === 'Videos'">
+						{{ movie.videos?.results?.length }}
+					</span>
+					<span v-if="mediaItem.name === 'Posters'">
+						{{ movie.images.posters?.length }}
+					</span>
+					<span v-if="mediaItem.name === 'Backdrops'">
+						{{ movie.images.backdrops?.length }}
+					</span>
+				</button>
 			</div>
-			<div class="col-3 col-sm-4 col-xs-12 right">
-				<div class="mb-2" v-if="movie.homepage">
+
+			<MovieTrailers
+				v-if="media[0].active"
+				:videos="movie.videos.results"
+				@playTrailer="playTrailer($event)"
+			/>
+			<MovieImages
+				v-if="media[1].active"
+				:images="movie.images.posters"
+				type="poster"
+			/>
+			<MovieImages
+				v-if="media[2].active"
+				:images="movie.images.backdrops"
+				type="backdrop"
+			/>
+		</div>
+		<!-- <div class="mb-2" v-if="movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
 						:homepage="movie?.homepage || null"
@@ -175,9 +170,7 @@
 				</div>
 				<div class="mb-2">
 					<MovieCollection :movie="movie" :request="request" />
-				</div>
-			</div>
-		</div>
+				</div> -->
 		<div class="container" v-if="movie.similar_movies.results.length">
 			<BaseScrollable
 				title="Similar Movies"
