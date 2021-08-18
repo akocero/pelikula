@@ -74,7 +74,7 @@
 						<h5 class="scrollable__subtitle" v-if="item.character">
 							{{ item.character }}
 						</h5>
-						<!-- <h5 class="scrollable__more-info">
+						<h5 class="scrollable__more-info">
 							<span>{{
 								item?.job || item.known_for_department
 							}}</span>
@@ -84,7 +84,7 @@
 									Math.round(item.popularity * 100) / 100
 								}}%</span
 							>
-						</h5> -->
+						</h5>
 					</div>
 				</div>
 			</div>

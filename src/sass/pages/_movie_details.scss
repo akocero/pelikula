@@ -122,6 +122,10 @@
 			}
 		}
 	}
+
+	&__overview {
+		padding: 4rem 0 4rem 2rem;
+	}
 	&__more-info {
 		// padding: 1rem;
 		padding: 1.6rem 2rem;
@@ -262,7 +266,7 @@
 
 .collection {
 	// width: 300px;
-	height: 450px;
+	height: 280px;
 	border-radius: $border-rad;
 	display: flex;
 	justify-content: center;
