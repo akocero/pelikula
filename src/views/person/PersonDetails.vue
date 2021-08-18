@@ -13,9 +13,9 @@
 	<div class="person-details" v-if="domLoaded">
 		<div class="heading">
 			<div class="heading__wrapper">
-				<div class="flex-row container">
-					<div class="col-2 person-details__left">
-						<div class="heading__poster">
+				<div class="container">
+					<div class="flex-row">
+						<div class="col-2 heading__poster">
 							<img
 								:src="
 									request.image_path.poster.w220 +
@@ -24,8 +24,29 @@
 								alt=""
 							/>
 						</div>
-						<div class="person-details__more-info">
-							<ul>
+						<div class="col-10 pl-2">
+							<h1 class="h1 mb-1">{{ data.name }}</h1>
+							<div class="mb-3 heading__biography">
+								<p
+									class="p mb-1"
+									:class="[showBiography && 'show']"
+								>
+									{{ data.biography }}
+								</p>
+								<button
+									@click="showBiography = !showBiography"
+									v-if="!showBiography"
+								>
+									Read more ...
+								</button>
+								<button
+									@click="showBiography = !showBiography"
+									v-if="showBiography"
+								>
+									Read less
+								</button>
+							</div>
+							<ul class="person-details__more-info">
 								<li>
 									<label>Known For</label>
 									<span>{{ data.known_for_department }}</span>
@@ -50,79 +71,53 @@
 									<label>Place of Birth</label>
 									<span>{{ data.place_of_birth }}</span>
 								</li>
-								<li>
-									<label>Also Known As</label>
-
-									<span
-										v-for="name in data.also_known_as"
-										:key="name"
-									>
-										{{ name }}
-									</span>
-								</li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-10 pl-4 heading__content">
-						<h1 class="h1">{{ data.name }}</h1>
-						<div style="display: flex;">
-							<p
-								style="white-space: pre-wrap;"
-								class="heading__biography p"
+					<!-- <h5>Most Popular Movies</h5> -->
+					<BaseScrollable
+						:data="sortedCreditsByVoteCount"
+						type="movies"
+						title="Popular Movies"
+						:limit="15"
+					/>
+
+					<div class="actor-movies">
+						<div class="mt-3 actor-movies__heading">
+							<h5 class="h5">{{ data.name }} Movies</h5>
+							<button v-if="newest" @click="newest = !newest">
+								Newest
+							</button>
+							<button v-else @click="newest = !newest">
+								Oldest
+							</button>
+						</div>
+
+						<ul class="actor-movies__list">
+							<li
+								class="actor-movies__item"
+								v-for="credit in sortedCreditsByDateRelease"
+								:key="credit.id"
 							>
-								{{ data.biography }}
-							</p>
-							<i v-html="iArrowDown"></i>
-						</div>
-						<!-- <h5>Most Popular Movies</h5> -->
-						<BaseScrollable
-							:data="sortedCreditsByVoteCount"
-							type="movies"
-							:limit="15"
-						/>
+								<div class="actor-movies__content">
+									<span class="actor-movies__year"
+										>{{ credit?.release_date.substr(0, 4) }}
+										|
+									</span>
 
-						<div class="actor-movies">
-							<div class="mt-3 actor-movies__heading">
-								<h5 class="h5">{{ data.name }} Movies</h5>
-								<button v-if="newest" @click="newest = !newest">
-									Newest
-								</button>
-								<button v-else @click="newest = !newest">
-									Oldest
-								</button>
-							</div>
-
-							<ul class="actor-movies__list">
-								<li
-									class="actor-movies__item"
-									v-for="credit in sortedCreditsByDateRelease"
-									:key="credit.id"
-								>
-									<div class="actor-movies__content">
-										<span class="actor-movies__year"
-											>{{
-												credit?.release_date.substr(
-													0,
-													4
-												)
-											}}
-											|
-										</span>
-
-										<span class="actor-movies__title">{{
-											credit.original_title
-										}}</span>
-										<span class="actor-movies__character">
-											as {{ credit.character }}</span
-										>
-									</div>
-									<div class="actor-movies__vote">
-										<i v-html="iStar"></i>
-										<span>{{ credit.vote_average }}</span>
-									</div>
-								</li>
-							</ul>
-						</div>
+									<span class="actor-movies__title">{{
+										credit.original_title
+									}}</span>
+									<span class="actor-movies__character">
+										as {{ credit.character }}</span
+									>
+								</div>
+								<div class="actor-movies__vote">
+									<i v-html="iStar"></i>
+									<span>{{ credit.vote_average }}</span>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -164,7 +159,7 @@ export default {
 		const { data, error, loading, load } = getPerson();
 		const domLoaded = ref(false);
 		const newest = ref(true);
-
+		const showBiography = ref(false);
 		onBeforeMount(async () => {
 			await load(
 				`person/${route.params.id}?api_key=${request.apikey}&language=en-US&append_to_response=combined_credits,known_for_department`
@@ -222,6 +217,7 @@ export default {
 			sortedCreditsByDateRelease,
 			loading,
 			newest,
+			showBiography,
 		};
 	},
 };
