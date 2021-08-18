@@ -6,10 +6,10 @@
 		</li>
 		<li>
 			<label>Release Date</label>
-			<span>{{ movie.release_date }}</span>
+			<span>{{ dateToString(movie.release_date) }}</span>
 		</li>
 		<li>
-			<label>Original Language</label>
+			<label>Language</label>
 			<span>{{
 				movie.original_language === "en"
 					? "English"
@@ -18,11 +18,11 @@
 		</li>
 		<li>
 			<label>Budget</label>
-			<span>{{ movie.budget }}</span>
+			<span>{{ formatToCurrency(movie.budget) }}</span>
 		</li>
 		<li>
 			<label>Revenue</label>
-			<span>{{ movie.revenue }}</span>
+			<span>{{ formatToCurrency(movie.revenue) }}</span>
 		</li>
 		<li>
 			<label>Popularity</label>
@@ -37,8 +37,20 @@
 
 <script>
 export default {
-	name: "MovieMoreInfo",
+	name: "MovieAdditionalDetails",
 	props: ["movie"],
+	setup(props) {
+		const formatToCurrency = (amount) => {
+			return "$" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+		};
+
+		const dateToString = (date) => {
+			let dateInWords = new Date(date);
+			return dateInWords.toDateString();
+		};
+
+		return { formatToCurrency, dateToString };
+	},
 };
 </script>
 
