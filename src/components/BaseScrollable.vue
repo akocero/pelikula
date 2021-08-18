@@ -34,11 +34,7 @@
 							}"
 							class="scrollable__title scrollable__title--clickable"
 						>
-							{{
-								item.title?.length >= 18
-									? item.title?.substr(0, 18) + "..."
-									: item.title
-							}}
+							{{ item.title }}
 						</router-link>
 						<h5 class="scrollable__more-info">
 							<span>{{ item.release_date?.substr(0, 4) }}</span>
@@ -73,20 +69,12 @@
 							}"
 							class="scrollable__title scrollable__title--clickable"
 						>
-							{{
-								item.name?.length >= 17
-									? item.name?.substr(0, 17) + "..."
-									: item.name
-							}}
+							{{ item.name }}
 						</router-link>
 						<h5 class="scrollable__subtitle" v-if="item.character">
-							{{
-								item.character?.length >= 17
-									? item.character?.substr(0, 17) + "..."
-									: item.character
-							}}
+							{{ item.character }}
 						</h5>
-						<!-- <h5 class="scrollable__more-info">
+						<h5 class="scrollable__more-info">
 							<span>{{
 								item?.job || item.known_for_department
 							}}</span>
@@ -96,7 +84,7 @@
 									Math.round(item.popularity * 100) / 100
 								}}%</span
 							>
-						</h5> -->
+						</h5>
 					</div>
 				</div>
 			</div>

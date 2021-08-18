@@ -8,7 +8,7 @@
 							to right, 
 							rgba(0, 0, 0, 0.96),
 							rgba(0, 0, 0, 0.65)), 
-							url(${request.image_path.poster.w300}${movie.belongs_to_collection.poster_path})`,
+							url(${request.image_path.backdrop.w780}${movie.belongs_to_collection.backdrop_path})`,
 			backgroundPosition: 'center center',
 		}"
 	>

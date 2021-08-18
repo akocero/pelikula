@@ -83,9 +83,13 @@
 						<!-- <button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button> -->
 						<button
-							v-if="movie.videos && movie.videos.results[0]"
+							v-if="movie.videos && movie.videos.results.length"
 							class="btn"
-							@click="playTrailer(movie.videos.results[0])"
+							@click="
+								playTrailer(
+									trailer() || movie.videos.results[0]
+								)
+							"
 						>
 							<i v-html="iPlay"></i> Play Trailer
 						</button>
@@ -114,13 +118,24 @@
 				:limit="12"
 			/>
 		</div>
-		<div class="pb-4 container">
-			<BaseScrollable
-				title="Director, Story, Writer"
-				:data="mainCrew"
-				type="credits"
-				:limit="10"
-			/>
+		<div class="pb-4 container flex-row">
+			<div class="col-6">
+				<div class="movie-details__overview">
+					<h2 class="h2 mb-1">Story Line</h2>
+					<p class="p">
+						{{ movie.overview }}
+					</p>
+				</div>
+				<!-- <MovieCollection :movie="movie" :request="request" /> -->
+			</div>
+			<div class="col-6">
+				<BaseScrollable
+					title="Director, Story, Writer"
+					:data="mainCrew"
+					type="credits"
+					:limit="10"
+				/>
+			</div>
 		</div>
 		<div class="movie-details__media container">
 			<div class="movie-details__media-heading">
@@ -132,7 +147,7 @@
 				>
 					{{ mediaItem.name }}
 					<span v-if="mediaItem.name === 'Videos'">
-						{{ movie.videos?.results?.length }}
+						/ Trailers {{ movie.videos?.results?.length }}
 					</span>
 					<span v-if="mediaItem.name === 'Posters'">
 						{{ movie.images.posters?.length }}
@@ -276,7 +291,7 @@ export default {
 			const crewJobsToShow = [
 				"Director",
 				"Writer",
-				// "Screenplay",
+				"Screenplay",
 				"Story",
 			];
 			if (movie.value) {
@@ -286,15 +301,25 @@ export default {
 			}
 		});
 
+		const trailer = () => {
+			if (movie.value) {
+				const trailers = movie.value.videos.results.filter(
+					(trailer) => trailer.type === "Trailer"
+				);
+				// Math.random() * trailers.length
+				return trailers[Math.floor(Math.random() * trailers.length)];
+			}
+		};
+
 		const loadingings = ref(true);
 
 		const loadContent = async (id) => {
 			loading.value = true;
 			await load(
-				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids`
+				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids,collections`
 			);
 			await loadOmdb(movie.value.imdb_id);
-			console.log(omdb.value);
+			// console.log(omdb.value);
 			loading.value = false;
 		};
 
@@ -307,6 +332,7 @@ export default {
 			playTrailer,
 			showTrailer,
 			trailerLink,
+			trailer,
 			loadingings,
 			media,
 			handleShowMedia,

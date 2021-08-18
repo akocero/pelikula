@@ -17,12 +17,13 @@
 		margin-left: auto;
 		position: relative;
 		margin-right: 1.5rem;
+
 		input {
 			padding: 1rem 1.5rem;
 			background-color: $t-dark-color;
 
 			// border: 1px solid rgb(145, 145, 145);
-			border: none;
+			border: 1px solid rgba(212, 212, 212, 0.062);
 			border-radius: 4rem;
 			color: $light-color;
 

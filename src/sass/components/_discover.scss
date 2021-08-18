@@ -39,6 +39,10 @@
 		display: block;
 		margin-top: 0.4em;
 		font-size: 1.4rem;
+		width: 16rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		color: $light-color;
 		@include default-transition;
 
