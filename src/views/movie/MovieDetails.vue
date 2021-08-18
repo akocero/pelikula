@@ -99,7 +99,7 @@
 		</div>
 		<div class="fade-effect"></div>
 		<div class="movie-details__more-info">
-			<MovieMoreInfo :movie="movie" />
+			<MovieAdditionalDetails :movie="movie" />
 			<MovieExternalID
 				:external_ids="movie?.external_ids || null"
 				:homepage="movie?.homepage || null"
@@ -196,7 +196,7 @@ import getMovie from "@/composables/getMovie";
 import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieMoreInfo from "./MovieMoreInfo.vue";
+import MovieAdditionalDetails from "./MovieAdditionalDetails.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieTrailers from "./MovieTrailers.vue";
@@ -214,7 +214,7 @@ export default {
 	components: {
 		UserScore,
 		MovieExternalID,
-		MovieMoreInfo,
+		MovieAdditionalDetails,
 		MovieCollection,
 		ModalTrailer,
 		Loading,
