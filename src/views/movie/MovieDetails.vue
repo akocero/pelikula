@@ -118,9 +118,6 @@
 				:limit="12"
 			/>
 		</div>
-		<div class="container py-2">
-			<MovieCollection :movie="movie" :request="request" />
-		</div>
 
 		<div class="pb-4 container flex-row">
 			<div class="col-6">
@@ -139,6 +136,12 @@
 					:limit="10"
 				/>
 			</div>
+		</div>
+		<div class="mb-4" v-if="movie.belongs_to_collection">
+			<MovieCollection
+				:id="movie.belongs_to_collection.id"
+				:request="request"
+			/>
 		</div>
 		<div class="movie-details__media container">
 			<div class="movie-details__media-heading">

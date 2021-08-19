@@ -1,6 +1,6 @@
 <template>
 	<div class="scrollable" v-if="data">
-		<h4 class="scrollable__heading">{{ title }}</h4>
+		<h4 class="scrollable__heading" v-if="title">{{ title }}</h4>
 		<div class="scrollable__list" v-if="data">
 			<!-- <pre>{{ movies }}</pre> -->
 			<div
