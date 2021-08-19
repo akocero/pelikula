@@ -56,6 +56,10 @@ $flex-columns: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 	display: grid;
 	grid-gap: 2rem;
 
+	&__gap--3 {
+		grid-gap: 3rem;
+	}
+
 	@each $col in $grid-columns {
 		&--#{$col} {
 			grid-template-columns: repeat(#{$col}, 1fr);

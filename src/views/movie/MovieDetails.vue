@@ -52,8 +52,8 @@
 
 					<label class="heading__info">
 						{{ movie.release_date?.substr(0, 4) }} |
-						<a
-							href=""
+						<router-link
+							:to="{ name: 'genre', params: { id: genre.id } }"
 							v-for="(genre, index) in movie.genres"
 							:key="genre.id"
 						>
@@ -61,7 +61,7 @@
 							<span v-if="index !== movie.genres.length - 1"
 								>,
 							</span>
-						</a>
+						</router-link>
 						| {{ movie.runtime }} mins
 					</label>
 

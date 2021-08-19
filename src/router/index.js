@@ -57,6 +57,11 @@ const routes = [
 		name: "person",
 		component: () => import("@/views/person/PersonDetails.vue"),
 	},
+	{
+		path: "/genre/:id",
+		name: "genre",
+		component: () => import("@/views/genre/GenrePage.vue"),
+	},
 ];
 
 const router = createRouter({
