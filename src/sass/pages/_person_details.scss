@@ -3,11 +3,11 @@
 	&__more-info {
 		// margin: 1rem;
 		padding: 1.6rem 2rem;
-		box-shadow: 0px 0px 12px rgba(212, 212, 212, 0.075);
-		border: 1px solid rgba(212, 212, 212, 0.062);
 		height: fit-content;
 		display: flex;
 		border-radius: $border-rad;
+
+		@include default-shadow;
 		li {
 			margin-right: 4rem;
 			font-size: 1.4rem;
@@ -23,17 +23,6 @@
 		}
 	}
 
-	// &__left {
-	// 	padding-right: 0 !important;
-	// 	// box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.2);
-	// 	// box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
-	// 	border: 1px solid rgba(212, 212, 212, 0.062);
-	// 	box-shadow: 0px 0px 12px rgba(212, 212, 212, 0.075);
-	// 	height: fit-content;
-	// 	padding-bottom: 1rem;
-	// 	border-radius: 8px;
-	// 	// grid-auto-rows: 100px;
-	// }
 	.heading {
 		padding-top: 10rem;
 
@@ -104,13 +93,12 @@
 	}
 	&__item {
 		padding: 1rem 1.5rem;
-		// box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
-		border: 1px solid rgba(212, 212, 212, 0.062);
-		box-shadow: 0px 0px 12px rgba(212, 212, 212, 0.075);
 		border-radius: 8px;
 		margin: 2rem 0;
 		display: flex;
 		cursor: pointer;
+
+		@include default-shadow;
 	}
 	&__title {
 		// font-family: "Poppins";
