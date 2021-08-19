@@ -16,9 +16,9 @@
 			<div class="collection__title">
 				Part of the {{ movie.belongs_to_collection.name }}
 			</div>
-			<button class="btn btn-collection">
+			<a role="button" class="btn">
 				View the Collection
-			</button>
+			</a>
 		</div>
 	</div>
 </template>

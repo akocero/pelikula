@@ -118,6 +118,10 @@
 				:limit="12"
 			/>
 		</div>
+		<div class="container py-2">
+			<MovieCollection :movie="movie" :request="request" />
+		</div>
+
 		<div class="pb-4 container flex-row">
 			<div class="col-6">
 				<div class="movie-details__overview">
@@ -126,7 +130,6 @@
 						{{ movie.overview }}
 					</p>
 				</div>
-				<!-- <MovieCollection :movie="movie" :request="request" /> -->
 			</div>
 			<div class="col-6">
 				<BaseScrollable
@@ -176,6 +179,7 @@
 				type="backdrop"
 			/>
 		</div>
+
 		<!-- <div class="mb-2" v-if="movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"

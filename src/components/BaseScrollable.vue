@@ -40,9 +40,7 @@
 							<span>{{ item.release_date?.substr(0, 4) }}</span>
 							<span class="scrollable__average"
 								><i v-html="iStar" class="pr-1"></i
-								>{{
-									Math.round(item.vote_average * 100) / 100
-								}}</span
+								>{{ item.vote_average.toFixed(1) }}%</span
 							>
 						</h5>
 					</div>
@@ -80,9 +78,7 @@
 							}}</span>
 							<span class="scrollable__average"
 								><i v-html="iAward" class="pr-1"></i
-								>{{
-									Math.round(item.popularity * 100) / 100
-								}}%</span
+								>{{ item.popularity.toFixed(1) }}%</span
 							>
 						</h5>
 					</div>
