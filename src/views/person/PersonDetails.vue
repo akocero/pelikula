@@ -34,12 +34,14 @@
 									{{ data.biography }}
 								</p>
 								<button
+									class="btn btn__sm"
 									@click="showBiography = !showBiography"
 									v-if="!showBiography"
 								>
 									Read more ...
 								</button>
 								<button
+									class="btn btn__sm"
 									@click="showBiography = !showBiography"
 									v-if="showBiography"
 								>
@@ -85,10 +87,19 @@
 					<div class="actor-movies">
 						<div class="mt-3 actor-movies__heading">
 							<h5 class="h5">{{ data.name }} Movies</h5>
-							<button v-if="newest" @click="newest = !newest">
+							<button
+								class="btn btn__sm"
+								v-if="newest"
+								@click="newest = !newest"
+							>
 								Newest
 							</button>
-							<button v-else @click="newest = !newest">
+
+							<button
+								class="btn btn__sm"
+								v-else
+								@click="newest = !newest"
+							>
 								Oldest
 							</button>
 						</div>

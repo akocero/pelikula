@@ -168,21 +168,6 @@
 	&__media {
 		&-heading {
 			display: flex;
-
-			button {
-				padding: 0.2rem 1rem;
-				border: none;
-				cursor: pointer;
-				border-radius: $border-rad;
-				background-color: rgb(36, 36, 36);
-				color: $light-color;
-				font-family: "Poppins";
-				letter-spacing: 1px;
-
-				&:not(:last-child) {
-					margin-right: 1rem;
-				}
-			}
 		}
 	}
 

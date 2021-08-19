@@ -1,38 +1,50 @@
-.btn-float {
-	// padding: 0.6rem;
-	height: 4rem;
-	width: 4rem;
-	font-size: 2.2rem;
-	border: 1px solid $red-color;
-	background-color: $red-color;
-	color: white;
-	border-radius: 50%;
+.btn {
 	cursor: pointer;
+	font-family: "Poppins";
+	font-size: 1.6rem;
+	padding: 0.2em 1em;
+	white-space: nowrap;
+	border-radius: $border-rad;
+	border: none;
+	background-color: rgb(36, 36, 36);
+	color: $light-color;
+	letter-spacing: 0.8px;
 
 	@include default-transition;
-}
 
-.btn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 8px;
-	border: none;
-	// background-color: rgb(36, 36, 36);
-	background: transparent;
-	color: rgb(231, 231, 231);
-	// border: 1px solid rgb(48, 48, 48);
-	// text-transform: uppercase;
-	font-weight: 500;
-	letter-spacing: 1px;
-	font-weight: 500;
-	font-family: "Poppins";
-	// box-shadow: 0 20px 20px 10px rgba(145, 145, 145, 0.1);
-	transition: all 0.2s ease-in-out;
-	// border: 1px solid $red-color;
-	cursor: pointer;
-	i {
-		margin-bottom: -4px;
-		margin-right: 0.8rem;
+	&:hover {
+		background-color: lighten($red-color, 2%);
+		color: $light-color;
+	}
+
+	&__sm {
+		font-size: 1.4rem;
+	}
+
+	&__trailer {
+		padding: 0;
+		background: transparent;
+		font-weight: 500;
+		font-size: 1.4rem;
+		@include default-transition;
+		@include flex-center;
+
+		& > i {
+			margin-bottom: -4px;
+			margin-right: 0.8rem;
+		}
+
+		&:hover {
+			color: lighten($red-color, 2%);
+			background-color: transparent;
+			svg {
+				color: lighten($red-color, 2%);
+				fill: lighten($red-color, 2%);
+			}
+		}
+	}
+
+	&--active {
+		color: lighten($red-color, 2%);
 	}
 }

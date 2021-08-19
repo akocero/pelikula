@@ -84,14 +84,14 @@
 						<button class="btn-float">⚑</button> -->
 						<button
 							v-if="movie.videos && movie.videos.results.length"
-							class="btn"
+							class="btn btn__trailer"
 							@click="
 								playTrailer(
 									trailer() || movie.videos.results[0]
 								)
 							"
 						>
-							<i v-html="iPlay"></i> Play Trailer
+							<i v-html="iPlay"></i> Random Trailer
 						</button>
 					</div>
 
@@ -143,6 +143,8 @@
 				<button
 					v-for="(mediaItem, index) in media"
 					:key="index"
+					class="btn btn__sm mr-1"
+					:class="{ 'btn--active': mediaItem.active }"
 					@click="handleShowMedia(mediaItem.name)"
 				>
 					{{ mediaItem.name }}
