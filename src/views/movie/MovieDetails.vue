@@ -52,8 +52,8 @@
 
 					<label class="heading__info">
 						{{ movie.release_date?.substr(0, 4) }} |
-						<a
-							href=""
+						<router-link
+							:to="{ name: 'genre', params: { id: genre.id } }"
 							v-for="(genre, index) in movie.genres"
 							:key="genre.id"
 						>
@@ -61,7 +61,7 @@
 							<span v-if="index !== movie.genres.length - 1"
 								>,
 							</span>
-						</a>
+						</router-link>
 						| {{ movie.runtime }} mins
 					</label>
 
@@ -84,14 +84,14 @@
 						<button class="btn-float">⚑</button> -->
 						<button
 							v-if="movie.videos && movie.videos.results.length"
-							class="btn"
+							class="btn btn__trailer"
 							@click="
 								playTrailer(
 									trailer() || movie.videos.results[0]
 								)
 							"
 						>
-							<i v-html="iPlay"></i> Play Trailer
+							<i v-html="iPlay"></i> Random Trailer
 						</button>
 					</div>
 
@@ -118,6 +118,7 @@
 				:limit="12"
 			/>
 		</div>
+
 		<div class="pb-4 container flex-row">
 			<div class="col-6">
 				<div class="movie-details__overview">
@@ -126,7 +127,6 @@
 						{{ movie.overview }}
 					</p>
 				</div>
-				<!-- <MovieCollection :movie="movie" :request="request" /> -->
 			</div>
 			<div class="col-6">
 				<BaseScrollable
@@ -137,12 +137,20 @@
 				/>
 			</div>
 		</div>
+		<div class="mb-5" v-if="movie.belongs_to_collection">
+			<MovieCollection
+				:id="movie.belongs_to_collection.id"
+				:request="request"
+			/>
+		</div>
 		<div class="movie-details__media container">
 			<div class="movie-details__media-heading">
 				<h2 class="mr-5">Media</h2>
 				<button
 					v-for="(mediaItem, index) in media"
 					:key="index"
+					class="btn btn__sm mr-1"
+					:class="{ 'btn--active': mediaItem.active }"
 					@click="handleShowMedia(mediaItem.name)"
 				>
 					{{ mediaItem.name }}
@@ -174,6 +182,7 @@
 				type="backdrop"
 			/>
 		</div>
+
 		<!-- <div class="mb-2" v-if="movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
