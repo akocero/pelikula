@@ -8,12 +8,12 @@
 							to top, 
 							rgba(7, 15, 21, 0.98),
 							rgba(7, 15, 21, 0.85)), 
-							url(${request.image_path.backdrop.w780}${collection.backdrop_path})`,
+							url(${request.image_path.backdrop.w1280}${collection.backdrop_path})`,
 			backgroundPosition: 'center center',
 		}"
 	>
 		<div class="flex-row container">
-			<div class="col-3 collection__poster">
+			<div class="col-3 collection__poster" v-if="collection.poster_path">
 				<img
 					:src="image_path.poster.w300 + collection.poster_path"
 					alt=""

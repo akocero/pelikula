@@ -137,7 +137,7 @@
 				/>
 			</div>
 		</div>
-		<div class="mb-4" v-if="movie.belongs_to_collection">
+		<div class="mb-5" v-if="movie.belongs_to_collection">
 			<MovieCollection
 				:id="movie.belongs_to_collection.id"
 				:request="request"

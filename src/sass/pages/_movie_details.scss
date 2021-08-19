@@ -233,13 +233,8 @@
 }
 
 .collection {
-	// width: 300px;
-	height: 74vh;
-	padding-top: 2rem;
-	// border-radius: $border-rad;
-	// display: flex;
-	// justify-content: flex-start;
-	// align-items: center;
+	// height: 74vh;
+	padding: 4.2rem 0 2.8rem 0;
 	overflow: hidden;
 	@include default-shadow;
 	display: flex;
@@ -251,9 +246,11 @@
 		align-items: flex-start;
 		justify-content: center;
 		img {
+			border-radius: $border-rad;
 			@include default-shadow;
 			// margin-top: 4rem;
 			max-width: 85%;
+			min-width: 85%;
 		}
 	}
 	&__title {
@@ -270,5 +267,11 @@
 	&__img {
 		// width: 80%;
 		margin: 0 auto;
+	}
+
+	.scrollable {
+		&::after {
+			display: none;
+		}
 	}
 }
