@@ -9,7 +9,10 @@
 
 		@include default-shadow;
 		li {
-			margin-right: 4rem;
+			&:not(:last-child) {
+				margin-right: 4rem;
+			}
+
 			font-size: 1.4rem;
 			label {
 				font-weight: 700;
@@ -20,6 +23,18 @@
 			span {
 				display: inline-block;
 			}
+
+			span.icon {
+				margin-top: -4px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+		}
+
+		li.link {
+			display: flex;
+			align-items: center;
 		}
 	}
 

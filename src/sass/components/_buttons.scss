@@ -13,7 +13,7 @@
 	@include default-transition;
 
 	&:hover {
-		background-color: lighten($red-color, 2%);
+		background-color: lighten(rgb(36, 36, 36), 5%);
 		color: $light-color;
 	}
 

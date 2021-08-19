@@ -26,7 +26,7 @@
 						</div>
 						<div class="col-10 pl-2">
 							<h1 class="h1 mb-1">{{ data.name }}</h1>
-							<div class="mb-3 heading__biography">
+							<div class="mb-2 heading__biography">
 								<p
 									class="p mb-1"
 									:class="[showBiography && 'show']"
@@ -50,6 +50,13 @@
 							</div>
 							<ul class="person-details__more-info">
 								<li>
+									<label>Popularity</label>
+									<span class="icon"
+										><i v-html="iActivity"></i
+										>{{ data.popularity.toFixed(1) }}%</span
+									>
+								</li>
+								<li>
 									<label>Known For</label>
 									<span>{{ data.known_for_department }}</span>
 								</li>
@@ -72,6 +79,12 @@
 								<li>
 									<label>Place of Birth</label>
 									<span>{{ data.place_of_birth }}</span>
+								</li>
+
+								<li class="ml-auto link" v-if="data.homepage">
+									<a :href="data.homepage"
+										><i v-html="iHome"></i
+									></a>
 								</li>
 							</ul>
 						</div>
@@ -152,15 +165,22 @@ export default {
 		Loading,
 	},
 	computed: {
-		iArrowDown: function() {
-			return feather.icons["chevron-down"].toSvg({
-				width: 28,
+		iActivity: function() {
+			return feather.icons["activity"].toSvg({
+				width: 14,
+				color: "gold",
 			});
 		},
 		iStar: function() {
 			return feather.icons["star"].toSvg({
 				width: 14,
 				fill: "gold",
+			});
+		},
+		iHome: function() {
+			return feather.icons["globe"].toSvg({
+				width: 26,
+				height: 26,
 			});
 		},
 	},
