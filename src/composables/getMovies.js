@@ -1,12 +1,12 @@
 import { ref } from "vue";
 import axios from "@/axios";
 
-const getMovies = (url) => {
+const getMovies = () => {
 	const movies = ref(null);
 	const isPending = ref(false);
 	const error = ref(null);
 
-	const load = async () => {
+	const load = async (url) => {
 		isPending.value = true;
 		try {
 			const res = await axios.get(url);

@@ -17,7 +17,12 @@
 			</h3>
 			<div class="genre-page__actions" v-if="genres">
 				<span class="mr-1">Choose Genre:</span>
-				<select name="" id="" v-model="genreValue">
+				<select
+					name=""
+					id=""
+					v-model="genreValue"
+					@change="handleChangeActiveGenre"
+				>
 					<option
 						:value="genre.id"
 						v-for="genre in genres"
@@ -102,7 +107,7 @@ import getMovies from "@/composables/getMovies";
 import getGenres from "@/composables/getGenres";
 import { computed, onBeforeMount, ref } from "@vue/runtime-core";
 import feather from "feather-icons";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 export default {
@@ -128,9 +133,8 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
-		const { movies, error, load: fetchMovies } = getMovies(
-			`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
-		);
+		const router = useRouter();
+		const { movies, error, load: fetchMovies } = getMovies();
 		const asc = ref(true);
 
 		const { genres, fetchGenres } = getGenres();
@@ -145,7 +149,9 @@ export default {
 
 		onBeforeMount(async () => {
 			loading.value = true;
-			await fetchMovies();
+			await fetchMovies(
+				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
+			);
 			await fetchGenres("/genre/movie/list?api_key=" + request.apikey);
 			loading.value = false;
 			console.log(genres.value);
@@ -196,6 +202,16 @@ export default {
 			sortedBy.value = e.target.value;
 		};
 
+		const handleChangeActiveGenre = async (e) => {
+			loading.value = true;
+			console.log(e.target.value);
+			router.push({ name: "genre", params: { id: e.target.value } });
+			await fetchMovies(
+				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${e.target.value}`
+			);
+			loading.value = false;
+		};
+
 		return {
 			movies,
 			image_path,
@@ -208,6 +224,7 @@ export default {
 			sortedByArray,
 			sortedBy,
 			handleChangeSortedBy,
+			handleChangeActiveGenre,
 		};
 	},
 };
