@@ -1,5 +1,5 @@
 .genre-page {
-	padding-top: 10rem;
+	padding-top: 12rem;
 	padding-bottom: 26rem;
 
 	&__heading {
@@ -144,4 +144,7 @@ select {
 	&::-ms-expand {
 		display: none;
 	}
+}
+.note {
+	color: $grey-color;
 }

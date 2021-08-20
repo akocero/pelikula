@@ -11,30 +11,54 @@
 		:lock-scroll="true"
 	/>
 	<div class="genre-page">
-		<div class="genre-page__heading container pb-3" v-if="!loading">
+		<div class="genre-page__heading container" v-if="!loading">
 			<h3 class="h3" v-if="getActiveGenre">
 				Top {{ getActiveGenre.name }} Movies
 			</h3>
 			<div class="genre-page__actions" v-if="genres">
-				<span class="mr-1">Sorted By:</span>
-				<button class="btn btn-sm mr-1">Popular</button>
-				<button class="btn btn-sm mr-1">Newest</button>
-				<button class="btn btn-sm mr-1">Votes</button>
+				<span class="mr-1">Choose Genre:</span>
 				<select name="" id="" v-model="genreValue">
 					<option
 						:value="genre.id"
-						v-for="genre in genres.genres"
+						v-for="genre in genres"
 						:key="genre.id"
 						>{{ genre.name }}</option
 					>
 				</select>
+				<span class="mr-1 ml-4">Sorted By:</span>
+				<select @change="handleChangeSortedBy">
+					<option
+						v-for="sort in sortedByArray"
+						:value="sort.value"
+						:key="sort.value"
+						class=""
+						:selected="sort.active"
+						>{{ sort.name }}</option
+					>
+				</select>
+				<button class="btn btn-sm ml-1" @click="asc = !asc" v-if="!asc">
+					Ascending
+				</button>
+				<button class="btn btn-sm ml-1" @click="asc = !asc" v-if="asc">
+					Descending
+				</button>
+				<!-- <button class="btn btn-sm mr-1" @click="asc = !asc">
+					Newest
+				</button>
+				<button class="btn btn-sm mr-1">Votes</button> -->
 			</div>
 		</div>
+		<div class="container pt-1 pb-5">
+			<p class="p note">
+				Note: That this data is base of the popularity of the movies
+			</p>
+		</div>
+
 		<div class="movies">
 			<ul class="movies__list grid grid--6 grid__gap--3" v-if="movies">
 				<li
 					class="movies__item"
-					v-for="(movie, index) in movies.results"
+					v-for="(movie, index) in sortedMovies"
 					:key="movie.id"
 				>
 					<span class="movies__item-number">
@@ -107,10 +131,17 @@ export default {
 		const { movies, error, load: fetchMovies } = getMovies(
 			`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
 		);
+		const asc = ref(true);
 
 		const { genres, fetchGenres } = getGenres();
 		const loading = ref(false);
 		const genreValue = ref(route.params.id);
+		const sortedByArray = ref([
+			{ name: "Popularity", value: "popularity", active: true },
+			{ name: "Released Date", value: "released_date", active: false },
+			{ name: "Rating", value: "rating", active: false },
+		]);
+		const sortedBy = ref("popularity");
 
 		onBeforeMount(async () => {
 			loading.value = true;
@@ -127,6 +158,43 @@ export default {
 				);
 			}
 		});
+		const sortedByReleasedDate = (a, b) => {
+			return asc.value
+				? new Date(b.release_date) - new Date(a.release_date)
+				: new Date(a.release_date) - new Date(b.release_date);
+		};
+
+		const sortedByPopularity = (a, b) => {
+			return asc.value
+				? b.popularity - a.popularity
+				: a.popularity - b.popularity;
+		};
+
+		const sortedByRating = (a, b) => {
+			return asc.value
+				? b.vote_average - a.vote_average
+				: a.vote_average - b.vote_average;
+		};
+		const sortedMovies = computed(() => {
+			console.log(sortedBy.value);
+			if (movies.value) {
+				if (sortedBy.value === "released_date") {
+					return movies.value.results.sort(sortedByReleasedDate);
+				}
+
+				if (sortedBy.value === "popularity") {
+					return movies.value.results.sort(sortedByPopularity);
+				}
+
+				if (sortedBy.value === "rating") {
+					return movies.value.results.sort(sortedByRating);
+				}
+			}
+		});
+
+		const handleChangeSortedBy = (e) => {
+			sortedBy.value = e.target.value;
+		};
 
 		return {
 			movies,
@@ -135,6 +203,11 @@ export default {
 			genres,
 			loading,
 			genreValue,
+			sortedMovies,
+			asc,
+			sortedByArray,
+			sortedBy,
+			handleChangeSortedBy,
 		};
 	},
 };
