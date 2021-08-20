@@ -1,28 +1,26 @@
-import { ref } from 'vue'
-import axios from '@/axios'
+import { ref } from "vue";
+import axios from "@/axios";
 
 const getMovies = (url) => {
+	const movies = ref(null);
+	const isPending = ref(false);
+	const error = ref(null);
 
-    const movies = ref(null)
-    const isPending = ref(false)
-    const error = ref(null)
+	const load = async () => {
+		isPending.value = true;
+		try {
+			const res = await axios.get(url);
 
-    const load = async () => {
-        isPending.value = true
-        try {
-            const res = await axios.get(url);
+			movies.value = res.data;
+			return res.data;
+		} catch (err) {
+			console.log(err.message);
+		} finally {
+			isPending.value = false;
+		}
+	};
 
-            movies.value = res.data
-            return res.data
-        }
-        catch (err) {
-            console.log(err.message)
-        } finally {
-            isPending.value = false
-        }
-    }
+	return { movies, error, load, isPending };
+};
 
-    return { movies, error, load, isPending }
-}
-
-export default getMovies
+export default getMovies;

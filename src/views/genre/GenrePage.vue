@@ -1,17 +1,28 @@
 <template>
+	<Loading
+		v-model:active="loading"
+		:is-full-page="true"
+		color="#ededed"
+		loader="bars"
+		:width="200"
+		:height="150"
+		background-color="#000"
+		:opacity="0.95"
+		:lock-scroll="true"
+	/>
 	<div class="genre-page">
 		<div class="genre-page__heading container pb-3" v-if="!loading">
 			<h3 class="h3" v-if="getActiveGenre">
 				Top {{ getActiveGenre.name }} Movies
 			</h3>
-			<div class="genre-page__actions">
+			<div class="genre-page__actions" v-if="genres">
 				<span class="mr-1">Sorted By:</span>
 				<button class="btn btn-sm mr-1">Popular</button>
 				<button class="btn btn-sm mr-1">Newest</button>
 				<button class="btn btn-sm mr-1">Votes</button>
-				<select name="" id="">
+				<select name="" id="" v-model="genreValue">
 					<option
-						value=""
+						:value="genre.id"
 						v-for="genre in genres.genres"
 						:key="genre.id"
 						>{{ genre.name }}</option
@@ -64,12 +75,17 @@
 <script>
 import request, { image_path } from "@/axios/request";
 import getMovies from "@/composables/getMovies";
-import getGenres from "@/composables/getMovie";
-import { computed, onBeforeMount } from "@vue/runtime-core";
+import getGenres from "@/composables/getGenres";
+import { computed, onBeforeMount, ref } from "@vue/runtime-core";
 import feather from "feather-icons";
 import { useRoute } from "vue-router";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 export default {
 	name: "GenrePage",
+	components: {
+		Loading,
+	},
 	computed: {
 		iStar: function() {
 			return feather.icons["star"].toSvg({
@@ -88,26 +104,38 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
-		const { movies, error, load, isPending: loading } = getMovies(
+		const { movies, error, load: fetchMovies } = getMovies(
 			`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
 		);
 
-		const { movie: genres, load: loadGenres } = getGenres();
+		const { genres, fetchGenres } = getGenres();
+		const loading = ref(false);
+		const genreValue = ref(route.params.id);
 
 		onBeforeMount(async () => {
-			await load();
-			await loadGenres("/genre/movie/list?api_key=" + request.apikey);
+			loading.value = true;
+			await fetchMovies();
+			await fetchGenres("/genre/movie/list?api_key=" + request.apikey);
+			loading.value = false;
 			console.log(genres.value);
 		});
 
 		const getActiveGenre = computed(() => {
 			if (genres.value) {
-				return genres.value.genres.find(
-					(genre) => (genre.id = route.params.id)
+				return genres.value.find(
+					(genre) => genre.id == route.params.id
 				);
 			}
 		});
-		return { movies, image_path, getActiveGenre, genres, loading };
+
+		return {
+			movies,
+			image_path,
+			getActiveGenre,
+			genres,
+			loading,
+			genreValue,
+		};
 	},
 };
 </script>
