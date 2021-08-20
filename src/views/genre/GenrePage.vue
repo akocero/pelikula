@@ -59,8 +59,13 @@
 			</p>
 		</div>
 
-		<div class="movies">
-			<ul class="movies__list grid grid--6 grid__gap--3" v-if="movies">
+		<div class="movies" v-if="movies">
+			<transition-group
+				tag="ul"
+				name="grid"
+				appear
+				class="movies__list grid grid--6 grid__gap--3"
+			>
 				<li
 					class="movies__item"
 					v-for="(movie, index) in sortedMovies"
@@ -106,7 +111,8 @@
 						/>
 					</div>
 				</li> -->
-			</ul>
+			</transition-group>
+
 			<div class="movies__loadmore pt-4">
 				<button class="btn" @click="handleLoadMore">Load More</button>
 			</div>
@@ -269,4 +275,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.grid-enter-from {
+	opacity: 0;
+}
+.grid-enter-to {
+	opacity: 1;
+}
+.grid-enter-active {
+	transition: all 3s ease;
+}
+.grid-move {
+	transition: all 0.5s ease;
+}
+</style>
