@@ -13,7 +13,7 @@
 	<div class="genre-page">
 		<div class="genre-page__heading container" v-if="!loading">
 			<h3 class="h3" v-if="getActiveGenre">
-				Top {{ getActiveGenre.name }} Movies
+				Popular {{ getActiveGenre.name }} Movies
 			</h3>
 			<div class="genre-page__actions" v-if="genres">
 				<span class="mr-1">Choose Genre:</span>
@@ -96,7 +96,20 @@
 						>
 					</h5>
 				</li>
+				<!-- <li class="movies__item">
+					<div class="movies__item-poster" @click="handleLoadMore">
+						<img
+							:src="
+								'https://via.placeholder.com/150x225/3F3F3F/FFFFFF/?text=Load More'
+							"
+							alt=""
+						/>
+					</div>
+				</li> -->
 			</ul>
+			<div class="movies__loadmore pt-4">
+				<button class="btn" @click="handleLoadMore">Load More</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -140,6 +153,7 @@ export default {
 		const { genres, fetchGenres } = getGenres();
 		const loading = ref(false);
 		const genreValue = ref(route.params.id);
+		const currentPage = ref(1);
 		const sortedByArray = ref([
 			{ name: "Popularity", value: "popularity", active: true },
 			{ name: "Released Date", value: "released_date", active: false },
@@ -149,12 +163,11 @@ export default {
 
 		onBeforeMount(async () => {
 			loading.value = true;
-			await fetchMovies(
-				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
-			);
+			currentPage.value = 1;
+			await loadMovies(route.params.id);
 			await fetchGenres("/genre/movie/list?api_key=" + request.apikey);
 			loading.value = false;
-			console.log(genres.value);
+			console.log(movies.value);
 		});
 
 		const getActiveGenre = computed(() => {
@@ -168,6 +181,12 @@ export default {
 			return asc.value
 				? new Date(b.release_date) - new Date(a.release_date)
 				: new Date(a.release_date) - new Date(b.release_date);
+		};
+
+		const loadMovies = async (genreID) => {
+			await fetchMovies(
+				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage.value}&with_genres=${genreID}`
+			);
 		};
 
 		const sortedByPopularity = (a, b) => {
@@ -204,12 +223,31 @@ export default {
 
 		const handleChangeActiveGenre = async (e) => {
 			loading.value = true;
-			console.log(e.target.value);
+			currentPage.value = 1;
 			router.push({ name: "genre", params: { id: e.target.value } });
-			await fetchMovies(
-				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${e.target.value}`
-			);
+			await loadMovies(e.target.value);
 			loading.value = false;
+		};
+
+		const handleLoadMore = async () => {
+			// loading.value = true;
+			currentPage.value += 1;
+			console.log(currentPage.value);
+			let currentMoviesResult = movies.value.results;
+			await loadMovies(route.params.id);
+			movies.value.results = [
+				...currentMoviesResult,
+				...movies.value.results,
+			];
+			// loading.value = false;
+			// window.scrollTo(0, document.body.scrollHeight - 400);
+			// setTimeout(() => {
+			// 	window.scrollTo(0, document.body.scrollHeight - 1900);
+			// 	// console.log(
+			// 	// 	document.body.scrollHeight,
+			// 	// 	document.body.scrollHeight - 1314
+			// 	// );
+			// }, 1000);
 		};
 
 		return {
@@ -225,6 +263,7 @@ export default {
 			sortedBy,
 			handleChangeSortedBy,
 			handleChangeActiveGenre,
+			handleLoadMore,
 		};
 	},
 };
