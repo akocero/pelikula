@@ -84,9 +84,9 @@ export default {
 	emits: ["showModal"],
 	setup(props, { emit }) {
 		const url = ref(props.url);
-		const { movies, error, load, isPending } = getMovies(url.value);
+		const { movies, error, load, isPending } = getMovies();
 		onBeforeMount(async () => {
-			await load();
+			await load(url.value);
 		});
 
 		const handleClick = (movie) => {

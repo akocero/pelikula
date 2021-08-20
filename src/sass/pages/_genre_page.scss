@@ -1,5 +1,5 @@
 .genre-page {
-	padding-top: 10rem;
+	padding-top: 12rem;
 	padding-bottom: 26rem;
 
 	&__heading {
@@ -119,6 +119,7 @@ select {
 	border: 0;
 	outline: 0;
 	font: inherit;
+	letter-spacing: 1px;
 	/* Personalize */
 	width: 11em;
 	height: 2em;
@@ -143,4 +144,7 @@ select {
 	&::-ms-expand {
 		display: none;
 	}
+}
+.note {
+	color: $grey-color;
 }

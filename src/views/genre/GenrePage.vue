@@ -1,29 +1,69 @@
 <template>
+	<Loading
+		v-model:active="loading"
+		:is-full-page="true"
+		color="#ededed"
+		loader="bars"
+		:width="200"
+		:height="150"
+		background-color="#000"
+		:opacity="0.95"
+		:lock-scroll="true"
+	/>
 	<div class="genre-page">
-		<div class="genre-page__heading container pb-3" v-if="!loading">
+		<div class="genre-page__heading container" v-if="!loading">
 			<h3 class="h3" v-if="getActiveGenre">
 				Top {{ getActiveGenre.name }} Movies
 			</h3>
-			<div class="genre-page__actions">
-				<span class="mr-1">Sorted By:</span>
-				<button class="btn btn-sm mr-1">Popular</button>
-				<button class="btn btn-sm mr-1">Newest</button>
-				<button class="btn btn-sm mr-1">Votes</button>
-				<select name="" id="">
+			<div class="genre-page__actions" v-if="genres">
+				<span class="mr-1">Choose Genre:</span>
+				<select
+					name=""
+					id=""
+					v-model="genreValue"
+					@change="handleChangeActiveGenre"
+				>
 					<option
-						value=""
-						v-for="genre in genres.genres"
+						:value="genre.id"
+						v-for="genre in genres"
 						:key="genre.id"
 						>{{ genre.name }}</option
 					>
 				</select>
+				<span class="mr-1 ml-4">Sorted By:</span>
+				<select @change="handleChangeSortedBy">
+					<option
+						v-for="sort in sortedByArray"
+						:value="sort.value"
+						:key="sort.value"
+						class=""
+						:selected="sort.active"
+						>{{ sort.name }}</option
+					>
+				</select>
+				<button class="btn btn-sm ml-1" @click="asc = !asc" v-if="!asc">
+					Ascending
+				</button>
+				<button class="btn btn-sm ml-1" @click="asc = !asc" v-if="asc">
+					Descending
+				</button>
+				<!-- <button class="btn btn-sm mr-1" @click="asc = !asc">
+					Newest
+				</button>
+				<button class="btn btn-sm mr-1">Votes</button> -->
 			</div>
 		</div>
+		<div class="container pt-1 pb-5">
+			<p class="p note">
+				Note: That this data is base of the popularity of the movies
+			</p>
+		</div>
+
 		<div class="movies">
 			<ul class="movies__list grid grid--6 grid__gap--3" v-if="movies">
 				<li
 					class="movies__item"
-					v-for="(movie, index) in movies.results"
+					v-for="(movie, index) in sortedMovies"
 					:key="movie.id"
 				>
 					<span class="movies__item-number">
@@ -64,12 +104,17 @@
 <script>
 import request, { image_path } from "@/axios/request";
 import getMovies from "@/composables/getMovies";
-import getGenres from "@/composables/getMovie";
-import { computed, onBeforeMount } from "@vue/runtime-core";
+import getGenres from "@/composables/getGenres";
+import { computed, onBeforeMount, ref } from "@vue/runtime-core";
 import feather from "feather-icons";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 export default {
 	name: "GenrePage",
+	components: {
+		Loading,
+	},
 	computed: {
 		iStar: function() {
 			return feather.icons["star"].toSvg({
@@ -88,26 +133,99 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
-		const { movies, error, load, isPending: loading } = getMovies(
-			`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
-		);
+		const router = useRouter();
+		const { movies, error, load: fetchMovies } = getMovies();
+		const asc = ref(true);
 
-		const { movie: genres, load: loadGenres } = getGenres();
+		const { genres, fetchGenres } = getGenres();
+		const loading = ref(false);
+		const genreValue = ref(route.params.id);
+		const sortedByArray = ref([
+			{ name: "Popularity", value: "popularity", active: true },
+			{ name: "Released Date", value: "released_date", active: false },
+			{ name: "Rating", value: "rating", active: false },
+		]);
+		const sortedBy = ref("popularity");
 
 		onBeforeMount(async () => {
-			await load();
-			await loadGenres("/genre/movie/list?api_key=" + request.apikey);
+			loading.value = true;
+			await fetchMovies(
+				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${route.params.id}`
+			);
+			await fetchGenres("/genre/movie/list?api_key=" + request.apikey);
+			loading.value = false;
 			console.log(genres.value);
 		});
 
 		const getActiveGenre = computed(() => {
 			if (genres.value) {
-				return genres.value.genres.find(
-					(genre) => (genre.id = route.params.id)
+				return genres.value.find(
+					(genre) => genre.id == route.params.id
 				);
 			}
 		});
-		return { movies, image_path, getActiveGenre, genres, loading };
+		const sortedByReleasedDate = (a, b) => {
+			return asc.value
+				? new Date(b.release_date) - new Date(a.release_date)
+				: new Date(a.release_date) - new Date(b.release_date);
+		};
+
+		const sortedByPopularity = (a, b) => {
+			return asc.value
+				? b.popularity - a.popularity
+				: a.popularity - b.popularity;
+		};
+
+		const sortedByRating = (a, b) => {
+			return asc.value
+				? b.vote_average - a.vote_average
+				: a.vote_average - b.vote_average;
+		};
+		const sortedMovies = computed(() => {
+			console.log(sortedBy.value);
+			if (movies.value) {
+				if (sortedBy.value === "released_date") {
+					return movies.value.results.sort(sortedByReleasedDate);
+				}
+
+				if (sortedBy.value === "popularity") {
+					return movies.value.results.sort(sortedByPopularity);
+				}
+
+				if (sortedBy.value === "rating") {
+					return movies.value.results.sort(sortedByRating);
+				}
+			}
+		});
+
+		const handleChangeSortedBy = (e) => {
+			sortedBy.value = e.target.value;
+		};
+
+		const handleChangeActiveGenre = async (e) => {
+			loading.value = true;
+			console.log(e.target.value);
+			router.push({ name: "genre", params: { id: e.target.value } });
+			await fetchMovies(
+				`/discover/movie?api_key=${request.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${e.target.value}`
+			);
+			loading.value = false;
+		};
+
+		return {
+			movies,
+			image_path,
+			getActiveGenre,
+			genres,
+			loading,
+			genreValue,
+			sortedMovies,
+			asc,
+			sortedByArray,
+			sortedBy,
+			handleChangeSortedBy,
+			handleChangeActiveGenre,
+		};
 	},
 };
 </script>

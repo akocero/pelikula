@@ -9,7 +9,7 @@
 							rgba(7, 15, 21, 0.98),
 							rgba(7, 15, 21, 0.85)), 
 							url(${request.image_path.backdrop.w1280}${collection.backdrop_path})`,
-			backgroundPosition: 'center center',
+			backgroundPosition: 'center bottom 80%',
 		}"
 	>
 		<div class="flex-row container">
