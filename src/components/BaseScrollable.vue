@@ -1,6 +1,6 @@
 <template>
 	<div class="scrollable" v-if="data">
-		<h4 class="scrollable__heading">{{ title }}</h4>
+		<h4 class="scrollable__heading" v-if="title">{{ title }}</h4>
 		<div class="scrollable__list" v-if="data">
 			<!-- <pre>{{ movies }}</pre> -->
 			<div
@@ -34,19 +34,13 @@
 							}"
 							class="scrollable__title scrollable__title--clickable"
 						>
-							{{
-								item.title?.length >= 18
-									? item.title?.substr(0, 18) + "..."
-									: item.title
-							}}
+							{{ item.title }}
 						</router-link>
 						<h5 class="scrollable__more-info">
 							<span>{{ item.release_date?.substr(0, 4) }}</span>
 							<span class="scrollable__average"
 								><i v-html="iStar" class="pr-1"></i
-								>{{
-									Math.round(item.vote_average * 100) / 100
-								}}</span
+								>{{ item.vote_average.toFixed(1) }}%</span
 							>
 						</h5>
 					</div>
@@ -73,30 +67,20 @@
 							}"
 							class="scrollable__title scrollable__title--clickable"
 						>
-							{{
-								item.name?.length >= 17
-									? item.name?.substr(0, 17) + "..."
-									: item.name
-							}}
+							{{ item.name }}
 						</router-link>
 						<h5 class="scrollable__subtitle" v-if="item.character">
-							{{
-								item.character?.length >= 17
-									? item.character?.substr(0, 17) + "..."
-									: item.character
-							}}
+							{{ item.character }}
 						</h5>
-						<!-- <h5 class="scrollable__more-info">
+						<h5 class="scrollable__more-info">
 							<span>{{
 								item?.job || item.known_for_department
 							}}</span>
 							<span class="scrollable__average"
 								><i v-html="iAward" class="pr-1"></i
-								>{{
-									Math.round(item.popularity * 100) / 100
-								}}%</span
+								>{{ item.popularity.toFixed(1) }}%</span
 							>
-						</h5> -->
+						</h5>
 					</div>
 				</div>
 			</div>

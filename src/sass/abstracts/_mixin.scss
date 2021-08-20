@@ -80,3 +80,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
 		} //900px
 	}
 }
+
+@mixin default-shadow {
+	border: 1px solid rgba(212, 212, 212, 0.062);
+	box-shadow: 0px 0px 12px rgba(212, 212, 212, 0.075);
+}

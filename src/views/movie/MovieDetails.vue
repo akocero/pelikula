@@ -26,15 +26,6 @@
 			v-if="!loading && movie"
 		>
 			<div class="heading__container">
-				<!-- <div class="heading__poster">
-					<img
-						:src="
-							request.image_path.poster.w300 + movie.poster_path
-						"
-						alt=""
-					/>
-				</div> -->
-
 				<div class="heading__content">
 					<div
 						class="heading__img-container mb-5"
@@ -61,8 +52,8 @@
 
 					<label class="heading__info">
 						{{ movie.release_date?.substr(0, 4) }} |
-						<a
-							href=""
+						<router-link
+							:to="{ name: 'genre', params: { id: genre.id } }"
 							v-for="(genre, index) in movie.genres"
 							:key="genre.id"
 						>
@@ -70,7 +61,7 @@
 							<span v-if="index !== movie.genres.length - 1"
 								>,
 							</span>
-						</a>
+						</router-link>
 						| {{ movie.runtime }} mins
 					</label>
 
@@ -92,11 +83,15 @@
 						<!-- <button class="btn-float">❤</button>
 						<button class="btn-float">⚑</button> -->
 						<button
-							v-if="movie.videos && movie.videos.results[0]"
-							class="btn"
-							@click="playTrailer(movie.videos.results[0])"
+							v-if="movie.videos && movie.videos.results.length"
+							class="btn btn__trailer"
+							@click="
+								playTrailer(
+									trailer() || movie.videos.results[0]
+								)
+							"
 						>
-							<i v-html="iPlay"></i> Play Trailer
+							<i v-html="iPlay"></i> Random Trailer
 						</button>
 					</div>
 
@@ -107,64 +102,88 @@
 			</div>
 		</div>
 		<div class="fade-effect"></div>
-		<div class="flex-row container">
-			<div class="col-9 col-sm-8 col-xs-12">
-				<div class="mb-2" v-if="movie">
-					<BaseScrollable
-						title="Top Billed Cast"
-						:data="movie.credits.cast"
-						type="credits"
-						:limit="12"
-					/>
-				</div>
-				<div class="mb-5">
-					<BaseScrollable
-						title="Director, Story, Writer"
-						:data="mainCrew"
-						type="credits"
-						:limit="10"
-					/>
-				</div>
-				<div class="movie-details__media">
-					<div class="movie-details__media-heading">
-						<h2 class="mr-5">Media</h2>
-						<button
-							v-for="(mediaItem, index) in media"
-							:key="index"
-							@click="handleShowMedia(mediaItem.name)"
-						>
-							{{ mediaItem.name }}
-							<span v-if="mediaItem.name === 'Videos'">
-								{{ movie.videos?.results?.length }}
-							</span>
-							<span v-if="mediaItem.name === 'Posters'">
-								{{ movie.images.posters?.length }}
-							</span>
-							<span v-if="mediaItem.name === 'Backdrops'">
-								{{ movie.images.backdrops?.length }}
-							</span>
-						</button>
-					</div>
+		<div class="movie-details__more-info">
+			<MovieAdditionalDetails :movie="movie" />
+			<MovieExternalID
+				:external_ids="movie?.external_ids || null"
+				:homepage="movie?.homepage || null"
+			/>
+		</div>
 
-					<MovieTrailers
-						v-if="media[0].active"
-						:videos="movie.videos.results"
-						@playTrailer="playTrailer($event)"
-					/>
-					<MovieImages
-						v-if="media[1].active"
-						:images="movie.images.posters"
-						type="poster"
-					/>
-					<MovieImages
-						v-if="media[2].active"
-						:images="movie.images.backdrops"
-						type="backdrop"
-					/>
+		<div class="mb-2 container" v-if="movie">
+			<BaseScrollable
+				title="Top Billed Cast"
+				:data="movie.credits.cast"
+				type="credits"
+				:limit="12"
+			/>
+		</div>
+
+		<div class="pb-4 container flex-row">
+			<div class="col-6">
+				<div class="movie-details__overview">
+					<h2 class="h2 mb-1">Story Line</h2>
+					<p class="p">
+						{{ movie.overview }}
+					</p>
 				</div>
 			</div>
-			<div class="col-3 col-sm-4 col-xs-12 right">
-				<div class="mb-2" v-if="movie.homepage">
+			<div class="col-6">
+				<BaseScrollable
+					title="Director, Story, Writer"
+					:data="mainCrew"
+					type="credits"
+					:limit="10"
+				/>
+			</div>
+		</div>
+		<div class="mb-5" v-if="movie.belongs_to_collection">
+			<MovieCollection
+				:id="movie.belongs_to_collection.id"
+				:request="request"
+			/>
+		</div>
+		<div class="movie-details__media container">
+			<div class="movie-details__media-heading">
+				<h2 class="mr-5">Media</h2>
+				<button
+					v-for="(mediaItem, index) in media"
+					:key="index"
+					class="btn btn__sm mr-1"
+					:class="{ 'btn--active': mediaItem.active }"
+					@click="handleShowMedia(mediaItem.name)"
+				>
+					{{ mediaItem.name }}
+					<span v-if="mediaItem.name === 'Videos'">
+						/ Trailers {{ movie.videos?.results?.length }}
+					</span>
+					<span v-if="mediaItem.name === 'Posters'">
+						{{ movie.images.posters?.length }}
+					</span>
+					<span v-if="mediaItem.name === 'Backdrops'">
+						{{ movie.images.backdrops?.length }}
+					</span>
+				</button>
+			</div>
+
+			<MovieTrailers
+				v-if="media[0].active"
+				:videos="movie.videos.results"
+				@playTrailer="playTrailer($event)"
+			/>
+			<MovieImages
+				v-if="media[1].active"
+				:images="movie.images.posters"
+				type="poster"
+			/>
+			<MovieImages
+				v-if="media[2].active"
+				:images="movie.images.backdrops"
+				type="backdrop"
+			/>
+		</div>
+
+		<!-- <div class="mb-2" v-if="movie.homepage">
 					<MovieExternalID
 						:external_ids="movie?.external_ids || null"
 						:homepage="movie?.homepage || null"
@@ -175,9 +194,7 @@
 				</div>
 				<div class="mb-2">
 					<MovieCollection :movie="movie" :request="request" />
-				</div>
-			</div>
-		</div>
+				</div> -->
 		<div class="container" v-if="movie.similar_movies.results.length">
 			<BaseScrollable
 				title="Similar Movies"
@@ -203,7 +220,7 @@ import getMovie from "@/composables/getMovie";
 import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieMoreInfo from "./MovieMoreInfo.vue";
+import MovieAdditionalDetails from "./MovieAdditionalDetails.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieTrailers from "./MovieTrailers.vue";
@@ -221,7 +238,7 @@ export default {
 	components: {
 		UserScore,
 		MovieExternalID,
-		MovieMoreInfo,
+		MovieAdditionalDetails,
 		MovieCollection,
 		ModalTrailer,
 		Loading,
@@ -283,7 +300,7 @@ export default {
 			const crewJobsToShow = [
 				"Director",
 				"Writer",
-				// "Screenplay",
+				"Screenplay",
 				"Story",
 			];
 			if (movie.value) {
@@ -293,15 +310,25 @@ export default {
 			}
 		});
 
+		const trailer = () => {
+			if (movie.value) {
+				const trailers = movie.value.videos.results.filter(
+					(trailer) => trailer.type === "Trailer"
+				);
+				// Math.random() * trailers.length
+				return trailers[Math.floor(Math.random() * trailers.length)];
+			}
+		};
+
 		const loadingings = ref(true);
 
 		const loadContent = async (id) => {
 			loading.value = true;
 			await load(
-				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids`
+				`movie/${id}?api_key=${request.apikey}&include_image_language=en,US&append_to_response=credits,videos,recommendations,similar_movies,images,external_ids,collections`
 			);
 			await loadOmdb(movie.value.imdb_id);
-			console.log(omdb.value);
+			// console.log(omdb.value);
 			loading.value = false;
 		};
 
@@ -314,6 +341,7 @@ export default {
 			playTrailer,
 			showTrailer,
 			trailerLink,
+			trailer,
 			loadingings,
 			media,
 			handleShowMedia,

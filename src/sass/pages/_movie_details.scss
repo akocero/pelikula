@@ -1,8 +1,6 @@
 .movie-details {
 	position: relative;
 	padding-bottom: 26rem;
-	// padding: 0 $x-spacing 26rem $x-spacing;
-	// max-width: 1366px;
 
 	.heading {
 		height: 100vh;
@@ -122,32 +120,33 @@
 			}
 		}
 	}
+
+	&__overview {
+		padding: 4rem 2rem 4rem 0;
+	}
 	&__more-info {
-		ul {
-			li {
-				// margin-bottom: 2rem;
-				// font-weight: 400;
-				// h4 {
-				// 	padding-bottom: 0.5rem;
-				// }
-				// span {
-				// 	color: $grey-color;
-				// }
-				border-bottom: 1px solid rgb(27, 27, 27);
-				margin-bottom: 1rem;
-				padding: 0.5rem 0;
+		// padding: 1rem;
+		padding: 1.6rem 2rem;
+		margin: 2rem $x-spacing;
+		border-radius: $border-rad;
+		display: flex;
 
-				h5 {
-					// text-transform: uppercase;
-					font-size: 1.4rem;
-					font-weight: 700;
-					color: rgb(65, 65, 65);
-				}
+		@include default-shadow;
+	}
 
-				span {
-					display: inline-block;
-					font-size: 1.6rem;
-				}
+	&__additional-details {
+		display: flex;
+		li {
+			margin-right: 4rem;
+			font-size: 1.4rem;
+			label {
+				font-weight: 700;
+				color: rgb(88, 88, 88);
+				display: block;
+			}
+
+			span {
+				display: inline-block;
 			}
 		}
 	}
@@ -158,42 +157,15 @@
 	}
 
 	&__links {
-		display: flex;
-		border-bottom: 1px solid rgb(46, 46, 46);
-		padding-bottom: 2rem;
-
+		@include flex-center;
 		a {
-			color: $light-color;
-			@include default-transition;
-			&:hover {
-				color: $red-color;
-			}
+			margin-left: 1.6rem;
 		}
-		& > * {
-			margin-right: 1.5rem;
-		}
-
-		// margin-bottom: 2rem;
 	}
 
 	&__media {
 		&-heading {
 			display: flex;
-
-			button {
-				padding: 0.2rem 1rem;
-				border: none;
-				cursor: pointer;
-				border-radius: $border-rad;
-				background-color: rgb(36, 36, 36);
-				color: $light-color;
-				font-family: "Poppins";
-				letter-spacing: 1px;
-
-				&:not(:last-child) {
-					margin-right: 1rem;
-				}
-			}
 		}
 	}
 
@@ -257,29 +229,5 @@
 		img {
 			width: 86px;
 		}
-	}
-}
-
-.collection {
-	// width: 300px;
-	height: 450px;
-	border-radius: $border-rad;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	&__title {
-		font-size: 2.8rem;
-		font-weight: 600;
-		margin-bottom: 2rem;
-	}
-
-	&__content {
-		text-align: center;
-	}
-
-	&__img {
-		// width: 80%;
-		margin: 0 auto;
 	}
 }

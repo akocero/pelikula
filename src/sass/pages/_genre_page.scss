@@ -1,0 +1,153 @@
+.genre-page {
+	padding-top: 12rem;
+	padding-bottom: 26rem;
+
+	&__heading {
+		display: flex;
+		justify-content: space-between;
+
+		span {
+			color: $grey-color;
+		}
+	}
+}
+
+.movies {
+	&__list {
+		margin: 0 $x-spacing;
+	}
+	&__loadmore {
+		text-align: center;
+	}
+
+	&__item-number {
+		position: absolute;
+		top: -1rem;
+		left: -1rem;
+		z-index: 1000;
+		font-size: 1.8rem;
+		font-weight: 600;
+		background-color: $t-dark-color-1;
+		width: 3.6rem;
+		height: 3.5rem;
+		// border-radius: 20rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: rotate(-5deg);
+		border: 2px solid lighten($red-color, 10%);
+		border-radius: 3px;
+	}
+
+	&__item-poster {
+		img {
+			// width: 16rem;
+			width: 100%;
+			border-radius: $border-rad;
+			cursor: pointer;
+			position: relative;
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px;
+			@include default-transition;
+
+			&:hover {
+				transform: scale(1.1) rotate(-3deg);
+				z-index: 100;
+				box-shadow: rgba(132, 132, 146, 0.2) 0px 7px 29px 0px,
+					rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+			}
+		}
+	}
+
+	&__item {
+		position: relative;
+		min-width: 100%;
+	}
+
+	&__item-title {
+		display: block;
+		margin-top: 0.4em;
+		font-size: 1.6rem;
+		width: inherit;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		color: $light-color;
+		font-weight: 600;
+		@include default-transition;
+
+		span {
+			font-weight: 500;
+		}
+
+		&--clickable {
+			text-decoration: none;
+
+			&:hover {
+				color: $red-color;
+			}
+		}
+	}
+
+	&__item-subtitle {
+		margin-top: -3px;
+		color: $grey-color;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__item-vote-average {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $grey-color;
+
+		i {
+			padding-top: 2.5px;
+			color: #f1c40f;
+			padding-right: 0.4em;
+		}
+	}
+}
+
+$glass: rgba(80, 80, 80, 0.2);
+$glass-icon: rgba(80, 80, 80, 0.3);
+$gradient: linear-gradient(35deg, red, purple);
+$option: #1d1d1d;
+
+/* <select> styles */
+select {
+	/* Reset */
+	appearance: none;
+	border: 0;
+	outline: 0;
+	font: inherit;
+	letter-spacing: 1px;
+	/* Personalize */
+	width: 11em;
+	height: 2em;
+	padding: 0 4em 0 1em;
+	background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+			no-repeat right 0.8em center / 1.4em,
+		linear-gradient(to left, $glass-icon 3em, $glass 3em);
+	color: white;
+	border-radius: 0.25em;
+	box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	/* <option> colors */
+	option {
+		color: inherit;
+		background-color: $option;
+	}
+	/* Remove focus outline */
+	&:focus {
+		outline: none;
+	}
+	/* Remove IE arrow */
+	&::-ms-expand {
+		display: none;
+	}
+}
+.note {
+	color: $grey-color;
+}

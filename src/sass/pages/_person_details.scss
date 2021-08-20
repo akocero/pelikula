@@ -1,17 +1,20 @@
 .person-details {
 	// height: 100vh;
 	&__more-info {
-		margin: 1rem;
+		// margin: 1rem;
+		padding: 1.6rem 2rem;
+		height: fit-content;
+		display: flex;
+		border-radius: $border-rad;
+
+		@include default-shadow;
 		li {
 			&:not(:last-child) {
-				border-bottom: 1px solid rgb(27, 27, 27);
+				margin-right: 4rem;
 			}
 
-			margin-bottom: 2rem;
-			padding: 0.5rem;
-
+			font-size: 1.4rem;
 			label {
-				font-size: 1.2rem;
 				font-weight: 700;
 				color: rgb(88, 88, 88);
 				display: block;
@@ -19,20 +22,22 @@
 
 			span {
 				display: inline-block;
-				font-size: 1.4rem;
 			}
+
+			span.icon {
+				margin-top: -4px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+		}
+
+		li.link {
+			display: flex;
+			align-items: center;
 		}
 	}
 
-	&__left {
-		padding-right: 0 !important;
-		// box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.2);
-		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
-		height: fit-content;
-		padding-bottom: 1rem;
-		border-radius: 8px;
-		// grid-auto-rows: 100px;
-	}
 	.heading {
 		padding-top: 10rem;
 
@@ -48,9 +53,24 @@
 		}
 
 		&__biography {
-			max-height: 2rem;
-			max-width: 95%;
-			overflow-y: hidden;
+			// max-height: 13rem;
+			// max-width: 95%;
+			// overflow-y: hidden;
+			p {
+				white-space: pre-wrap;
+				display: -webkit-box;
+				-webkit-line-clamp: 5; /* number of lines to show */
+				-webkit-box-orient: vertical;
+				overflow-y: hidden;
+
+				&.show {
+					white-space: pre-wrap;
+					display: -webkit-box;
+					-webkit-line-clamp: 100; /* number of lines to show */
+					-webkit-box-orient: vertical;
+					overflow-y: hidden;
+				}
+			}
 		}
 	}
 }
@@ -63,25 +83,15 @@
 	&__heading {
 		display: flex;
 		justify-content: space-between;
-
-		button {
-			padding: 0.2rem 1rem;
-			border: none;
-			cursor: pointer;
-			border-radius: $border-rad;
-			background-color: rgb(36, 36, 36);
-			color: $light-color;
-			font-family: "Poppins";
-			letter-spacing: 1px;
-		}
 	}
 	&__item {
 		padding: 1rem 1.5rem;
-		box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6);
 		border-radius: 8px;
 		margin: 2rem 0;
 		display: flex;
 		cursor: pointer;
+
+		@include default-shadow;
 	}
 	&__title {
 		// font-family: "Poppins";

@@ -72,7 +72,7 @@
 
 		<Spinner v-if="loading" />
 		<div class="search__load-more">
-			<button v-if="isLoadMore" @click="handleLoadMore">
+			<button class="btn" v-if="isLoadMore" @click="handleLoadMore">
 				Load more
 			</button>
 		</div>

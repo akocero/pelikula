@@ -34,11 +34,12 @@
 							class="discover__title discover__title--clickable"
 						>
 							<!-- {{ movie.title?.substr(0, 20) }}... -->
-							{{
+							<!-- {{
 								movie.title?.length >= 18
 									? movie.title?.substr(0, 18) + "..."
 									: movie.title
-							}}
+							}} -->
+							{{ movie.title }}
 							<!-- <span>({{ movie.release_date?.substr(0, 4) }})</span> -->
 						</router-link>
 						<h5 class="discover__more-info">
@@ -83,9 +84,9 @@ export default {
 	emits: ["showModal"],
 	setup(props, { emit }) {
 		const url = ref(props.url);
-		const { movies, error, load, isPending } = getMovies(url.value);
+		const { movies, error, load, isPending } = getMovies();
 		onBeforeMount(async () => {
-			await load();
+			await load(url.value);
 		});
 
 		const handleClick = (movie) => {

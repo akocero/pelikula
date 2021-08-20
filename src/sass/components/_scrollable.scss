@@ -11,6 +11,7 @@
 		height: 100%;
 		background-image: linear-gradient(to left, $dark-color, transparent);
 	}
+
 	&__list {
 		display: flex;
 		overflow-x: auto;
@@ -59,6 +60,10 @@
 		display: block;
 		margin-top: 0.4em;
 		font-size: 1.4rem;
+		width: inherit;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		color: $light-color;
 		@include default-transition;
 
@@ -77,6 +82,10 @@
 
 	&__subtitle {
 		margin-top: 0.2em;
+		width: inherit;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		color: $grey-color;
 	}
 

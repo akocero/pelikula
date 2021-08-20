@@ -18,9 +18,11 @@
 @import "components/sidebar";
 @import "components/user_score";
 @import "components/scrollable";
+@import "components/collection";
 
 @import "pages/auth";
 @import "pages/home";
 @import "pages/movie_details";
 @import "pages/browse_movies";
 @import "pages/person_details";
+@import "pages/genre_page";
