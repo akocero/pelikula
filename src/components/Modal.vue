@@ -14,42 +14,53 @@
 		<button class="modal__button-close" @click="handleCloseModal">
 			&#x2715;
 		</button>
-		<router-link
-			:to="{ name: 'movie', params: { id: movie.id } }"
-			class="modal__button-view-more"
-		>
-			<i v-html="iArrowRight"></i>
-		</router-link>
+
 		<div class="modal__body" v-if="movie">
-			<!-- <div class="modal__poster" v-if="movie.poster_path">
-				<img :src="request.imagePathSm + movie.poster_path" alt="" />
-			</div> -->
-
 			<div class="modal__content">
-				<h2 class="modal__content__title">
-					{{ movie.title }}
-				</h2>
-				<p class="mb-2 modal__content__info">
-					{{ movie.release_date?.substr(0, 4) || "N/A" }}
-				</p>
+				<h4 class="h4">
+					{{ movie.title }} ({{ movie.release_date?.substr(0, 4) }})
+				</h4>
 
-				<p class="mb-2 modal__content__tagline">
-					{{ movie.tag_line }}
-				</p>
-				<!-- <ul class="modal__content__genre mb-2">
-					<li>Action</li>
-					<li>Animation</li>
-					<li>Adventure</li>
-				</ul> -->
-				<p class="modal__content__overview mb-3">
-					{{ movie.overview.substr(0, 120) }} ...
-				</p>
-				<h5 class="mb-1 ">Votes</h5>
-				<p class="mb-1 modal__content__info">
-					Average {{ movie.vote_average }}% | Count
-					{{ movie.vote_count }} | Popularity {{ movie.popularity }}
+				<label class="modal__genre" v-if="matchGenres">
+					{{ movie.original_language.toUpperCase() }} |
+					<router-link
+						:to="{ name: 'genre', params: { id: genre.id } }"
+						v-for="(genre, index) in matchGenres"
+						:key="genre.id"
+					>
+						{{ genre.name
+						}}<span v-if="index !== matchGenres.length - 1"
+							>,
+						</span>
+					</router-link>
+				</label>
+
+				<div class="ratings mt-2 mb-2">
+					<div class="ratings__imdb">
+						<img src="@/assets/imdb_logo.svg" alt="" />
+						<span class="ml-1">
+							{{ omdb?.imdbRating || "N/A" }}
+						</span>
+					</div>
+
+					<div class="ratings__tmdb">
+						<img src="@/assets/tmdb.svg" alt="" />
+						<span class="ml-1">
+							{{ movie.vote_average || "N/A" }}
+						</span>
+					</div>
+				</div>
+				<p class="p  mb-4" v-if="omdb">
+					{{ omdb.Plot }}
 				</p>
 			</div>
+			<router-link
+				role="button"
+				class="btn btn__sm modal__view-more container"
+				:to="{ name: 'movie', params: { id: movie.id } }"
+			>
+				View More
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -57,6 +68,10 @@
 <script>
 import request from "@/axios/request";
 import feather from "feather-icons";
+import useOMDB from "@/composables/useOMDB";
+import getGenres from "@/composables/getGenres";
+import { computed, onBeforeMount } from "@vue/runtime-core";
+
 export default {
 	name: "Modal",
 	props: {
@@ -82,15 +97,30 @@ export default {
 
 	emits: ["closeModal"],
 	setup(props, { emit }) {
-		const handleCloseModal = () => {
-			// document.body.classList.remove("modal--open");
-			// document.querySelector(".modal__backdrop").classList.remove("show");
-			props.movie.value = null;
+		const { result: omdb, load: loadOmdb } = useOMDB();
+		const { genres, fetchGenres } = getGenres();
 
+		const handleCloseModal = () => {
+			props.movie.value = null;
 			emit("closeModal");
 		};
 
-		return { handleCloseModal };
+		onBeforeMount(async () => {
+			await loadOmdb(null, props.movie.title);
+			await fetchGenres("/genre/movie/list?api_key=" + request.apikey);
+			// console.log(omdb.value);
+		});
+
+		const matchGenres = computed(() => {
+			console.log("genressss", props.movie);
+			if (genres.value) {
+				return genres.value.filter((genre) => {
+					return props.movie.genre_ids.includes(genre.id);
+				});
+			}
+		});
+
+		return { handleCloseModal, matchGenres, genres, omdb };
 	},
 };
 </script>
