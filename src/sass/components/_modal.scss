@@ -26,6 +26,7 @@
 	z-index: 10001;
 	border-radius: $border-rad;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	overflow: hidden;
 
 	@include respond(tab-port) {
 		// width < 900?
@@ -86,8 +87,8 @@
 
 	&__button-close {
 		position: absolute;
-		top: 1rem;
-		right: 1rem;
+		top: 2rem;
+		right: 2rem;
 		font-size: 1.4rem;
 		padding-bottom: 2px;
 		border: none;

@@ -14,12 +14,7 @@
 		<button class="modal__button-close" @click="handleCloseModal">
 			&#x2715;
 		</button>
-		<!-- <router-link
-			:to="{ name: 'movie', params: { id: movie.id } }"
-			class="modal__button-view-more"
-		>
-			<i v-html="iArrowRight"></i>
-		</router-link> -->
+
 		<div class="modal__body" v-if="movie">
 			<div class="modal__content">
 				<h4 class="h4">
@@ -106,8 +101,6 @@ export default {
 		const { genres, fetchGenres } = getGenres();
 
 		const handleCloseModal = () => {
-			// document.body.classList.remove("modal--open");
-			// document.querySelector(".modal__backdrop").classList.remove("show");
 			props.movie.value = null;
 			emit("closeModal");
 		};
