@@ -8,6 +8,7 @@
 	align-items: center;
 	width: 100%;
 	z-index: 1001;
+	overflow: hidden;
 
 	@include respond(tab-port) {
 		// width < 900?
@@ -59,35 +60,36 @@
 		right: 0;
 		height: 100%;
 		width: 100%;
-		background-color: rgba($dark-color, 0.99);
+		background-color: $dark-color;
 		z-index: 10000;
-		align-items: center;
-
-		@include respond(tab-port) {
-			// width < 900?
-			width: 80%;
-		}
 	}
 
 	&__list {
 		text-transform: uppercase;
-		width: 100%;
-		margin-top: 10rem;
-		// display: flex;
-		// justify-content: center;
-		// flex-direction: column;
-		// align-items: center;
-		// height: 100%;
+		// margin-top: 10rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
 	}
 
 	&__item {
-		// width: 100%
-		// padding-left: 4rem;
-		// margin-left: 4rem;
-		text-align: left;
-		margin-bottom: 2rem;
-		padding-left: $x-spacing;
+		text-align: center;
+		width: 40%;
+		margin: 0 auto;
+		margin-bottom: 0.5rem;
+		background-color: rgba(44, 44, 44, 0.349);
+		padding: 1.6rem;
 		letter-spacing: 1.6px;
+		border-radius: $border-rad;
+		@include respond(tab-port) {
+			// width < 900?
+			width: 90%;
+		}
+		// &:hover {
+		// 	transform: scale(1.1) rotate(3deg);
+		// }
 	}
 
 	&__brand {
@@ -101,39 +103,60 @@
 		}
 	}
 
-	// &__list {
-	// 	display: flex;
-	// }
-
-	// &__item {
-	// 	margin-left: 2rem;
-	// }
-
 	&__link {
+		font-weight: 800;
 		text-decoration: none;
 		color: white;
-		font-size: 3rem;
+		font-size: 2.4rem;
+		transition: all 0.3s linear;
+		// margin-left: $x-spacing;
 	}
 
 	&__burger {
 		height: 35px;
-		width: 2.8rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		// padding: 0 1rem;
 		z-index: 10001;
-
-		* {
+		// background-color: red;
+		transition: all 0.6s ease;
+		& > * {
+			width: 3rem;
 			height: 2px;
 			border-radius: 4px;
 			background-color: white;
 			box-shadow: 0 2px 4px rgba(12, 12, 12, 0.493),
 				0 15px 12px rgba(0, 0, 0, 0.22);
+			transition: all 0.3s ease;
 		}
 
 		*:not(:last-child) {
 			margin-bottom: 6px;
+		}
+
+		&--open {
+			// background-color: red;
+			transform: rotate(360deg);
+			margin-right: -0.6rem;
+			margin-top: 0.8rem;
+			span:nth-child(1) {
+				transform: rotate(45deg) translate(5px, 5px);
+				width: 4.5rem;
+				// background-color: red;
+			}
+
+			span:nth-child(2) {
+				// transform: rotate(-45deg) translate(7px, -11px);
+				// transform: translateX(100px);
+				opacity: 0;
+				// opacity: 0;
+			}
+
+			span:nth-child(3) {
+				transform: rotate(-45deg) translate(6px, -7px);
+				width: 4.5rem;
+			}
 		}
 	}
 }
