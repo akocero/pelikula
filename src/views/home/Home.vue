@@ -25,10 +25,10 @@
 				backgroundSize: 'cover',
 				backgroundImage: `linear-gradient(
             to bottom,  
-            rgba(16, 16, 16, 0.90),
-            rgba(16, 16, 16, 0.80)), 
-            url(${request.image_path.backdrop.w1920}${randomBG})`,
-				backgroundPosition: 'center bottom 80%',
+            rgba(16, 16, 16, 0.40),
+            rgba(16, 16, 16, 0.90)), 
+            url(${request.image_path.backdrop.w1280}${randomBG})`,
+				backgroundPosition: 'center center',
 			}"
 		>
 			<div class="home__heading-content container">
@@ -77,7 +77,7 @@
 			
 		</div> -->
 
-		<DiscoverMovies
+		<!-- <DiscoverMovies
 			:url="request.topPopular"
 			title="What's Popular?"
 			@showModal="handleShowModal($event)"
@@ -99,7 +99,7 @@
 			:url="request.topAction"
 			title="Top Action"
 			@showModal="handleShowModal($event)"
-		/>
+		/> -->
 	</div>
 </template>
 

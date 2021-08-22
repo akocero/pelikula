@@ -19,13 +19,16 @@
 			font-size: 4.6rem;
 			margin-bottom: 2.4rem;
 			line-height: 1.2em;
+			text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 
 			&--imdb {
 				color: #e2b616;
+				text-shadow: 2px 4px 3px rgba(darken(#e2b616, 50%), 0.3);
 			}
 
 			&--mobi {
 				color: #93cbe5;
+				text-shadow: 2px 4px 3px rgba(darken(#93cbe5, 50%), 0.3);
 			}
 		}
 		&-scroll-down {

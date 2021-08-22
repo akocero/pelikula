@@ -1,17 +1,17 @@
 import { computed, ref } from "vue";
-
 export default function getBG() {
-   const bgArray = ref([
-			"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
-         "/tM894AtE7UQTJEoQG6qF6mdfSUT.jpg", // guardians of the galaxy
-         "/70AV2Xx5FQYj20labp0EGdbjI6E.jpg", // wrath of man
+	const bgArray = ref([
+		"/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg", // John wick
+		"/gkYu744gqKYvCVTm6B69eAHZJdS.jpg", // guardians of the galaxy
+		"/sFEYsEfzTx7hhjetlNrme8B5OUo.jpg", // V for vendeta
+		"/aZtwH3RQ0L8jbInxr7OSc9tlGMJ.jpg", // gladiator
+		"/yPOCwAYuG73pOYXsRkhqMa6ov9o.jpg", // apocalypto
+		"/euFbK14mZe1lYOTiQF95tjyJlgL.jpg", // avengers end game
 	]);
 
-   const randomBG = computed(()=> {
-      return bgArray.value[
-				Math.floor(Math.random() * bgArray.value.length)
-			];
-   })
+	const randomBG = computed(() => {
+		return bgArray.value[Math.floor(Math.random() * bgArray.value.length)];
+	});
 
-   return { randomBG }
+	return { randomBG };
 }
