@@ -22,7 +22,13 @@
 						:key="link.link"
 						:data-index="index"
 					>
-						<a href="" class="navbar__link">{{ link.label }}</a>
+						<router-link
+							:to="{ path: link.link }"
+							class="navbar__link"
+							:class="{ 'navbar__link--disabled': link.disabled }"
+							@click="showNav = false"
+							>{{ link.label }}</router-link
+						>
 					</li>
 				</transition-group>
 				<!-- <ul class="navbar__list">
@@ -78,7 +84,13 @@
 			/>
 			<button><i v-html="iSearch"></i></button>
 		</form>
-		<div class="user" :class="!showNavSearch && 'ml-auto'">E</div>
+		<button
+			class="btn btn__primary mr-2"
+			:class="!showNavSearch && 'ml-auto'"
+		>
+			Sign In
+		</button>
+		<!-- <div class="user" >E</div> -->
 		<div
 			class="navbar__burger"
 			@click="showNav = !showNav"
@@ -117,10 +129,12 @@ export default {
 			nav: 300,
 		});
 		const navLinks = ref([
-			{ label: "Browse Movie", link: "browse_movies" },
-			{ label: "My Watchlist", link: "auth" },
-			{ label: "Request Movie", link: "gen" },
-			{ label: "Sign In/ Sign Up", link: "auth" },
+			{ label: "Browse Movie", link: "/browse_movies", disabled: false },
+			{ label: "My Watchlist", link: "/auth", disabled: true },
+			{ label: "Request Movie", link: "/auth", disabled: true },
+			{ label: "Sign In/ Sign Up", link: "/auth", disabled: false },
+			{ label: "Forum", link: "/auth", disabled: true },
+			{ label: "Movie Genres", link: "/genre/35", disabled: false },
 		]);
 
 		const handleSearch = () => {

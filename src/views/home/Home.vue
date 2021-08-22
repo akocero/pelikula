@@ -133,8 +133,8 @@ export default {
 		},
 		iDown: function() {
 			return feather.icons["chevron-down"].toSvg({
-				width: 38,
-				height: 38,
+				width: 32,
+				height: 32,
 			});
 		},
 	},

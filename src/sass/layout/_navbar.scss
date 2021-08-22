@@ -110,6 +110,12 @@
 		font-size: 2.4rem;
 		transition: all 0.3s linear;
 		// margin-left: $x-spacing;
+
+		&--disabled {
+			cursor: not-allowed;
+			pointer-events: none;
+			color: $t-dark-color-1;
+		}
 	}
 
 	&__burger {
