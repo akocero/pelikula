@@ -94,6 +94,10 @@
 			flex-direction: column;
 			justify-content: center;
 			max-width: 50%;
+
+			@include respond(tab-port) {
+				max-width: 100%;
+			}
 			img.logo {
 				width: 20%;
 			}
