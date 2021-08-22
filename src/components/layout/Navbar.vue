@@ -70,37 +70,38 @@
 				</ul> -->
 			</nav>
 		</transition>
-		<form
-			@submit.prevent="handleSearch"
-			action=""
-			class="navbar__search"
-			v-if="showNavSearch"
-		>
-			<input
-				type="text"
-				placeholder="Search ..."
-				v-model="search"
-				required
-			/>
-			<button><i v-html="iSearch"></i></button>
-		</form>
-		<router-link
-			role="button"
-			:to="{ name: 'auth' }"
-			class="btn btn__primary mr-2"
-			:class="!showNavSearch && 'ml-auto'"
-		>
-			Sign In
-		</router-link>
-		<!-- <div class="user" >E</div> -->
-		<div
-			class="navbar__burger"
-			@click="showNav = !showNav"
-			:class="{ 'navbar__burger--open': showNav }"
-		>
-			<span></span>
-			<span></span>
-			<span></span>
+		<div class="navbar__right">
+			<form
+				@submit.prevent="handleSearch"
+				action=""
+				class="navbar__search"
+				v-if="showNavSearch"
+			>
+				<input
+					type="text"
+					placeholder="Search ..."
+					v-model="search"
+					required
+				/>
+				<button><i v-html="iSearch"></i></button>
+			</form>
+			<router-link
+				role="button"
+				:to="{ name: 'auth' }"
+				class="btn btn__primary mr-2"
+			>
+				Sign In
+			</router-link>
+			<!-- <div class="user" >E</div> -->
+			<div
+				class="navbar__burger"
+				@click="showNav = !showNav"
+				:class="{ 'navbar__burger--open': showNav }"
+			>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 		</div>
 	</div>
 </template>
