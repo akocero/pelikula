@@ -82,7 +82,7 @@
 				tag="ul"
 				name="grid"
 				appear
-				class="movies__list grid grid--6 grid__gap--3"
+				class="grid grid--6 grid__xs--2 grid__sm--4 grid__md--4 grid__gap--3 container movies__list"
 			>
 				<li
 					class="movies__item"

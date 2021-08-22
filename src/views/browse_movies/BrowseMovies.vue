@@ -52,7 +52,7 @@
 		<div className="fade-effect"></div>
 		<div class="movies offset-y-10">
 			<transition-group
-				class="grid grid--6 grid__gap--3 container movies__list"
+				class="grid grid--6 grid__xs--2 grid__sm--4 grid__md--4 grid__gap--3 container movies__list"
 				tag="ul"
 				appear
 				@before-enter="beforeEnter"

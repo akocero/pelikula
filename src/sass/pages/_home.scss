@@ -12,6 +12,11 @@
 			// margin-left: 4rem;
 			margin: 0 auto;
 			width: 70%;
+
+			@include respond(tab-port) {
+				margin: $m-x-spacing;
+				width: 100%;
+			}
 		}
 
 		&-title {
@@ -43,6 +48,9 @@
 			color: $grey-color;
 			width: 70%;
 			margin: 0 auto;
+			@include respond(tab-port) {
+				width: 90%;
+			}
 		}
 
 		&__overview {

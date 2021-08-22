@@ -31,7 +31,7 @@
 				backgroundPosition: 'center center',
 			}"
 		>
-			<div class="home__heading-content container">
+			<div class="home__heading-content">
 				<h1 class="home__heading-title">
 					The Open Source
 					<span class="home__heading-title--imdb">IMDB</span> &
@@ -60,24 +60,8 @@
 			</div>
 		</div>
 		<div className="fade-effect"></div>
-		<!-- <Heading :modalContent="modalContent" /> -->
-		<!-- <div
-			class="search"
-			:style="{
-				backgroundSize: 'cover',
-				backgroundImage: `linear-gradient(
-            to right,  
-            rgba(1, 1, 1, 0.99),
-            transparent), 
-            url(${request.image_path.backdrop.w1920}${randomBG})`,
-				backgroundPosition: 'center bottom 80%',
-			}"
-		>
-			
-			
-		</div> -->
 
-		<!-- <DiscoverMovies
+		<DiscoverMovies
 			:url="request.topPopular"
 			title="What's Popular?"
 			@showModal="handleShowModal($event)"
@@ -90,16 +74,19 @@
 			title="What's Trending?"
 			@showModal="handleShowModal($event)"
 		/>
+
 		<DiscoverMovies
 			:url="request.topRated"
 			title="Top Rated"
 			@showModal="handleShowModal($event)"
 		/>
+
+		<MovieCollection :id="121938" :request="request" />
 		<DiscoverMovies
 			:url="request.topAction"
 			title="Top Action"
 			@showModal="handleShowModal($event)"
-		/> -->
+		/>
 	</div>
 </template>
 
@@ -115,6 +102,7 @@ import { ref } from "vue";
 import feather from "feather-icons";
 import { useRouter } from "vue-router";
 import useModal from "@/composables/useModal";
+import MovieCollection from "../movie/MovieCollection.vue";
 
 export default {
 	name: "Home",
@@ -124,6 +112,7 @@ export default {
 		Heading,
 		Spinner,
 		Modal,
+		MovieCollection,
 	},
 	computed: {
 		iSearch: function() {
