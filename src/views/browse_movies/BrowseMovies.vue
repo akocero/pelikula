@@ -1,8 +1,16 @@
 <template>
-	<transition name="fade" appear>
+	<transition
+		@before-enter="backdropInit"
+		@enter="backdropAnim"
+		@leave="backdropLeave"
+	>
 		<div class="modal__backdrop" v-if="showModal"></div>
 	</transition>
-	<transition name="pop" appear>
+	<transition
+		@before-enter="modalInit"
+		@enter="modalAnim"
+		@leave="modalLeave"
+	>
 		<Modal
 			:movie="modalContent"
 			v-if="showModal"
@@ -124,6 +132,12 @@ export default {
 			showModal,
 			handleShowModal,
 			handleCloseModal,
+			backdropAnim,
+			backdropInit,
+			backdropLeave,
+			modalInit,
+			modalAnim,
+			modalLeave,
 		} = useModal();
 
 		onBeforeMount(async () => {
@@ -194,12 +208,18 @@ export default {
 			beforeEnter,
 			enter,
 
-			showModal,
+			randomBG,
+
 			modalContent,
+			showModal,
+			backdropAnim,
+			backdropInit,
+			modalInit,
+			modalAnim,
 			handleCloseModal,
 			handleShowModal,
-
-			randomBG,
+			backdropLeave,
+			modalLeave,
 		};
 	},
 };

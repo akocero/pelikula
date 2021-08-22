@@ -112,7 +112,7 @@ export default {
 		});
 
 		const matchGenres = computed(() => {
-			console.log("genressss", props.movie);
+			// console.log("genressss", props.movie);
 			if (genres.value) {
 				return genres.value.filter((genre) => {
 					return props.movie.genre_ids.includes(genre.id);
