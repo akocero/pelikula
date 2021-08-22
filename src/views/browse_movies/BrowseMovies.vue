@@ -19,7 +19,7 @@
 	</transition>
 	<div class="browse-movies">
 		<div
-			class="search"
+			class="browse-movies__heading"
 			:style="{
 				backgroundSize: 'cover',
 				backgroundImage: `linear-gradient(
@@ -30,7 +30,7 @@
 				backgroundPosition: 'center bottom 80%',
 			}"
 		>
-			<form @submit.prevent="handleSearch">
+			<form @submit.prevent="handleSearch" class="search container">
 				<div class="search__form-group">
 					<input
 						type="text"
@@ -41,42 +41,66 @@
 						<i v-html="iSearch"></i>
 					</button>
 				</div>
-			</form>
-			<div class="search__results">
-				<div class="search__result">
-					<h4>Total Pages</h4>
-					<p class="ml-2">{{ totalPages }} / {{ pageNumber }}</p>
+				<div class="search__results">
+					<div class="search__result">
+						<h4>Total Pages</h4>
+						<p class="ml-2">{{ totalPages }} / {{ pageNumber }}</p>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		<div className="fade-effect"></div>
-
-		<transition-group
-			class="grid grid--7 grid__xs--3 grid__sm--4 grid__md--6 container offset-y-15 browse-movies__results"
-			tag="div"
-			appear
-			@before-enter="beforeEnter"
-			@enter="enter"
-		>
-			<div
-				class="flex__col--2"
-				v-for="(movie, index) in movies"
-				:key="movie.id"
-				:data-index="index"
-				@click="handleShowModal(movie)"
+		<div class="movies offset-y-10">
+			<transition-group
+				class="grid grid--6 grid__gap--3 container movies__list"
+				tag="ul"
+				appear
+				@before-enter="beforeEnter"
+				@enter="enter"
 			>
-				<img
-					v-if="!movie.poster_path"
-					src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
-					class="card__image"
-				/>
-				<img
-					v-if="movie.poster_path"
-					:src="request.image_path.poster.w220 + movie.poster_path"
-					class="card__image"
-				/>
-			</div>
-		</transition-group>
+				<li
+					class="movies__item"
+					v-for="(movie, index) in movies"
+					:key="movie.id"
+					:data-index="index"
+					@click="handleShowModal(movie)"
+				>
+					<div class="movies__item-poster">
+						<img
+							v-if="!movie.poster_path"
+							src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
+						/>
+						<img
+							v-if="movie.poster_path"
+							:src="
+								request.image_path.poster.w220 +
+									movie.poster_path
+							"
+						/>
+					</div>
+					<router-link
+						:to="{
+							name: 'movie',
+							params: { id: movie.id },
+						}"
+						class="movies__item-title"
+					>
+						{{ movie.title }}
+					</router-link>
+					<h5 class="movies__item-subtitle">
+						<span>{{ movie.release_date?.substr(0, 4) }}</span>
+						<span class="movies__item-vote-average"
+							><i v-html="iStar"></i
+							>{{ movie.vote_average }}</span
+						>
+						<span class="movies__item-vote-average"
+							><i v-html="iHeart"></i
+							>{{ movie.popularity.toFixed(1) }}%</span
+						>
+					</h5>
+				</li>
+			</transition-group>
+		</div>
 
 		<Spinner v-if="loading" />
 		<div class="search__load-more">
@@ -114,6 +138,20 @@ export default {
 			return feather.icons["image"].toSvg({
 				width: 32,
 				height: 32,
+			});
+		},
+		iStar: function() {
+			return feather.icons["star"].toSvg({
+				width: 14,
+				fill: "gold",
+				color: "gold",
+			});
+		},
+		iHeart: function() {
+			return feather.icons["heart"].toSvg({
+				width: 14,
+				fill: "orangered",
+				color: "orangered",
 			});
 		},
 	},

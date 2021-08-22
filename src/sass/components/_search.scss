@@ -1,8 +1,4 @@
 .search {
-	// height: 100vh;
-	// padding: 0 $x-spacing;
-	margin-top: 4rem;
-
 	@include respond(tab-port) {
 		// width < 900?
 		padding: 0 2rem;

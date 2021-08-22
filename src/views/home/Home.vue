@@ -44,7 +44,7 @@
 					Discover thousands of TV shows and movies, Create a
 					discussions of all the movies you love.
 				</h4>
-				<form @submit.prevent="handleSearch" class="search">
+				<form @submit.prevent="handleSearch" class="search mt-3">
 					<div class="search__form-group">
 						<input
 							type="text"
