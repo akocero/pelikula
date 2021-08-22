@@ -2,7 +2,7 @@
 	cursor: pointer;
 	font-family: "Poppins";
 	font-size: 1.6rem;
-	padding: 0.2em 1em;
+	padding: 0.4em 1em;
 	white-space: nowrap;
 	border-radius: $border-rad;
 	border: none;
@@ -19,6 +19,12 @@
 
 	&__sm {
 		font-size: 1.4rem;
+	}
+
+	&__primary {
+		font-family: "Nunito";
+		background-color: $red-color;
+		border-radius: 4px;
 	}
 
 	&__trailer {

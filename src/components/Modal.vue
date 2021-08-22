@@ -20,20 +20,21 @@
 				<h4 class="h4">
 					{{ movie.title }} ({{ movie.release_date?.substr(0, 4) }})
 				</h4>
-
-				<label class="modal__genre" v-if="matchGenres">
-					{{ movie.original_language.toUpperCase() }} |
-					<router-link
-						:to="{ name: 'genre', params: { id: genre.id } }"
-						v-for="(genre, index) in matchGenres"
-						:key="genre.id"
-					>
-						{{ genre.name
-						}}<span v-if="index !== matchGenres.length - 1"
-							>,
-						</span>
-					</router-link>
-				</label>
+				<transition name="fade">
+					<label class="modal__genre" v-if="matchGenres">
+						{{ movie.original_language.toUpperCase() }} |
+						<router-link
+							:to="{ name: 'genre', params: { id: genre.id } }"
+							v-for="(genre, index) in matchGenres"
+							:key="genre.id"
+						>
+							{{ genre.name
+							}}<span v-if="index !== matchGenres.length - 1"
+								>,
+							</span>
+						</router-link>
+					</label>
+				</transition>
 
 				<div class="ratings mt-2 mb-2">
 					<div class="ratings__imdb">
@@ -50,9 +51,11 @@
 						</span>
 					</div>
 				</div>
-				<p class="p  mb-4" v-if="omdb">
-					{{ omdb.Plot }}
-				</p>
+				<transition name="fade">
+					<p class="p  mb-4 modal__plot" v-if="omdb">
+						{{ omdb.Plot }}
+					</p>
+				</transition>
 			</div>
 			<router-link
 				role="button"
@@ -112,7 +115,7 @@ export default {
 		});
 
 		const matchGenres = computed(() => {
-			console.log("genressss", props.movie);
+			// console.log("genressss", props.movie);
 			if (genres.value) {
 				return genres.value.filter((genre) => {
 					return props.movie.genre_ids.includes(genre.id);

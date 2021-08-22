@@ -10,6 +10,24 @@
 		:opacity="0.95"
 		:lock-scroll="true"
 	/>
+	<transition
+		@before-enter="backdropInit"
+		@enter="backdropAnim"
+		@leave="backdropLeave"
+	>
+		<div class="modal__backdrop" v-if="showModal"></div>
+	</transition>
+	<transition
+		@before-enter="modalInit"
+		@enter="modalAnim"
+		@leave="modalLeave"
+	>
+		<Modal
+			:movie="modalContent"
+			v-if="showModal"
+			@closeModal="handleCloseModal"
+		/>
+	</transition>
 	<div class="genre-page">
 		<div class="genre-page__heading container" v-if="!loading">
 			<h3 class="h3" v-if="getActiveGenre">
@@ -64,7 +82,7 @@
 				tag="ul"
 				name="grid"
 				appear
-				class="movies__list grid grid--6 grid__gap--3"
+				class="grid grid--6 grid__xs--2 grid__sm--4 grid__md--4 grid__gap--3 container movies__list"
 			>
 				<li
 					class="movies__item"
@@ -74,7 +92,10 @@
 					<span class="movies__item-number">
 						{{ index + 1 }}
 					</span>
-					<div class="movies__item-poster">
+					<div
+						class="movies__item-poster"
+						@click="handleShowModal(movie)"
+					>
 						<img
 							:src="image_path.poster.w220 + movie.poster_path"
 							alt=""
@@ -126,13 +147,16 @@ import getMovies from "@/composables/getMovies";
 import getGenres from "@/composables/getGenres";
 import { computed, onBeforeMount, ref } from "@vue/runtime-core";
 import feather from "feather-icons";
-import { useRoute, useRouter } from "vue-router";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import Modal from "@/components/Modal";
+import useModal from "@/composables/useModal";
 export default {
 	name: "GenrePage",
 	components: {
 		Loading,
+		Modal,
 	},
 	computed: {
 		iStar: function() {
@@ -166,6 +190,18 @@ export default {
 			{ name: "Rating", value: "rating", active: false },
 		]);
 		const sortedBy = ref("popularity");
+		const {
+			modalContent,
+			showModal,
+			handleShowModal,
+			handleCloseModal,
+			backdropAnim,
+			backdropInit,
+			backdropLeave,
+			modalInit,
+			modalAnim,
+			modalLeave,
+		} = useModal();
 
 		onBeforeMount(async () => {
 			loading.value = true;
@@ -188,6 +224,12 @@ export default {
 				? new Date(b.release_date) - new Date(a.release_date)
 				: new Date(a.release_date) - new Date(b.release_date);
 		};
+
+		onBeforeRouteUpdate(async (to, from, next) => {
+			await loadMovies(to.params.id);
+			showModal.value = false;
+			next();
+		});
 
 		const loadMovies = async (genreID) => {
 			await fetchMovies(
@@ -270,6 +312,17 @@ export default {
 			handleChangeSortedBy,
 			handleChangeActiveGenre,
 			handleLoadMore,
+
+			modalContent,
+			showModal,
+			backdropAnim,
+			backdropInit,
+			modalInit,
+			modalAnim,
+			handleCloseModal,
+			handleShowModal,
+			backdropLeave,
+			modalLeave,
 		};
 	},
 };
