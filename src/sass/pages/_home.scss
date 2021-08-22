@@ -1,31 +1,54 @@
 .home {
 	padding-bottom: 26rem;
 
-	& > div:nth-child(3) {
-		margin-top: -15rem;
+	// & > div:nth-child(3) {
+	// 	margin-top: -15rem;
 
-		@include respond(tab-port) {
-			// width < 900?
-			margin-top: -25rem;
-		}
-	}
+	// 	@include respond(tab-port) {
+	// 		// width < 900?
+	// 		margin-top: -25rem;
+	// 	}
+	// }
 
-	.heading {
-		height: 60vh;
-		color: $grey-color;
-		// padding: 2.4rem;
+	&__heading {
+		position: relative;
+		height: 100vh;
 		display: flex;
-		align-items: flex-end;
-
-		&__content {
-			// text-align: center;
-			margin-left: 4rem;
-			width: 50%;
+		// justify-content: center;
+		align-items: center;
+		&-content {
+			text-align: center;
+			// margin-left: 4rem;
+			margin: 0 auto;
+			width: 70%;
 		}
 
-		&__title {
-			font-size: 4rem;
+		&-title {
+			font-family: "Poppins";
+			font-size: 4.6rem;
 			margin-bottom: 2.4rem;
+			line-height: 1.2em;
+
+			&--imdb {
+				color: #e2b616;
+			}
+
+			&--mobi {
+				color: #93cbe5;
+			}
+		}
+		&-scroll-down {
+			position: absolute;
+			z-index: 1000;
+			width: 100%;
+			margin: 0 auto;
+			bottom: 3rem;
+			left: 0;
+		}
+		&-subtitle {
+			color: $light-color;
+			width: 70%;
+			margin: 0 auto;
 		}
 
 		&__overview {

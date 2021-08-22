@@ -19,8 +19,49 @@
 	</transition>
 
 	<div class="home">
-		<!-- <Heading :modalContent="modalContent" /> -->
 		<div
+			class="home__heading "
+			:style="{
+				backgroundSize: 'cover',
+				backgroundImage: `linear-gradient(
+            to bottom,  
+            rgba(16, 16, 16, 0.90),
+            rgba(16, 16, 16, 0.80)), 
+            url(${request.image_path.backdrop.w1920}${randomBG})`,
+				backgroundPosition: 'center bottom 80%',
+			}"
+		>
+			<div class="home__heading-content container">
+				<h1 class="home__heading-title">
+					The Open Source
+					<span class="home__heading-title--imdb">IMDB</span> &
+					<span class="home__heading-title--mobi">
+						Mobilarian Movie Section</span
+					>
+					Alternative
+				</h1>
+				<h4 class="h4 home__heading-subtitle">
+					Discover thousands of TV shows and movies, Create a
+					discussions of all the movies you love.
+				</h4>
+				<form @submit.prevent="handleSearch" class="search">
+					<div class="search__form-group">
+						<input
+							type="text"
+							v-model="search"
+							placeholder="Search ..."
+						/>
+						<button type="submit" class="search__button">
+							<i v-html="iSearch"></i>
+						</button>
+					</div>
+				</form>
+				<i v-html="iDown" class="home__heading-scroll-down"></i>
+			</div>
+		</div>
+		<div className="fade-effect"></div>
+		<!-- <Heading :modalContent="modalContent" /> -->
+		<!-- <div
 			class="search"
 			:style="{
 				backgroundSize: 'cover',
@@ -32,21 +73,10 @@
 				backgroundPosition: 'center bottom 80%',
 			}"
 		>
-			<h1>AI THAT IS READY TO WORK</h1>
-			<form @submit.prevent="handleSearch">
-				<div class="search__form-group">
-					<input
-						type="text"
-						v-model="search"
-						placeholder="Search ..."
-					/>
-					<button type="submit" class="search__button">
-						<i v-html="iSearch"></i>
-					</button>
-				</div>
-			</form>
-		</div>
-		<div className="fade-effect"></div>
+			
+			
+		</div> -->
+
 		<DiscoverMovies
 			:url="request.topPopular"
 			title="What's Popular?"
@@ -103,6 +133,12 @@ export default {
 		iSearch: function() {
 			return feather.icons["search"].toSvg({
 				width: 42,
+			});
+		},
+		iDown: function() {
+			return feather.icons["chevron-down"].toSvg({
+				width: 38,
+				height: 38,
 			});
 		},
 	},
