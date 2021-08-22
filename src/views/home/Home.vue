@@ -83,11 +83,7 @@
 			@showModal="handleShowModal($event)"
 		/>
 
-		<DiscoverPeople
-			:url="request.topPeople"
-			title="Top People"
-			@showModal="handleShowModal($event)"
-		/>
+		<DiscoverPeople :url="request.topPeople" title="Top People" />
 
 		<DiscoverMovies
 			:url="request.trending"
