@@ -32,6 +32,7 @@
 				backgroundPosition: 'center bottom 80%',
 			}"
 		>
+			<h1>AI THAT IS READY TO WORK</h1>
 			<form @submit.prevent="handleSearch">
 				<div class="search__form-group">
 					<input

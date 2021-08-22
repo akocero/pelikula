@@ -147,7 +147,7 @@ import getMovies from "@/composables/getMovies";
 import getGenres from "@/composables/getGenres";
 import { computed, onBeforeMount, ref } from "@vue/runtime-core";
 import feather from "feather-icons";
-import { useRoute, useRouter } from "vue-router";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import Modal from "@/components/Modal";
@@ -224,6 +224,12 @@ export default {
 				? new Date(b.release_date) - new Date(a.release_date)
 				: new Date(a.release_date) - new Date(b.release_date);
 		};
+
+		onBeforeRouteUpdate(async (to, from, next) => {
+			await loadMovies(to.params.id);
+			showModal.value = false;
+			next();
+		});
 
 		const loadMovies = async (genreID) => {
 			await fetchMovies(
