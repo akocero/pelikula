@@ -1,15 +1,7 @@
 .search {
-	height: 60vh;
-	padding: 0 $x-spacing;
-
-	@include respond(tab-port) {
-		// width < 900?
-		padding: 0 2rem;
-	}
-
 	form {
 		width: 100%;
-		margin: 0 auto;
+		// margin: 0 auto;
 		padding-top: 10rem;
 	}
 
@@ -23,7 +15,7 @@
 		display: block;
 		border: 0;
 		padding: 1.5rem 2rem;
-		background: rgba($light-color, 0.166);
+		background: rgba($light-color, 0.14);
 		border: 1px solid rgba(255, 255, 255, 0.158);
 		width: 100%;
 		color: rgb(230, 230, 230);

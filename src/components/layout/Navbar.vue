@@ -3,14 +3,18 @@
 		<div class="navbar__brand">
 			<router-link :to="{ name: 'home' }" class="">PELIKULA</router-link>
 		</div>
-		<transition name="nav">
+		<transition
+			@enter="navAnim"
+			@before-enter="navInitState"
+			@leave="navAnimOut"
+		>
 			<nav class="navbar__nav" v-if="showNav">
 				<transition-group
 					class="navbar__list"
 					tag="ul"
 					appear
-					@before-enter="beforeEnter"
-					@enter="enter"
+					@before-enter="navListInitState"
+					@enter="navListAnim"
 				>
 					<li
 						class="navbar__item"
@@ -18,7 +22,13 @@
 						:key="link.link"
 						:data-index="index"
 					>
-						<a href="" class="navbar__link">{{ link.label }}</a>
+						<router-link
+							:to="{ path: link.link }"
+							class="navbar__link"
+							:class="{ 'navbar__link--disabled': link.disabled }"
+							@click="showNav = false"
+							>{{ link.label }}</router-link
+						>
 					</li>
 				</transition-group>
 				<!-- <ul class="navbar__list">
@@ -74,7 +84,15 @@
 			/>
 			<button><i v-html="iSearch"></i></button>
 		</form>
-		<div class="user" :class="!showNavSearch && 'ml-auto'">E</div>
+		<router-link
+			role="button"
+			:to="{ name: 'auth' }"
+			class="btn btn__primary mr-2"
+			:class="!showNavSearch && 'ml-auto'"
+		>
+			Sign In
+		</router-link>
+		<!-- <div class="user" >E</div> -->
 		<div
 			class="navbar__burger"
 			@click="showNav = !showNav"
@@ -109,12 +127,16 @@ export default {
 		const router = useRouter();
 		const search = ref("");
 		const { randomBG } = getBG();
-
+		const animDurations = ref({
+			nav: 300,
+		});
 		const navLinks = ref([
-			{ label: "Browse Movie", link: "browse_movies" },
-			{ label: "My Watchlist", link: "auth" },
-			{ label: "Request Movie", link: "gen" },
-			{ label: "Sign In/ Sign Up", link: "auth" },
+			{ label: "Movie Genres", link: "/genre/35", disabled: false },
+			{ label: "Sign In/ Sign Up", link: "/auth", disabled: false },
+			{ label: "Browse Movie", link: "/browse_movies", disabled: false },
+			{ label: "My Watchlist", link: "/auth", disabled: true },
+			{ label: "Request Movie", link: "/auth", disabled: true },
+			{ label: "Forum", link: "/auth", disabled: true },
 		]);
 
 		const handleSearch = () => {
@@ -128,22 +150,51 @@ export default {
 
 		const showNav = ref(false);
 
-		const beforeEnter = (el) => {
+		const navListInitState = (el) => {
 			el.style.opacity = 0;
 			el.style.transform = "translateY(100px)";
-			console.log("before enter");
+			console.log("before navListAnim");
 		};
 
-		const enter = (el, done) => {
+		const navListAnim = (el, done) => {
+			setTimeout(() => {
+				gsap.to(el, {
+					opacity: 1,
+					y: 0,
+					duration: 0.8,
+					onComplete: done,
+					ease: "back",
+					delay: el.dataset.index * 0.3,
+				});
+			}, animDurations.value.nav);
+
+			console.log("navListAnim");
+		};
+
+		const navAnim = (el, done) => {
 			gsap.to(el, {
 				opacity: 1,
 				y: 0,
-				duration: 0.8,
+				duration: 0.3,
 				onComplete: done,
-				ease: "back",
-				delay: el.dataset.index * 0.3,
+				ease: "expo",
 			});
-			console.log("enter");
+
+			console.log("navAnim");
+		};
+
+		const navAnimOut = (el, done) => {
+			gsap.to(el, {
+				y: "-100%",
+				duration: 0.3,
+				onComplete: done,
+				ease: "expo",
+			});
+
+			console.log("navAnimOut");
+		};
+		const navInitState = (el) => {
+			el.style.transform = "translateY(-100%)";
 		};
 
 		return {
@@ -154,8 +205,11 @@ export default {
 			request,
 			randomBG,
 			navLinks,
-			beforeEnter,
-			enter,
+			navListInitState,
+			navListAnim,
+			navAnim,
+			navInitState,
+			navAnimOut,
 		};
 	},
 };

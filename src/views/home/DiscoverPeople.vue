@@ -60,6 +60,7 @@ import { onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import feather from "feather-icons";
+import { useRouter } from "vue-router";
 export default {
 	name: "DiscoverMovies",
 	components: {
@@ -86,6 +87,7 @@ export default {
 	setup(props, { emit }) {
 		const url = ref(props.url);
 		const { movies: people, error, load, isPending } = getMovies();
+		const router = useRouter();
 		onBeforeMount(async () => {
 			await load(url.value);
 			console.log(people.value);
@@ -93,7 +95,8 @@ export default {
 		});
 
 		const handleClick = (person) => {
-			emit("showModal", person);
+			// console.log(person);
+			router.push({ name: "person", params: { id: person.id } });
 		};
 
 		const fakeloader = ref(true);
