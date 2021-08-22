@@ -84,12 +84,14 @@
 			/>
 			<button><i v-html="iSearch"></i></button>
 		</form>
-		<button
+		<router-link
+			role="button"
+			:to="{ name: 'auth' }"
 			class="btn btn__primary mr-2"
 			:class="!showNavSearch && 'ml-auto'"
 		>
 			Sign In
-		</button>
+		</router-link>
 		<!-- <div class="user" >E</div> -->
 		<div
 			class="navbar__burger"
