@@ -131,12 +131,12 @@ export default {
 			nav: 300,
 		});
 		const navLinks = ref([
+			{ label: "Movie Genres", link: "/genre/35", disabled: false },
+			{ label: "Sign In/ Sign Up", link: "/auth", disabled: false },
 			{ label: "Browse Movie", link: "/browse_movies", disabled: false },
 			{ label: "My Watchlist", link: "/auth", disabled: true },
 			{ label: "Request Movie", link: "/auth", disabled: true },
-			{ label: "Sign In/ Sign Up", link: "/auth", disabled: false },
 			{ label: "Forum", link: "/auth", disabled: true },
-			{ label: "Movie Genres", link: "/genre/35", disabled: false },
 		]);
 
 		const handleSearch = () => {
