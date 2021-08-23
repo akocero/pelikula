@@ -120,7 +120,7 @@
 		</div>
 
 		<div class="pb-4 container flex-row">
-			<div class="col-6">
+			<div class="col-6 col-sm-12">
 				<div class="movie-details__overview">
 					<h2 class="h2 mb-1">Story Line</h2>
 					<p class="p">
@@ -128,7 +128,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-6">
+			<div class="col-6 col-sm-12">
 				<BaseScrollable
 					title="Director, Story, Writer"
 					:data="mainCrew"

@@ -23,12 +23,14 @@
 
 	&__actions {
 		display: flex;
+		align-items: center;
 
 		div:not(:last-child) {
 			margin-right: 2rem;
 		}
 
 		@include respond(tab-port) {
+			align-items: flex-start;
 			flex-direction: column;
 		}
 	}
