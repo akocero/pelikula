@@ -20,7 +20,7 @@
 
 		@include respond(tab-port) {
 			// width < 900?
-			padding: 2rem $m-x-spacing;
+			padding: 2rem 0;
 		}
 		// overflow-y: scroll;
 
@@ -32,7 +32,7 @@
 
 		@include respond(tab-port) {
 			// width < 900?
-			margin-left: $m-x-spacing;
+			margin-left: 0;
 		}
 	}
 

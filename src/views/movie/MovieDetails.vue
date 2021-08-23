@@ -146,24 +146,26 @@
 		<div class="movie-details__media container">
 			<div class="movie-details__media-heading">
 				<h2 class="mr-5">Media</h2>
-				<button
-					v-for="(mediaItem, index) in media"
-					:key="index"
-					class="btn btn__sm mr-1"
-					:class="{ 'btn--active': mediaItem.active }"
-					@click="handleShowMedia(mediaItem.name)"
-				>
-					{{ mediaItem.name }}
-					<span v-if="mediaItem.name === 'Videos'">
-						/ Trailers {{ movie.videos?.results?.length }}
-					</span>
-					<span v-if="mediaItem.name === 'Posters'">
-						{{ movie.images.posters?.length }}
-					</span>
-					<span v-if="mediaItem.name === 'Backdrops'">
-						{{ movie.images.backdrops?.length }}
-					</span>
-				</button>
+				<div class="movie-details__media-actions">
+					<button
+						v-for="(mediaItem, index) in media"
+						:key="index"
+						class="btn btn__sm mr-1"
+						:class="{ 'btn--active': mediaItem.active }"
+						@click="handleShowMedia(mediaItem.name)"
+					>
+						{{ mediaItem.name }}
+						<span v-if="mediaItem.name === 'Videos'">
+							{{ movie.videos?.results?.length }}
+						</span>
+						<span v-if="mediaItem.name === 'Posters'">
+							{{ movie.images.posters?.length }}
+						</span>
+						<span v-if="mediaItem.name === 'Backdrops'">
+							{{ movie.images.backdrops?.length }}
+						</span>
+					</button>
+				</div>
 			</div>
 
 			<MovieTrailers
