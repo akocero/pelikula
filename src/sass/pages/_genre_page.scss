@@ -6,8 +6,30 @@
 		display: flex;
 		justify-content: space-between;
 
+		@include respond(tab-port) {
+			flex-direction: column;
+			margin-bottom: 2rem;
+		}
 		span {
 			color: $grey-color;
+		}
+	}
+
+	&__form-group {
+		@include respond(tab-port) {
+			margin-top: 1rem;
+		}
+	}
+
+	&__actions {
+		display: flex;
+
+		div:not(:last-child) {
+			margin-right: 2rem;
+		}
+
+		@include respond(tab-port) {
+			flex-direction: column;
 		}
 	}
 }
