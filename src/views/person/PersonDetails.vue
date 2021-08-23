@@ -25,7 +25,9 @@
 							/>
 						</div>
 						<div class="col-10 col-xs-12 heading__content">
-							<h1 class="h1 mb-1">{{ data.name }}</h1>
+							<h1 class="h1 mb-1 heading__title">
+								{{ data.name }}
+							</h1>
 							<div class="mb-2 heading__biography">
 								<p
 									class="p mb-1"
