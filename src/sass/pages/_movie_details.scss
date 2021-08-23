@@ -119,8 +119,19 @@
 		&__actions {
 			display: flex;
 			align-items: center;
+			@include respond(tab-port) {
+				// width < 900?
+				flex-direction: column;
+				align-items: flex-start;
+			}
 			& > * {
 				margin-right: 2rem;
+
+				@include respond(tab-port) {
+					&:not(:last-child) {
+						margin-bottom: 2rem;
+					}
+				}
 			}
 		}
 	}
@@ -136,13 +147,25 @@
 		display: flex;
 
 		@include default-shadow;
+
+		@include respond(tab-port) {
+			flex-direction: column;
+			margin: 2rem $m-x-spacing;
+		}
 	}
 
 	&__additional-details {
 		display: flex;
+		@include respond(tab-port) {
+			flex-direction: column;
+		}
 		li {
 			margin-right: 4rem;
 			font-size: 1.4rem;
+			@include respond(tab-port) {
+				margin-bottom: 2rem;
+				font-size: 1.8rem;
+			}
 			label {
 				font-weight: 700;
 				color: rgb(88, 88, 88);
@@ -162,6 +185,11 @@
 
 	&__links {
 		@include flex-center;
+		margin-left: auto;
+		@include respond(tab-port) {
+			margin-left: 0;
+			// justify-content: flex-start;
+		}
 		a {
 			margin-left: 1.6rem;
 		}
@@ -170,6 +198,10 @@
 	&__media {
 		&-heading {
 			display: flex;
+			@include respond(tab-port) {
+				margin-left: 0;
+				flex-direction: column;
+			}
 		}
 	}
 

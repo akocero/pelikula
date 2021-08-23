@@ -6,16 +6,40 @@
 		display: flex;
 		justify-content: space-between;
 
+		@include respond(tab-port) {
+			flex-direction: column;
+			margin-bottom: 2rem;
+		}
 		span {
 			color: $grey-color;
+		}
+	}
+
+	&__form-group {
+		@include respond(tab-port) {
+			margin-top: 1rem;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+
+		div:not(:last-child) {
+			margin-right: 2rem;
+		}
+
+		@include respond(tab-port) {
+			align-items: flex-start;
+			flex-direction: column;
 		}
 	}
 }
 
 .movies {
-	&__list {
-		// margin: 0 $x-spacing;
-	}
+	// &__list {
+	// 	// margin: 0 $x-spacing;
+	// }
 	&__loadmore {
 		text-align: center;
 	}

@@ -7,13 +7,25 @@
 		display: flex;
 		border-radius: $border-rad;
 
+		@include respond(tab-port) {
+			flex-direction: column;
+			padding: 2rem 2.5rem;
+		}
+
 		@include default-shadow;
 		li {
+			font-size: 1.4rem;
 			&:not(:last-child) {
 				margin-right: 4rem;
 			}
 
-			font-size: 1.4rem;
+			@include respond(tab-port) {
+				&:not(:last-child) {
+					margin-bottom: 2rem;
+				}
+				font-size: 1.8rem;
+			}
+
 			label {
 				font-weight: 700;
 				color: rgb(88, 88, 88);
@@ -29,12 +41,21 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+
+				@include respond(tab-port) {
+					justify-content: unset;
+				}
 			}
 		}
 
 		li.link {
 			display: flex;
 			align-items: center;
+			margin-left: auto;
+
+			@include respond(tab-port) {
+				margin-left: 0;
+			}
 		}
 	}
 
@@ -43,13 +64,26 @@
 
 		&__poster {
 			// width: 100%;
+
+			@include respond(tab-port) {
+				margin-bottom: 2rem;
+			}
 			img {
 				border-radius: $border-rad;
+
+				@include respond(tab-port) {
+					max-width: 60%;
+					display: block;
+					margin: 0 auto;
+				}
 			}
 		}
 
 		&__content {
-			padding-left: 3.5rem;
+			padding-left: 2rem;
+			@include respond(tab-port) {
+				padding-left: 0;
+			}
 		}
 
 		&__biography {

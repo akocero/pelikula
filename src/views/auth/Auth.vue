@@ -7,11 +7,11 @@
             to right, 
             rgba(1, 1, 1, 0.85),
             transparent), 
-            url(${request.imagePathOrig}${randomBG})`,
-			backgroundPosition: 'right center',
+            url(${request.image_path.backdrop.w1280}${randomBG})`,
+			backgroundPosition: 'center center',
 		}"
 	>
-		<div class="auth__log-in" v-if="!showSignup">
+		<div class="auth__log-in container" v-if="!showSignup">
 			<Signin @login="enterForum" />
 			<p class="mt-3">
 				No account yet?
@@ -19,7 +19,7 @@
 			</p>
 		</div>
 
-		<div class="auth__log-in" v-else>
+		<div class="auth__log-in container" v-else>
 			<Signup @signup="enterForum" />
 			<p class="mt-3">
 				Already registered?

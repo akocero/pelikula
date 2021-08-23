@@ -12,15 +12,15 @@
 			backgroundPosition: 'center bottom 80%',
 		}"
 	>
-		<div class="flex-row container">
+		<div class="flex-row collection__wrapper">
 			<div class="col-3 collection__poster" v-if="collection.poster_path">
 				<img
 					:src="image_path.poster.w300 + collection.poster_path"
 					alt=""
 				/>
 			</div>
-			<div class="col-9">
-				<h3 class="h3">{{ collection.name }}</h3>
+			<div class="col-9 collection__content">
+				<h3 class="h3 collection__title">{{ collection.name }}</h3>
 				<p class="p ">{{ collection.overview }}</p>
 				<BaseScrollable
 					:data="collection.parts"

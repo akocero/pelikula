@@ -15,7 +15,7 @@
 			<div class="heading__wrapper">
 				<div class="container">
 					<div class="flex-row">
-						<div class="col-2 heading__poster">
+						<div class="col-2 col-xs-12 heading__poster">
 							<img
 								:src="
 									request.image_path.poster.w220 +
@@ -24,7 +24,7 @@
 								alt=""
 							/>
 						</div>
-						<div class="col-10 pl-2">
+						<div class="col-10 col-xs-12 heading__content">
 							<h1 class="h1 mb-1">{{ data.name }}</h1>
 							<div class="mb-2 heading__biography">
 								<p
@@ -81,7 +81,7 @@
 									<span>{{ data.place_of_birth }}</span>
 								</li>
 
-								<li class="ml-auto link" v-if="data.homepage">
+								<li class="link" v-if="data.homepage">
 									<a :href="data.homepage"
 										><i v-html="iHome"></i
 									></a>
