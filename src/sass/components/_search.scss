@@ -39,6 +39,11 @@
 		font-weight: 400;
 
 		cursor: pointer;
+
+		@include respond(tab-port) {
+			top: 1.3rem;
+			right: 1rem;
+		}
 	}
 
 	&__results {
