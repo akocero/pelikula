@@ -203,6 +203,12 @@
 				flex-direction: column;
 			}
 		}
+
+		&-actions {
+			@include respond(tab-port) {
+				margin-top: 2rem;
+			}
+		}
 	}
 
 	&__trailers {
