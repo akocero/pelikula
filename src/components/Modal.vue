@@ -59,7 +59,7 @@
 			</div>
 			<router-link
 				role="button"
-				class="btn btn__sm modal__view-more container"
+				class="btn btn__sm modal__view-more"
 				:to="{ name: 'movie', params: { id: movie.id } }"
 			>
 				View More
