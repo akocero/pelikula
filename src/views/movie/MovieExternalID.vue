@@ -1,5 +1,5 @@
 <template>
-	<ul class="movie-details__links ml-auto">
+	<ul class="movie-details__links">
 		<li v-if="external_ids && external_ids.facebook_id">
 			<a
 				:href="'https://www.facebook.com/' + external_ids.facebook_id"

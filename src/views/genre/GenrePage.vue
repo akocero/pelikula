@@ -34,37 +34,49 @@
 				Popular {{ getActiveGenre.name }} Movies
 			</h3>
 			<div class="genre-page__actions" v-if="genres">
-				<span class="mr-1">Choose Genre:</span>
-				<select
-					name=""
-					id=""
-					v-model="genreValue"
-					@change="handleChangeActiveGenre"
-				>
-					<option
-						:value="genre.id"
-						v-for="genre in genres"
-						:key="genre.id"
-						>{{ genre.name }}</option
+				<div class="genre-page__form-group">
+					<span class="mr-1">Choose Genre:</span>
+					<select
+						name=""
+						id=""
+						v-model="genreValue"
+						@change="handleChangeActiveGenre"
 					>
-				</select>
-				<span class="mr-1 ml-4">Sorted By:</span>
-				<select @change="handleChangeSortedBy">
-					<option
-						v-for="sort in sortedByArray"
-						:value="sort.value"
-						:key="sort.value"
-						class=""
-						:selected="sort.active"
-						>{{ sort.name }}</option
+						<option
+							:value="genre.id"
+							v-for="genre in genres"
+							:key="genre.id"
+							>{{ genre.name }}</option
+						>
+					</select>
+				</div>
+				<div class="genre-page__form-group">
+					<span class="mr-1">Sorted By:</span>
+					<select @change="handleChangeSortedBy">
+						<option
+							v-for="sort in sortedByArray"
+							:value="sort.value"
+							:key="sort.value"
+							class=""
+							:selected="sort.active"
+							>{{ sort.name }}</option
+						>
+					</select>
+					<button
+						class="btn btn-sm ml-1"
+						@click="asc = !asc"
+						v-if="!asc"
 					>
-				</select>
-				<button class="btn btn-sm ml-1" @click="asc = !asc" v-if="!asc">
-					Ascending
-				</button>
-				<button class="btn btn-sm ml-1" @click="asc = !asc" v-if="asc">
-					Descending
-				</button>
+						Ascending
+					</button>
+					<button
+						class="btn btn-sm ml-1"
+						@click="asc = !asc"
+						v-if="asc"
+					>
+						Descending
+					</button>
+				</div>
 				<!-- <button class="btn btn-sm mr-1" @click="asc = !asc">
 					Newest
 				</button>

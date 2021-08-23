@@ -6,6 +6,7 @@
 	display: flex;
 	align-items: center;
 	border: none;
+
 	&__poster {
 		// @include flex-center;
 		display: flex;
@@ -18,16 +19,29 @@
 			max-width: 85%;
 			min-width: 85%;
 		}
+
+		@include respond(tab-port) {
+			display: none;
+			// justify-content: flex-start;
+		}
 	}
 	&__title {
-		font-size: 2.8rem;
-		font-weight: 600;
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 	}
-
+	&__wrapper {
+		@include respond(tab-port) {
+			display: unset;
+		}
+	}
 	&__content {
 		// text-align: center;
-		margin-left: $x-spacing;
+		// margin-left: $x-spacing;
+
+		@include respond(tab-port) {
+			padding-left: $m-x-spacing;
+			width: 100%;
+			margin: 0;
+		}
 	}
 
 	&__img {

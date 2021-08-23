@@ -6,7 +6,7 @@
 		content: "";
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: -1px;
 		width: 5em;
 		height: 100%;
 		background-image: linear-gradient(to left, $dark-color, transparent);
@@ -20,7 +20,7 @@
 
 		@include respond(tab-port) {
 			// width < 900?
-			padding: 2rem $m-x-spacing;
+			padding: 2rem 0;
 		}
 		// overflow-y: scroll;
 
@@ -32,7 +32,7 @@
 
 		@include respond(tab-port) {
 			// width < 900?
-			margin-left: $m-x-spacing;
+			margin-left: 0;
 		}
 	}
 
