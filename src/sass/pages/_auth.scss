@@ -8,9 +8,16 @@
 	&__log-in {
 		border-radius: $border-rad;
 		padding: 4rem 3rem;
-		width: 25%;
-		margin-right: 4rem;
+		min-width: 25%;
+		// margin-right: 4rem;
 		background-color: $t-dark-color-1;
+		@include respond(tab-port) {
+			width: 40%;
+		}
+
+		@include respond(phone) {
+			width: 100%;
+		}
 		// margin-top: 13rem;
 
 		p {
