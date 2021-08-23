@@ -23,7 +23,7 @@
 				&:not(:last-child) {
 					margin-bottom: 2rem;
 				}
-				font-size: 1.8rem;
+				font-size: 1.6rem;
 			}
 
 			label {
@@ -61,7 +61,11 @@
 
 	.heading {
 		padding-top: 10rem;
-
+		&__title {
+			@include respond(tab-port) {
+				text-align: center;
+			}
+		}
 		&__poster {
 			// width: 100%;
 
@@ -91,6 +95,7 @@
 			// max-width: 95%;
 			// overflow-y: hidden;
 			p {
+				text-align: justify;
 				white-space: pre-wrap;
 				display: -webkit-box;
 				-webkit-line-clamp: 5; /* number of lines to show */
@@ -119,13 +124,22 @@
 		justify-content: space-between;
 	}
 	&__item {
-		padding: 1rem 1.5rem;
+		padding: 0.8em 1.2em;
 		border-radius: 8px;
 		margin: 2rem 0;
 		display: flex;
 		cursor: pointer;
+		font-size: 1.6rem;
 
 		@include default-shadow;
+
+		@include respond(tab-port) {
+			font-size: 1.8rem;
+		}
+	}
+
+	&__content {
+		margin-right: 2rem;
 	}
 	&__title {
 		// font-family: "Poppins";

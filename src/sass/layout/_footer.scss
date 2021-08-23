@@ -7,6 +7,7 @@
 	text-align: center;
 	font-size: $default-font-size;
 	padding-top: 5.5rem;
+
 	&__gitlab {
 		// margin-bottom: 1rem;
 		a {
@@ -27,7 +28,8 @@
 	}
 
 	svg {
-		max-width: 2rem;
+		width: 2rem;
+		// max-width: 2rem;
 	}
 
 	img {
@@ -39,6 +41,17 @@
 		margin: 2rem auto;
 		justify-content: space-between;
 		width: 10%;
+
+		@include respond(tab-port) {
+			width: 50%;
+			padding-bottom: 2rem;
+
+			svg {
+				width: 2.8rem;
+				// max-width: 2rem;
+			}
+		}
+
 		a {
 			color: $light-color;
 			&:hover {

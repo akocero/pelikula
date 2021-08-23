@@ -81,6 +81,7 @@
 		@include respond(tab-port) {
 			// width < 900?
 			width: 80%;
+			margin: 4rem 0 0 3rem;
 		}
 	}
 
@@ -113,6 +114,11 @@
 	&__view-more {
 		position: absolute;
 		bottom: $x-spacing;
+		margin-left: $x-spacing;
+
+		@include respond(tab-port) {
+			margin-left: 3rem;
+		}
 	}
 
 	&__plot {

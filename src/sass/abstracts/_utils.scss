@@ -77,6 +77,10 @@ $spaceAmounts: (0, 1, 2, 3, 4, 5, 6, 7);
 
 .offset-y-10 {
 	margin-top: -20vh;
+
+	@include respond(tab-port) {
+		margin-top: -30vh;
+	}
 }
 
 .scrollable-x {
