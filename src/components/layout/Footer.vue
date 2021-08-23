@@ -89,21 +89,25 @@ export default {
 		iFb: function() {
 			return feather.icons["facebook"].toSvg({
 				width: 42,
+				height: 42,
 			});
 		},
 		iGitHub: function() {
 			return feather.icons["github"].toSvg({
 				width: 42,
+				height: 42,
 			});
 		},
 		iLinkedin: function() {
 			return feather.icons["linkedin"].toSvg({
 				width: 42,
+				height: 42,
 			});
 		},
 		itwitter: function() {
 			return feather.icons["twitter"].toSvg({
 				width: 42,
+				height: 42,
 			});
 		},
 	},
