@@ -9,15 +9,16 @@
 	width: 100%;
 	z-index: 1001;
 	overflow: hidden;
+	// background-color: black;
 
 	@include respond(tab-port) {
 		// width < 900?
 		padding: 0 2rem;
+		height: 7.6rem;
 	}
 	&__search {
-		margin-left: auto;
 		position: relative;
-		margin-right: 1.5rem;
+		margin-right: 6rem;
 
 		input {
 			padding: 1rem 1.5rem;
@@ -96,6 +97,10 @@
 		// }
 	}
 
+	&__cta {
+		margin-right: 4.6rem;
+	}
+
 	&__brand {
 		font-size: 1.8rem;
 		font-weight: 700;
@@ -123,6 +128,8 @@
 	}
 
 	&__burger {
+		position: fixed;
+		right: 4rem;
 		height: 35px;
 		display: flex;
 		flex-direction: column;
@@ -131,6 +138,28 @@
 		z-index: 10001;
 		// background-color: red;
 		transition: all 0.6s ease;
+
+		@include respond(tab-port) {
+			// width < 900?
+			right: 2rem;
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -0.78rem;
+			right: -1rem;
+			width: 5rem;
+			height: 5rem;
+			border-radius: 8rem;
+			background-color: $t-dark-color-1;
+			z-index: -1;
+
+			@include respond(tab-port) {
+				// width < 900?
+				top: -0.6rem;
+			}
+		}
 		& > * {
 			width: 3rem;
 			height: 2px;
