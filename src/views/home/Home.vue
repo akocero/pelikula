@@ -81,7 +81,11 @@
 			@showModal="handleShowModal($event)"
 		/>
 
-		<MovieCollection :id="121938" :request="request" />
+		<MovieCollection
+			:id="790370"
+			:request="request"
+			@showModal="handleShowModal($event)"
+		/>
 		<DiscoverMovies
 			:url="request.topAction"
 			title="Top Action"
