@@ -6,14 +6,14 @@
 	white-space: nowrap;
 	border-radius: $border-rad;
 	border: none;
-	background-color: rgb(36, 36, 36);
+	background-color: $dark-color-1;
 	color: $light-color;
 	letter-spacing: 0.8px;
 
 	@include default-transition;
 
 	&:hover {
-		background-color: lighten(rgb(36, 36, 36), 5%);
+		background-color: lighten($dark-color-1, 5%);
 		color: $light-color;
 	}
 

@@ -1,12 +1,12 @@
-$dark-color: #141414;
-$dark-color-1: lighten(#141414, 7%);
-$t-dark-color: rgba($dark-color, 0.5);
-$t-dark-color-1: rgba($dark-color, 0.7);
-$grey-color: #c9c9c9;
-$red-color: #e50914;
+$dark-color: hsl(0, 0%, 6%);
+$dark-color-1: hsl(0, 0%, 10%);
+$t-dark-color: hsla(0, 0%, 6%, 0.5);
+$t-dark-color-1: hsla(0, 0%, 6%, 0.7);
+$grey-color: hsl(0, 0%, 75%);
+$red-color: hsl(357, 92%, 47%);
 
-$light-color: #ededed;
-$light-color-1: #cacaca;
+$light-color: hsl(0, 0%, 95%);
+$light-color-1: hsl(0, 0%, 79%);
 $border-rad: 6px;
 $gutter: 2.6rem;
 $x-spacing: 4rem;

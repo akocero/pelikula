@@ -1,4 +1,22 @@
 <template>
+	<transition
+		@before-enter="backdropInit"
+		@enter="backdropAnim"
+		@leave="backdropLeave"
+	>
+		<div class="modal__backdrop" v-if="showModal"></div>
+	</transition>
+	<transition
+		@before-enter="modalInit"
+		@enter="modalAnim"
+		@leave="modalLeave"
+	>
+		<Modal
+			:movie="modalContent"
+			v-if="showModal"
+			@closeModal="handleCloseModal"
+		/>
+	</transition>
 	<Loading
 		v-model:active="loading"
 		:is-full-page="true"
@@ -10,6 +28,7 @@
 		:opacity="0.95"
 		:lock-scroll="true"
 	/>
+
 	<div class="movie-details" v-if="!loading && movie">
 		<ModalTrailer
 			v-if="showTrailer"
@@ -139,6 +158,7 @@
 		</div>
 		<div class="mb-5" v-if="movie.belongs_to_collection">
 			<MovieCollection
+				@showModal="handleShowModal($event)"
 				:id="movie.belongs_to_collection.id"
 				:request="request"
 			/>
@@ -234,6 +254,8 @@ import { computed, onBeforeMount, ref } from "vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import feather from "feather-icons";
+import Modal from "@/components/Modal";
+import useModal from "@/composables/useModal";
 
 export default {
 	name: "MovieDetails",
@@ -247,6 +269,7 @@ export default {
 		BaseScrollable,
 		MovieTrailers,
 		MovieImages,
+		Modal,
 	},
 	data() {
 		return {
@@ -272,6 +295,18 @@ export default {
 		const { error, movie, load } = getMovie();
 		const { result: omdb, load: loadOmdb } = useOMDB();
 		const { showTrailer, playTrailer, trailerLink } = useModalTrailer();
+		const {
+			modalContent,
+			showModal,
+			handleShowModal,
+			handleCloseModal,
+			backdropAnim,
+			backdropInit,
+			backdropLeave,
+			modalInit,
+			modalAnim,
+			modalLeave,
+		} = useModal();
 		const loading = ref(false);
 
 		const media = ref([
@@ -347,6 +382,17 @@ export default {
 			loadingings,
 			media,
 			handleShowMedia,
+
+			modalContent,
+			showModal,
+			backdropAnim,
+			backdropInit,
+			modalInit,
+			modalAnim,
+			handleCloseModal,
+			handleShowModal,
+			backdropLeave,
+			modalLeave,
 		};
 	},
 };

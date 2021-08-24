@@ -63,9 +63,11 @@
 					v-for="(movie, index) in movies"
 					:key="movie.id"
 					:data-index="index"
-					@click="handleShowModal(movie)"
 				>
-					<div class="movies__item-poster">
+					<div
+						class="movies__item-poster"
+						@click="handleShowModal(movie)"
+					>
 						<img
 							v-if="!movie.poster_path"
 							src="https://via.placeholder.com/220x330/3F3F3F/FFFFFF/?text=Poster N/A"
