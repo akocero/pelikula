@@ -1,5 +1,5 @@
 <template>
-	<div class="navbar">
+	<header class="navbar">
 		<div class="navbar__brand">
 			<router-link :to="{ name: 'home' }" class="">PELIKULA</router-link>
 		</div>
@@ -31,43 +31,6 @@
 						>
 					</li>
 				</transition-group>
-				<!-- <ul class="navbar__list">
-					<li class="navbar__item">
-						<router-link
-							:to="{
-								name: 'browse_movies',
-							}"
-							class="navbar__link"
-							@click="showNav = false"
-							>Browse Movies</router-link
-						>
-					</li>
-					<li class="navbar__item">
-						<a href="" class="navbar__link">My Watchlist</a>
-					</li>
-					<li class="navbar__item">
-						<a href="" class="navbar__link">Request Movie</a>
-					</li>
-					<li class="navbar__item">
-						<a href="" class="navbar__link">Genres</a>
-					</li>
-					<li class="navbar__item">
-						<a href="" class="navbar__link">Actors</a>
-					</li>
-					<li class="navbar__item">
-						<router-link
-							:to="{
-								name: 'auth',
-							}"
-							@click="showNav = false"
-							class="navbar__link"
-							>Signin / Signup</router-link
-						>
-					</li>
-					<li class="navbar__item">
-						<a href="" class="navbar__link">Forum</a>
-					</li>
-				</ul> -->
 			</nav>
 		</transition>
 		<div class="navbar__right">
@@ -85,13 +48,13 @@
 				/>
 				<button><i v-html="iSearch"></i></button>
 			</form>
-			<router-link
+			<!-- <router-link
 				role="button"
 				:to="{ name: 'auth' }"
-				class="btn btn__primary mr-2"
+				class="btn btn__primary navbar__cta"
 			>
 				Sign In
-			</router-link>
+			</router-link> -->
 			<!-- <div class="user" >E</div> -->
 			<div
 				class="navbar__burger"
@@ -103,7 +66,7 @@
 				<span></span>
 			</div>
 		</div>
-	</div>
+	</header>
 </template>
 
 <script>
