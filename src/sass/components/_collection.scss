@@ -12,6 +12,7 @@
 		display: flex;
 		align-items: flex-start;
 		justify-content: center;
+		padding-left: $x-spacing - 2rem;
 		img {
 			border-radius: $border-rad;
 			@include default-shadow;
@@ -28,6 +29,12 @@
 	&__title {
 		margin-bottom: 1rem;
 	}
+
+	&__overview {
+		@include respond(tab-port) {
+			text-align: justify;
+		}
+	}
 	&__wrapper {
 		@include respond(tab-port) {
 			display: unset;
@@ -38,20 +45,13 @@
 		// margin-left: $x-spacing;
 
 		@include respond(tab-port) {
-			padding-left: $m-x-spacing;
+			padding: 0 $m-x-spacing !important;
 			width: 100%;
-			margin: 0;
 		}
 	}
 
 	&__img {
 		// width: 80%;
 		margin: 0 auto;
-	}
-
-	.scrollable {
-		&::after {
-			display: none;
-		}
 	}
 }
