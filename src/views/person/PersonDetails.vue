@@ -10,6 +10,24 @@
 		:opacity="0.95"
 		:lock-scroll="true"
 	/>
+	<transition
+		@before-enter="backdropInit"
+		@enter="backdropAnim"
+		@leave="backdropLeave"
+	>
+		<div class="modal__backdrop" v-if="showModal"></div>
+	</transition>
+	<transition
+		@before-enter="modalInit"
+		@enter="modalAnim"
+		@leave="modalLeave"
+	>
+		<Modal
+			:movie="modalContent"
+			v-if="showModal"
+			@closeModal="handleCloseModal"
+		/>
+	</transition>
 	<div class="person-details" v-if="domLoaded">
 		<div class="heading">
 			<div class="heading__wrapper">
@@ -124,16 +142,28 @@
 								class="actor-movies__item"
 								v-for="credit in sortedCreditsByDateRelease"
 								:key="credit.id"
+								@click="handleShowModal(credit)"
 							>
+								<img
+									v-if="credit.poster_path"
+									:src="
+										image_path.poster.w45 +
+											credit.poster_path
+									"
+									alt=""
+								/>
+								<img
+									v-if="!credit.poster_path"
+									src="https://via.placeholder.com/48X72/3F3F3F/FFFFFF/?text=Poster N/A"
+								/>
 								<div class="actor-movies__content">
-									<span class="actor-movies__year"
-										>{{ credit?.release_date.substr(0, 4) }}
-										|
-									</span>
-
-									<span class="actor-movies__title">{{
+									<span class="actor-movies__title h5">{{
 										credit.original_title
 									}}</span>
+									<span class="actor-movies__year h6"
+										>{{ credit?.release_date.substr(0, 4) }}
+									</span>
+
 									<span class="actor-movies__character">
 										as {{ credit.character }}</span
 									>
@@ -153,18 +183,21 @@
 
 <script>
 import getPerson from "@/composables/getPerson";
-import request from "@/axios/request";
+import request, { image_path } from "@/axios/request";
 import { onBeforeMount, computed, ref } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 import BaseScrollable from "@/components/BaseScrollable";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import feather from "feather-icons";
+import Modal from "@/components/Modal";
+import useModal from "@/composables/useModal";
 export default {
 	name: "PersonDetails",
 	components: {
 		BaseScrollable,
 		Loading,
+		Modal,
 	},
 	computed: {
 		iActivity: function() {
@@ -193,6 +226,18 @@ export default {
 		const domLoaded = ref(false);
 		const newest = ref(true);
 		const showBiography = ref(false);
+		const {
+			modalContent,
+			showModal,
+			handleShowModal,
+			handleCloseModal,
+			backdropAnim,
+			backdropInit,
+			backdropLeave,
+			modalInit,
+			modalAnim,
+			modalLeave,
+		} = useModal();
 		onBeforeMount(async () => {
 			await load(
 				`person/${route.params.id}?api_key=${request.apikey}&language=en-US&append_to_response=combined_credits,known_for_department`
@@ -251,6 +296,18 @@ export default {
 			loading,
 			newest,
 			showBiography,
+			image_path,
+
+			modalContent,
+			showModal,
+			backdropAnim,
+			backdropInit,
+			modalInit,
+			modalAnim,
+			handleCloseModal,
+			handleShowModal,
+			backdropLeave,
+			modalLeave,
 		};
 	},
 };

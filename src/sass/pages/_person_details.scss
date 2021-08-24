@@ -124,12 +124,19 @@
 		justify-content: space-between;
 	}
 	&__item {
-		padding: 0.8em 1.2em;
-		border-radius: 8px;
+		padding: 0.3em;
+		border-radius: $border-rad;
 		margin: 2rem 0;
 		display: flex;
 		cursor: pointer;
 		font-size: 1.6rem;
+		img {
+			width: 45px;
+			object-fit: contain;
+		}
+		&:hover {
+			background-color: lighten($dark-color-1, 5%);
+		}
 
 		@include default-shadow;
 
@@ -139,24 +146,28 @@
 	}
 
 	&__content {
-		margin-right: 2rem;
+		margin: 0 1rem;
+
+		span {
+			display: block;
+		}
 	}
-	&__title {
-		// font-family: "Poppins";
-		// font-weight: 700;
-		color: $light-color;
-	}
+	// &__title {
+	// 	// font-family: "Poppins";
+	// 	// font-weight: 700;
+	// 	color: $light-color;
+	// }
 	&__character {
 		color: rgb(80, 80, 80);
 	}
-	&__year {
-		color: $grey-color;
-	}
+	// &__year {
+	// 	color: $grey-color;
+	// }
 	&__vote {
 		margin-left: auto;
 		display: flex;
 		align-items: center;
-
+		margin-right: 1rem;
 		i {
 			margin-bottom: -3px;
 			margin-right: 0.5rem;
