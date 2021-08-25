@@ -39,7 +39,7 @@
 			class="mobile__hero-image"
 			:style="{
 				backgroundSize: 'cover',
-				backgroundImage: `url(${request.image_path.backdrop.w1280}${movie.backdrop_path})`,
+				backgroundImage: `url(${request.image_path.backdrop.w780}${movie.backdrop_path})`,
 				backgroundPosition: 'top center',
 			}"
 			v-if="!loading && movie"
