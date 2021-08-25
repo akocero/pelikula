@@ -36,6 +36,15 @@
 			:trailerLink="trailerLink"
 		/>
 		<div
+			class="mobile__hero-image"
+			:style="{
+				backgroundSize: 'cover',
+				backgroundImage: `url(${request.image_path.backdrop.w780}${movie.backdrop_path})`,
+				backgroundPosition: 'top center',
+			}"
+			v-if="!loading && movie"
+		></div>
+		<div
 			class="heading"
 			:style="{
 				backgroundSize: 'cover',
@@ -47,7 +56,7 @@
 			<div class="heading__container">
 				<div class="heading__content">
 					<div
-						class="heading__img-container mb-5"
+						class="heading__img-container"
 						v-if="movie.images.logos.length"
 					>
 						<img
@@ -56,9 +65,6 @@
 							"
 							alt=""
 							:style="{
-								width: 'unset',
-								maxWidth: '100%',
-								maxHeight: '30vh',
 								aspectRatio: movie.images.logos[0].aspect_ratio,
 							}"
 							class=""
@@ -120,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="fade-effect"></div>
+		<div class="fade-effect hide-on-mobile"></div>
 		<div class="movie-details__more-info">
 			<MovieAdditionalDetails :movie="movie" />
 			<MovieExternalID
