@@ -319,6 +319,11 @@ export default {
 		onBeforeMount(async () => {
 			await loadContent(route.params.id);
 			// console.log(movie.value);
+			if (!loading.value) {
+				setTimeout(() => {
+					window.scrollTo(0, 0);
+				}, 500);
+			}
 		});
 
 		onBeforeRouteUpdate(async (to, from, next) => {
