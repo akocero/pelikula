@@ -360,6 +360,10 @@ export default {
 			await loadOmdb(movie.value.imdb_id);
 			// console.log(omdb.value);
 			loading.value = false;
+
+			setTimeout(() => {
+				window.scrollTo(0, 0);
+			}, 500);
 		};
 
 		const minutesToHours = (n) => {

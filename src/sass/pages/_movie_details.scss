@@ -24,7 +24,7 @@
 					transparent,
 					$dark-color
 				);
-				z-index: 100;
+				// z-index: 100;
 			}
 
 			&::before {
@@ -41,7 +41,7 @@
 					transparent
 				);
 				// background-color: red;
-				z-index: 100;
+				// z-index: 100;
 			}
 		}
 	}
@@ -110,7 +110,8 @@
 		&__img-container {
 			width: 90%;
 			margin-bottom: 5rem;
-
+			position: relative;
+			z-index: 100000000;
 			@include respond(tab-port) {
 				margin: 0 auto;
 				width: 80%;
@@ -125,7 +126,7 @@
 				@include respond(tab-port) {
 					display: block;
 					margin: 0 auto;
-					max-height: 20vh;
+					max-height: 18vh;
 					min-height: auto;
 				}
 			}
@@ -170,7 +171,8 @@
 
 			@include respond(tab-port) {
 				max-width: 100%;
-				padding-top: 2.6rem;
+				padding-top: 0;
+				margin-top: -4rem;
 			}
 			img.logo {
 				width: 20%;
@@ -219,11 +221,11 @@
 		}
 	}
 
-	&__plot {
-		@include respond(tab-port) {
-			text-align: justify;
-		}
-	}
+	// &__plot {
+	// 	@include respond(tab-port) {
+	// 		text-align: justify;
+	// 	}
+	// }
 
 	.right {
 		margin-top: 4rem;

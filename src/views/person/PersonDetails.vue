@@ -247,6 +247,9 @@ export default {
 			);
 			domLoaded.value = true;
 			// console.log(data.value);
+			setTimeout(() => {
+				window.scrollTo(0, 0);
+			}, 500);
 		});
 
 		const getComputedAge = (birthday) => {
