@@ -221,7 +221,7 @@ export default {
 			await loadMovies(route.params.id);
 			await fetchGenres("/genre/movie/list?api_key=" + request.apikey);
 			loading.value = false;
-			console.log(movies.value);
+			// console.log(movies.value);
 		});
 
 		const getActiveGenre = computed(() => {
@@ -261,7 +261,7 @@ export default {
 				: a.vote_average - b.vote_average;
 		};
 		const sortedMovies = computed(() => {
-			console.log(sortedBy.value);
+			// console.log(sortedBy.value);
 			if (movies.value) {
 				if (sortedBy.value === "released_date") {
 					return movies.value.results.sort(sortedByReleasedDate);
@@ -292,7 +292,7 @@ export default {
 		const handleLoadMore = async () => {
 			// loading.value = true;
 			currentPage.value += 1;
-			console.log(currentPage.value);
+			// console.log(currentPage.value);
 			let currentMoviesResult = movies.value.results;
 			await loadMovies(route.params.id);
 			movies.value.results = [

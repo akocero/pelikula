@@ -68,7 +68,7 @@
 									Read less
 								</button>
 							</div>
-							<ul class="person-details__more-info">
+							<ul class="more-info">
 								<li>
 									<label>Popularity</label>
 									<span class="icon"
@@ -101,7 +101,10 @@
 									<span>{{ data.place_of_birth }}</span>
 								</li>
 
-								<li class="link" v-if="data.homepage">
+								<li
+									class="more-info__link"
+									v-if="data.homepage"
+								>
 									<a :href="data.homepage"
 										><i v-html="iHome"></i
 									></a>
@@ -243,7 +246,7 @@ export default {
 				`person/${route.params.id}?api_key=${request.apikey}&language=en-US&append_to_response=combined_credits,known_for_department`
 			);
 			domLoaded.value = true;
-			console.log(data.value);
+			// console.log(data.value);
 		});
 
 		const getComputedAge = (birthday) => {
@@ -264,6 +267,14 @@ export default {
 				);
 			}
 		});
+
+		const makeMoreInfo = () => {
+			if (domLoaded.value) {
+				return data.value.map(() => {
+					return {};
+				});
+			}
+		};
 
 		const sortedCreditsByDateRelease = computed(() => {
 			if (domLoaded.value) {

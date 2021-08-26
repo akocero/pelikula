@@ -2,7 +2,9 @@
 	// height: 74vh;
 	padding: 4.2rem 0 2.8rem 0;
 	overflow: hidden;
-	@include default-shadow;
+	// @include default-shadow;
+	background-color: $dark-color-1;
+	box-shadow: inset 8px 5px 16px 0 hsla(0, 0%, 0%, 0.37);
 	display: flex;
 	align-items: center;
 	border: none;
@@ -43,6 +45,7 @@
 	&__content {
 		// text-align: center;
 		// margin-left: $x-spacing;
+		padding-right: $x-spacing;
 
 		@include respond(tab-port) {
 			padding: 0 $m-x-spacing !important;

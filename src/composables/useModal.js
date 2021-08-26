@@ -16,7 +16,6 @@ export default () => {
 	};
 
 	const backdropAnim = (el, done) => {
-		console.log("backdrop anim", el);
 		gsap.to(el, {
 			opacity: 1,
 			duration: 0.4,
@@ -25,12 +24,10 @@ export default () => {
 	};
 
 	const backdropInit = (el) => {
-		console.log("backdrop init");
 		el.style.opacity = 0;
 	};
 
 	const backdropLeave = (el, done) => {
-		console.log("backdrop leavce");
 		gsap.to(el, {
 			opacity: 0,
 			duration: 0.4,
@@ -40,7 +37,6 @@ export default () => {
 	};
 
 	const modalLeave = (el, done) => {
-		console.log("backdrop leavce");
 		gsap.to(el, {
 			opacity: 0,
 			duration: 0.2,
@@ -49,7 +45,6 @@ export default () => {
 	};
 
 	const modalAnim = (el, done) => {
-		console.log("modal anim", el);
 		gsap.to(el, {
 			x: "-50%",
 			y: "-50%",
@@ -62,7 +57,6 @@ export default () => {
 	};
 
 	const modalInit = (el) => {
-		console.log("modal init");
 		el.style.opacity = 0;
 		el.style.transform = "scale(0.5)";
 	};

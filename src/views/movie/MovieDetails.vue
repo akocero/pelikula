@@ -84,10 +84,13 @@
 						>
 							{{ genre.name }}
 							<span v-if="index !== movie.genres.length - 1"
-								>,
+								>&#9702;
 							</span>
 						</router-link>
-						| {{ movie.runtime }} mins
+						|
+						<span class="heading__info--runtime">{{
+							minutesToHours(movie.runtime)
+						}}</span>
 					</label>
 
 					<div class="heading__actions mb-2 mt-2">
@@ -120,19 +123,15 @@
 						</button>
 					</div>
 
-					<p class="p  mb-2">
+					<p class="p movie-details__plot mb-2">
 						{{ omdb.Plot }}
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="fade-effect hide-on-mobile"></div>
-		<div class="movie-details__more-info">
-			<MovieAdditionalDetails :movie="movie" />
-			<MovieExternalID
-				:external_ids="movie?.external_ids || null"
-				:homepage="movie?.homepage || null"
-			/>
+		<div class="container">
+			<MovieMoreInfo :movie="movie" />
 		</div>
 
 		<div class="mb-2 container" v-if="movie">
@@ -146,7 +145,7 @@
 
 		<div class="pb-4 container flex-row">
 			<div class="col-6 col-sm-12">
-				<div class="movie-details__overview">
+				<div class="movie-details__story-line">
 					<h2 class="h2 mb-1">Story Line</h2>
 					<p class="p">
 						{{ movie.overview }}
@@ -211,18 +210,6 @@
 			/>
 		</div>
 
-		<!-- <div class="mb-2" v-if="movie.homepage">
-					<MovieExternalID
-						:external_ids="movie?.external_ids || null"
-						:homepage="movie?.homepage || null"
-					/>
-				</div>
-				<div class="mb-2">
-					<MovieMoreInfo :movie="movie" />
-				</div>
-				<div class="mb-2">
-					<MovieCollection :movie="movie" :request="request" />
-				</div> -->
 		<div class="container" v-if="movie.similar_movies.results.length">
 			<BaseScrollable
 				title="Similar Movies"
@@ -248,7 +235,7 @@ import getMovie from "@/composables/getMovie";
 import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieAdditionalDetails from "./MovieAdditionalDetails.vue";
+import MovieMoreInfo from "./MovieMoreInfo.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieTrailers from "./MovieTrailers.vue";
@@ -268,7 +255,7 @@ export default {
 	components: {
 		UserScore,
 		MovieExternalID,
-		MovieAdditionalDetails,
+		MovieMoreInfo,
 		MovieCollection,
 		ModalTrailer,
 		Loading,
@@ -331,7 +318,7 @@ export default {
 
 		onBeforeMount(async () => {
 			await loadContent(route.params.id);
-			console.log(movie.value);
+			// console.log(movie.value);
 		});
 
 		onBeforeRouteUpdate(async (to, from, next) => {
@@ -375,6 +362,16 @@ export default {
 			loading.value = false;
 		};
 
+		const minutesToHours = (n) => {
+			var num = n;
+			var hours = num / 60;
+			var rhours = Math.floor(hours);
+			var minutes = (hours - rhours) * 60;
+			var rminutes = Math.round(minutes);
+			return rhours + "h " + rminutes + "m";
+			// console.log(n);
+		};
+
 		return {
 			error,
 			movie,
@@ -388,6 +385,7 @@ export default {
 			loadingings,
 			media,
 			handleShowMedia,
+			minutesToHours,
 
 			modalContent,
 			showModal,
