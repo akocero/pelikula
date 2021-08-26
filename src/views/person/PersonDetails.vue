@@ -68,7 +68,7 @@
 									Read less
 								</button>
 							</div>
-							<ul class="person-details__more-info">
+							<ul class="more-info">
 								<li>
 									<label>Popularity</label>
 									<span class="icon"
@@ -101,7 +101,10 @@
 									<span>{{ data.place_of_birth }}</span>
 								</li>
 
-								<li class="link" v-if="data.homepage">
+								<li
+									class="more-info__link"
+									v-if="data.homepage"
+								>
 									<a :href="data.homepage"
 										><i v-html="iHome"></i
 									></a>
@@ -264,6 +267,14 @@ export default {
 				);
 			}
 		});
+
+		const makeMoreInfo = () => {
+			if (domLoaded.value) {
+				return data.value.map(() => {
+					return {};
+				});
+			}
+		};
 
 		const sortedCreditsByDateRelease = computed(() => {
 			if (domLoaded.value) {

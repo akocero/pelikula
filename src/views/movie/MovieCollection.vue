@@ -10,6 +10,7 @@
 							rgba(7, 15, 21, 0.85)), 
 							url(${request.image_path.backdrop.w1280}${collection.backdrop_path})`,
 			backgroundPosition: 'center bottom 80%',
+			backgroundAttachment: 'fixed',
 		}"
 	>
 		<div class="flex-row collection__wrapper">
@@ -29,12 +30,14 @@
 			</div>
 			<div class="col-9 col-sm-12 collection__content">
 				<h3 class="h3 collection__title">{{ collection.name }}</h3>
-				<p class="p collection__overview">{{ collection.overview }}</p>
+				<p class="p collection__overview mb-3">
+					{{ collection.overview }}
+				</p>
 				<ul
 					class="grid grid--6 grid__xs--2 grid__sm--4 grid__md--4 grid__gap--3 movies__list"
 				>
 					<li
-						class="movies__item mt-3"
+						class="movies__item"
 						v-for="(movie, index) in collection.parts"
 						:key="movie.id"
 						:data-index="index"

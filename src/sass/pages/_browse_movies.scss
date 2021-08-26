@@ -10,3 +10,11 @@
 		z-index: 1000;
 	}
 }
+
+.offset-y-10 {
+	margin-top: -20vh;
+
+	@include respond(tab-port) {
+		margin-top: -20vh;
+	}
+}
