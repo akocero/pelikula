@@ -36,14 +36,22 @@
 		content: "";
 		position: absolute;
 		top: 0;
-		left: 0;
+		left: -1px;
 		height: 100%;
 		width: 100%;
 		background: linear-gradient(
 			to right,
-			$dark-color 25%,
+			rgba($t-dark-color, 0.95) 25%,
 			rgba(0, 0, 0, 0.01)
 		);
+
+		@include respond(tab-port) {
+			background: linear-gradient(
+				to right,
+				rgba($t-dark-color, 0.95) 35%,
+				rgba(0, 0, 0, 0.01)
+			);
+		}
 	}
 
 	&__body {
