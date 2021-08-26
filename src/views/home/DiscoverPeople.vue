@@ -90,8 +90,8 @@ export default {
 		const router = useRouter();
 		onBeforeMount(async () => {
 			await load(url.value);
-			console.log(people.value);
-			console.log(people);
+			// console.log(people.value);
+			// console.log(people);
 		});
 
 		const handleClick = (person) => {

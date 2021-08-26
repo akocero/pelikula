@@ -112,6 +112,7 @@
 			margin-bottom: 5rem;
 
 			@include respond(tab-port) {
+				margin: 0 auto;
 				width: 80%;
 				margin-bottom: 1.8rem;
 			}
@@ -122,7 +123,10 @@
 				max-height: 30vh;
 
 				@include respond(tab-port) {
-					max-height: 15vh;
+					display: block;
+					margin: 0 auto;
+					max-height: 20vh;
+					min-height: auto;
 				}
 			}
 		}
@@ -147,6 +151,10 @@
 				&:focus {
 					color: lighten($red-color, 6%);
 				}
+			}
+
+			&--runtime {
+				white-space: nowrap;
 			}
 		}
 

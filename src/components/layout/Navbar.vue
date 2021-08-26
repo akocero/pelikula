@@ -117,7 +117,7 @@ export default {
 		const navListInitState = (el) => {
 			el.style.opacity = 0;
 			el.style.transform = "translateY(100px)";
-			console.log("before navListAnim");
+			// console.log("before navListAnim");
 		};
 
 		const navListAnim = (el, done) => {
@@ -132,7 +132,7 @@ export default {
 				});
 			}, animDurations.value.nav);
 
-			console.log("navListAnim");
+			// console.log("navListAnim");
 		};
 
 		const navAnim = (el, done) => {
@@ -144,7 +144,7 @@ export default {
 				ease: "expo",
 			});
 
-			console.log("navAnim");
+			// console.log("navAnim");
 		};
 
 		const navAnimOut = (el, done) => {
@@ -155,7 +155,7 @@ export default {
 				ease: "expo",
 			});
 
-			console.log("navAnimOut");
+			// console.log("navAnimOut");
 		};
 		const navInitState = (el) => {
 			el.style.transform = "translateY(-100%)";

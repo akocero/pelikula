@@ -87,7 +87,10 @@
 								>&#9702;
 							</span>
 						</router-link>
-						| {{ movie.runtime }} mins
+						|
+						<span class="heading__info--runtime">{{
+							minutesToHours(movie.runtime)
+						}}</span>
 					</label>
 
 					<div class="heading__actions mb-2 mt-2">
@@ -315,7 +318,7 @@ export default {
 
 		onBeforeMount(async () => {
 			await loadContent(route.params.id);
-			console.log(movie.value);
+			// console.log(movie.value);
 		});
 
 		onBeforeRouteUpdate(async (to, from, next) => {
@@ -359,6 +362,16 @@ export default {
 			loading.value = false;
 		};
 
+		const minutesToHours = (n) => {
+			var num = n;
+			var hours = num / 60;
+			var rhours = Math.floor(hours);
+			var minutes = (hours - rhours) * 60;
+			var rminutes = Math.round(minutes);
+			return rhours + "h " + rminutes + "m";
+			// console.log(n);
+		};
+
 		return {
 			error,
 			movie,
@@ -372,6 +385,7 @@ export default {
 			loadingings,
 			media,
 			handleShowMedia,
+			minutesToHours,
 
 			modalContent,
 			showModal,

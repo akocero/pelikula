@@ -45,6 +45,7 @@
 	&__content {
 		// text-align: center;
 		// margin-left: $x-spacing;
+		padding-right: $x-spacing;
 
 		@include respond(tab-port) {
 			padding: 0 $m-x-spacing !important;

@@ -246,7 +246,7 @@ export default {
 				`person/${route.params.id}?api_key=${request.apikey}&language=en-US&append_to_response=combined_credits,known_for_department`
 			);
 			domLoaded.value = true;
-			console.log(data.value);
+			// console.log(data.value);
 		});
 
 		const getComputedAge = (birthday) => {

@@ -120,7 +120,7 @@ export default {
 
 		onBeforeMount(async () => {
 			await load(`/collection/${props.id}?api_key=${request.apikey}`);
-			console.log(collection.value);
+			// console.log(collection.value);
 		});
 
 		const handleClickPoster = (movie) => {
