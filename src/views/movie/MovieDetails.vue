@@ -120,19 +120,15 @@
 						</button>
 					</div>
 
-					<p class="p  mb-2">
+					<p class="p movie-details__plot mb-2">
 						{{ omdb.Plot }}
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="fade-effect hide-on-mobile"></div>
-		<div class="movie-details__more-info">
-			<MovieAdditionalDetails :movie="movie" />
-			<MovieExternalID
-				:external_ids="movie?.external_ids || null"
-				:homepage="movie?.homepage || null"
-			/>
+		<div class="container">
+			<MovieMoreInfo :movie="movie" />
 		</div>
 
 		<div class="mb-2 container" v-if="movie">
@@ -211,18 +207,6 @@
 			/>
 		</div>
 
-		<!-- <div class="mb-2" v-if="movie.homepage">
-					<MovieExternalID
-						:external_ids="movie?.external_ids || null"
-						:homepage="movie?.homepage || null"
-					/>
-				</div>
-				<div class="mb-2">
-					<MovieMoreInfo :movie="movie" />
-				</div>
-				<div class="mb-2">
-					<MovieCollection :movie="movie" :request="request" />
-				</div> -->
 		<div class="container" v-if="movie.similar_movies.results.length">
 			<BaseScrollable
 				title="Similar Movies"
@@ -248,7 +232,7 @@ import getMovie from "@/composables/getMovie";
 import useModalTrailer from "@/composables/useModalTrailer";
 import useOMDB from "@/composables/useOMDB";
 import UserScore from "@/components/UserScore";
-import MovieAdditionalDetails from "./MovieAdditionalDetails.vue";
+import MovieMoreInfo from "./MovieMoreInfo.vue";
 import ModalTrailer from "./ModalTrailer.vue";
 import MovieExternalID from "./MovieExternalID.vue";
 import MovieTrailers from "./MovieTrailers.vue";
@@ -268,7 +252,7 @@ export default {
 	components: {
 		UserScore,
 		MovieExternalID,
-		MovieAdditionalDetails,
+		MovieMoreInfo,
 		MovieCollection,
 		ModalTrailer,
 		Loading,

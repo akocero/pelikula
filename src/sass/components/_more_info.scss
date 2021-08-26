@@ -1,0 +1,71 @@
+.more-info {
+	// margin: 1rem;
+	padding: 1.6rem 2rem;
+	height: fit-content;
+	display: flex;
+	border-radius: $border-rad;
+
+	@include respond(tab-port) {
+		flex-direction: column;
+		padding: 2rem 2.5rem;
+	}
+
+	@include default-shadow;
+	li {
+		font-size: 1.4rem;
+		&:not(:last-child) {
+			margin-right: 4rem;
+		}
+
+		@include respond(tab-port) {
+			&:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+			font-size: 1.6rem;
+		}
+
+		label {
+			font-weight: 700;
+			color: rgb(88, 88, 88);
+			display: block;
+		}
+
+		span {
+			display: inline-block;
+		}
+
+		span.icon {
+			margin-top: -4px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			@include respond(tab-port) {
+				justify-content: unset;
+			}
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		margin-left: auto;
+
+		@include respond(tab-port) {
+			margin-left: 0;
+		}
+	}
+
+	&__links {
+		margin-left: auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@include respond(tab-port) {
+			margin-left: unset;
+			// align-items: flex-start;
+			justify-content: flex-start;
+		}
+	}
+}
