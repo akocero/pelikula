@@ -71,7 +71,7 @@
 						/>
 					</div>
 
-					<h1 class="h3">
+					<h1 class="h3 heading__title">
 						{{ movie.title }}
 					</h1>
 
