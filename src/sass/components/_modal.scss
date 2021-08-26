@@ -81,7 +81,7 @@
 		@include respond(tab-port) {
 			// width < 900?
 			width: 80%;
-			margin: 4rem 0 0 3rem;
+			margin: 4rem 0 0 2.6rem;
 		}
 	}
 
@@ -117,7 +117,7 @@
 		margin-left: $x-spacing;
 
 		@include respond(tab-port) {
-			margin-left: 3rem;
+			margin-left: 2.6rem;
 		}
 	}
 

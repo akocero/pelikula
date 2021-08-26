@@ -84,7 +84,7 @@
 						>
 							{{ genre.name }}
 							<span v-if="index !== movie.genres.length - 1"
-								>,
+								>&#9702;
 							</span>
 						</router-link>
 						| {{ movie.runtime }} mins
@@ -142,7 +142,7 @@
 
 		<div class="pb-4 container flex-row">
 			<div class="col-6 col-sm-12">
-				<div class="movie-details__overview">
+				<div class="movie-details__story-line">
 					<h2 class="h2 mb-1">Story Line</h2>
 					<p class="p">
 						{{ movie.overview }}

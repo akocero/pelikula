@@ -65,7 +65,7 @@
 		@include respond(tab-port) {
 			margin-left: unset;
 			// align-items: flex-start;
-			justify-content: flex-start;
+			justify-content: space-between;
 		}
 	}
 }

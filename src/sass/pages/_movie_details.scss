@@ -141,11 +141,11 @@
 			color: $grey-color;
 			font-size: 1.6rem;
 			a {
-				color: $grey-color;
 				font-size: 1.6rem;
 				@include default-transition;
-				&:hover {
-					color: $red-color;
+				&:hover,
+				&:focus {
+					color: lighten($red-color, 6%);
 				}
 			}
 		}
@@ -202,12 +202,12 @@
 		}
 	}
 
-	&__overview {
+	&__story-line {
 		padding: 4rem 2rem 4rem 0;
 
 		@include respond(tab-port) {
 			text-align: justify;
-			padding: 4rem 0;
+			padding: 4rem 0 0 0;
 		}
 	}
 
