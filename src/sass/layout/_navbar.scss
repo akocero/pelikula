@@ -180,6 +180,10 @@
 			transform: rotate(360deg);
 			margin-right: -0.6rem;
 			margin-top: 0.8rem;
+
+			&::before {
+				background-color: transparent;
+			}
 			span:nth-child(1) {
 				transform: rotate(45deg) translate(5px, 5px);
 				width: 4.5rem;
