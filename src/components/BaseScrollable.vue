@@ -24,6 +24,10 @@
 						:src="
 							request.image_path.poster.w150 + item?.poster_path
 						"
+						:srcset="
+							`${request.image_path.poster.w150}${item?.poster_path} 1x,
+								${request.image_path.poster.w220}${item?.poster_path} 2x`
+						"
 						alt=""
 					/>
 					<div>

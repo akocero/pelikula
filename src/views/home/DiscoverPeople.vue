@@ -20,6 +20,10 @@
 					<img
 						:src="image_path.poster.w220 + person?.profile_path"
 						alt=""
+						:srcset="
+							`${image_path.poster.w220}${person?.profile_path} 1x,
+								${image_path.poster.w440}${person?.profile_path} 2x`
+						"
 						@click="handleClick(person)"
 					/>
 
