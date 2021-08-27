@@ -14,6 +14,7 @@ const request = {
 			w150: "https://image.tmdb.org/t/p/w150_and_h225_bestv2",
 			w220: "https://image.tmdb.org/t/p/w220_and_h330_face",
 			w300: "https://image.tmdb.org/t/p/w300_and_h450_bestv2",
+			w440: "https://image.tmdb.org/t/p/w440_and_h660_face",
 			w600: "https://image.tmdb.org/t/p/w600_and_h900_bestv2",
 		},
 		backdrop: {
@@ -44,6 +45,7 @@ export const image_path = {
 		w92: "https://image.tmdb.org/t/p/w92",
 		w150: "https://image.tmdb.org/t/p/w150_and_h225_bestv2",
 		w220: "https://image.tmdb.org/t/p/w220_and_h330_face",
+		w440: "https://image.tmdb.org/t/p/w440_and_h660_face",
 		w300: "https://image.tmdb.org/t/p/w300_and_h450_bestv2",
 		w600: "https://image.tmdb.org/t/p/w600_and_h900_bestv2",
 	},
