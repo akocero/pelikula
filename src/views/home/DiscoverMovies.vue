@@ -21,6 +21,10 @@
 						:src="
 							request.image_path.poster.w220 + movie?.poster_path
 						"
+						:srcset="
+							`${request.image_path.poster.w220}${movie?.poster_path} 1x,
+								${request.image_path.poster.w440}${movie?.poster_path} 2x`
+						"
 						alt=""
 						@click="handleClick(movie)"
 					/>
