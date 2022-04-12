@@ -68,5 +68,15 @@ const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
 });
+const generateProperTitle = (name) => {
+	name = name.replace("_", " ");
+	return name.charAt(0).toUpperCase() + name.slice(1);
+};
+router.beforeEach((to, from, next) => {
+	document.title = `${process.env.VUE_APP_NAME} - ${generateProperTitle(
+		to.name
+	)}`;
+	next();
+});
 
 export default router;
