@@ -1,5 +1,6 @@
 [build.environment]
   NODE_VERSION = "16"
+  SECRETS_SCAN_OMIT_KEYS = "VUE_APP_NAME,VUE_APP_FIREBASE_API_KEY"
 
 [[redirects]]
   from = "/*"
